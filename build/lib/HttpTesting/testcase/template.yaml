@@ -1,0 +1,226 @@
+﻿
+TEST_CASE:
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>用例1>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        #字段功能说明:
+        # - 
+        #     Desc: 用例描述
+        # -
+        #     #获取token
+        #     Url: Url相对路径
+        #     Method: 请求方法GET或POST  
+        #     Data: 请求要传入的参数dict或json类型
+        #         id: "b9b0e8e985a911e894a01c3947952e7e"
+        #         secret: "71ee217e2f1bdfcc"
+        #     InPara: "" 接口入参，没有入参填空
+        #     OutPara: 接口出参字段
+        #         ${H_token}$: res['data']
+        #     Assert: 断言 
+        #             "self.assertEquals(res['status'], 'success', res['status'])" 
+        #     ${H_token}$：头数据； ${D_token}$：参数数据
+        #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Case1: #用例1
+        -
+            Desc: 测试用例详细描述
+        -
+            #获取token
+            Url: /cloudfi/token/generatetoke
+            Method: GET
+            Headers:
+                content-type: "application/json"
+                cache-control: "no-cache"
+            Data: 
+                id: "b9b0e8e985a911e894a01c3947952e7e"
+                secret: "71ee217e2f1bdfcc"
+            InPara: ""
+            OutPara: 
+                ${H_token}$: result.data
+            Assert:
+                - eq: [result.status, 'success']
+        -
+            #POS门店信息
+            Url: /cloudfi/api/store/batchhandle/store
+            Method: POST
+            Headers:
+                content-type: "application/json"
+                cache-control: "no-cache"
+            Data: 
+                -
+                    transactionid: "555"
+                    number: "555"
+                    name: 门店1
+                    profitcenterid: ""
+            InPara: ${H_token}$
+            OutPara: ""
+            Assert: 
+                - eq: [result.status, 'success']
+        -
+            #POS消费项目
+            Url: /cloudfi/api/store/batchhandle/paytype
+            Method: POST
+            Headers:
+                content-type: "application/json"
+                cache-control: "no-cache"
+            Data: 
+                -
+                    transactionid: "566"
+                    number: "566"
+                    name: "门店1"
+                    type: "收银"
+                    typename: ""
+            InPara: ${H_token}$
+            OutPara: 
+                ${D_tid_03}$: "Data[0].transactionid"
+            Assert: 
+                - eq: [result.status, 'success']
+        -
+            #POS收入项目
+            Url: /cloudfi/api/store/batchhandle/incometype
+            Method: POST
+            Headers:
+                content-type: "application/json"
+                cache-control: "no-cache"
+            Data: 
+                -
+                    transactionid: "577"
+                    number: "577"
+                    name: "收入项目1"
+            InPara: ${H_token}$
+            OutPara: 
+                ${D_tid_04}$: "Data[0].transactionid"
+            Assert: 
+                - eq: [result.status, 'success']
+        -
+            #POS日报表
+            Url: /cloudfi/api/store/batchhandle/busidaily
+            Method: POST
+            Headers:
+                content-type: "application/json"
+                cache-control: "no-cache"
+            Data: 
+                -
+                    transactionid: "588"
+                    number: "588"
+                    busidate: "2019-6-14"
+                    incomeamount: 6000
+                    payamount: 7000
+                    storeid: 555
+                    fullincome: 5000
+                    discount: 0
+                    busidailyentrys:
+                        - 
+                            paytypeid: ""
+                            incometypeid: ${D_tid_03}$  #566
+                            amount: 888
+                            netamount: 999
+                            type: "default"
+                        -
+                            paytypeid: ""
+                            incometypeid: ${D_tid_04}$ #577
+                            amount: 888
+                            netamount: 999
+                            type: "default"
+            InPara: ${H_token}$
+            OutPara: ""
+            Assert: 
+                - eq: [result.status, 'success']
+
+    # Case2: #用例1
+    #     -
+    #         Desc: 获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
+    #     -
+    #         #获取token
+    #         Url: /cloudfi/token/generatetoke
+    #         Method: GET
+    #         Headers:
+    #             content-type: "application/json"
+    #             cache-control: "no-cache"
+    #         Data: 
+    #             id: "b9b0e8e985a911e894a01c3947952e7e"
+    #             secret: "71ee217e2f1bdfcc"
+    #         InPara: False
+    #         OutPara: 
+    #             ${H_token}$: res.data
+    #         Assert: "self.assertEquals(res['status'], 'success', res['status'])"
+    #     -
+    #         #POS门店信息
+    #         Url: /cloudfi/api/store/batchhandle/store
+    #         Method: POST
+    #         Headers:
+    #             content-type: "application/json"
+    #             cache-control: "no-cache"
+    #         Data: 
+    #             -
+    #                 transactionid: "555"
+    #                 number: "555"
+    #                 name: 门店1
+    #                 profitcenterid: ""
+    #         InPara: True
+    #         OutPara: False
+    #         Assert: "self.assertEquals(res['status'], 'success', res['message'])"
+    #     -
+    #         #POS消费项目
+    #         Url: /cloudfi/api/store/batchhandle/paytype
+    #         Method: POST
+    #         Headers:
+    #             content-type: "application/json"
+    #             cache-control: "no-cache"
+    #         Data: 
+    #             -
+    #                 transactionid: "566"
+    #                 number: "566"
+    #                 name: "门店1"
+    #                 type: "收银"
+    #                 typename: ""
+    #         InPara: True
+    #         OutPara: 
+    #             ${D_tid_03}$: "Data[0].transactionid"
+    #         Assert: "self.assertEquals(res['status'], 'success', res['message'])"
+    #     -
+    #         #POS收入项目
+    #         Url: /cloudfi/api/store/batchhandle/incometype
+    #         Method: POST
+    #         Headers:
+    #             content-type: "application/json"
+    #             cache-control: "no-cache"
+    #         Data: 
+    #             -
+    #                 transactionid: "577"
+    #                 number: "577"
+    #                 name: "收入项目1"
+    #         InPara: True
+    #         OutPara: 
+    #             ${D_tid_04}$: "Data[0].transactionid"
+    #         Assert: "self.assertEquals(res['status'], 'success', res['message'])"
+    #     -
+    #         #POS日报表
+    #         Url: /cloudfi/api/store/batchhandle/busidaily
+    #         Method: POST
+    #         Headers:
+    #             content-type: "application/json"
+    #             cache-control: "no-cache"
+    #         Data: 
+    #             -
+    #                 transactionid: "588"
+    #                 number: "588"
+    #                 busidate: "2019-6-14"
+    #                 incomeamount: 6000
+    #                 payamount: 7000
+    #                 storeid: 555
+    #                 fullincome: 5000
+    #                 discount: 0
+    #                 busidailyentrys:
+    #                     - 
+    #                         paytypeid: ""
+    #                         incometypeid: ${D_tid_03}$  #566
+    #                         amount: 888
+    #                         netamount: 999
+    #                         type: "default"
+    #                     -
+    #                         paytypeid: ""
+    #                         incometypeid: ${D_tid_04}$ #577
+    #                         amount: 888
+    #                         netamount: 999
+    #                         type: "default"
+    #         InPara: True
+    #         OutPara: False
+    #         Assert: "self.assertEquals(res['status'], 'success', res['message'])"

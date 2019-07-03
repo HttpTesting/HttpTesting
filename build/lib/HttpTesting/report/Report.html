@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>接口自动化测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+<style type="text/css" media="screen">
+body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px; font-size: 80%; }
+table       { font-size: 100%; }
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+/* -- report ------------------------------------------------------------------------ */
+#total_row  { font-weight: bold; }
+.passCase   { color: #5cb85c; }
+.failCase   { color: #d9534f; font-weight: bold; }
+.errorCase  { color: #f0ad4e; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+</style>
+
+</head>
+<body >
+<script language="javascript" type="text/javascript">
+output_list = Array();
+/*level 调整增加只显示通过用例的分类 --Findyou
+0:Summary //all hiddenRow
+1:Failed  //pt hiddenRow, ft none
+2:Pass    //pt none, ft hiddenRow
+3:All     //pt none, ft none
+*/
+function showCase(level) {
+    //展开或折叠用例按钮显示
+    var hidden_case = document.getElementById("case_hidden_btn");
+    if(level !=0) {
+
+        hidden_case.style.display = "block";
+    }else {
+        hidden_case.style.display = "none";
+    }
+
+    //更改通过时，显示通过按钮，样式，颜色bootstrap按钮
+    var btnpass = $('button[id^="btn_pt"]');
+    for(var i=0;i<btnpass.length;i++){
+        if(btnpass[i].innerText=="通过"){
+            btnpass[i].className="btn btn-success btn-xs";
+        }else{
+            btnpass[i].className="btn btn-danger btn-xs";
+        }
+    }
+
+
+
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level == 2 || level == 0 ) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level < 2) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+    }
+    //加入【详细】切换文字变化 --Findyou
+    detail_class=document.getElementsByClassName('detail');
+	//console.log(detail_class.length)
+	if (level == 3) {
+		for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="收起"
+		}
+	}
+	else{
+			for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="详细"
+		}
+	}
+}
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        //ID修改 点 为 下划线 -Findyou
+        tid0 = 't' + cid.substr(1) + '_' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        //修改点击无法收起的BUG，加入【详细】切换文字变化 --Findyou
+        if (toHide) {
+            document.getElementById(tid).className = 'hiddenRow';
+            document.getElementById(cid).innerText = "详细"
+        }
+        else {
+            document.getElementById(tid).className = '';
+            document.getElementById(cid).innerText = "收起"
+        }
+    }
+}
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+function hidden_case() {
+    var case_btn = document.getElementById("case_hidden_btn");
+    var btn_text = case_btn.innerText;
+
+    var a = $('div[id^="div_pt"]');
+    for(var i=0;i<a.length;i++){
+        if(btn_text=='展开所有'){
+            a[i].className = 'in';
+            a[i].style.height = "auto";
+            case_btn.innerText = "折叠所有";
+        }else {
+            a[i].className = 'collapse';
+            a[i].style.height = "0px";
+            case_btn.innerText = "展开所有";
+        }
+    }
+
+    var b = $('div[id^="div_ft"]');
+    for(var i=0;i<b.length;i++){
+        if(btn_text=='展开所有'){
+            b[i].className = 'in';
+            b[i].style.height = "auto";
+            case_btn.innerText = "折叠所有";
+        }else {
+            b[i].className = 'collapse';
+            b[i].style.height = "0px";
+            case_btn.innerText = "展开所有";
+        }
+    }
+}
+</script>
+
+<div class="container-fluid"> <div class="row"> <div class="col-lg-8">
+<h4 style="font-family: Microsoft YaHei">接口自动化测试报告</h4>
+<p class='attribute'><strong>测试人员 : </strong> 微生活－测试组</p>
+<p class='attribute'><strong>开始时间 : </strong> 2019-07-01 10:55:58</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:29.463660</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 2，通过 2，通过率= 100.00%</p>
+
+<p class='description'>详细测试用例结果</p>
+</div>
+<div class="col-lg-4">
+    <div id="container" style="height: 220px"></div>            
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+
+    <script type="text/javascript">
+            var dom = document.getElementById("container");
+            var myChart = echarts.init(dom);
+            option = null;
+            option = {
+                title : {
+                    text: '自动化测试结果统计图',
+                    subtext: '接口',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: ['失败','成功','错误']
+                },
+                series : [
+                    {
+                        name: '接口',
+                        type: 'pie',
+                        radius : '80',
+                        center: ['220', '140'],
+                        data:[
+                            {value:0, name:'失败'},
+                            {value:0, name:'错误'},
+                            {value:2, name:'成功'}
+                        ],
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+    </script>   
+
+    </div>
+    </div>
+</div>
+
+
+<p id='show_detail_line'>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 100.00% }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 0 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 2 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 2 }</a>
+</p>
+<table id='result_table' class="table table-condensed table-bordered table-hover">
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 14px;">
+    <td>用例集/测试用例</td>
+    <td>总计</td>
+    <td>通过</td>
+    <td>失败</td>
+    <td>错误</td>
+    <td>详细</td>
+</tr>
+
+<tr class='passClass warning'>
+    <td>TestCaseExec</td>
+    <td class="text-center">2</td>
+    <td class="text-center">2</td>
+    <td class="text-center">0</td>
+    <td class="text-center">0</td>
+    <td class="text-center">
+        <a href="javascript:showClassDetail('c1',2)" class="detail" id='c1'>详细</a>
+        <a href='javascript:hidden_case()' id="case_hidden_btn" style="display:none">展开所有</a>
+    </td>
+    
+</tr>
+
+<tr id='pt1_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_1: 获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_1' type="button" title="点击按钮，展开或折叠该Case" class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="in" align="left">
+    <pre style="overflow-y:scroll; overflow-x:hidden;height:200px; width:1070px; margin:auto; border:1px solid #e1e1e1;">
+    
+pt1_1: 
+2019-07-01 10:55:58:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
+GET请求:/cloudfi/token/generatetoke
+{'id': 'b9b0e8e985a911e894a01c3947952e7e', 'secret': '71ee217e2f1bdfcc'}
+响应:
+{'allowchange': False, 'data': 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiOWIwZThlOTg1YTkxMWU4OTRhMDFjMzk0Nzk1MmU3ZSIsImlhdCI6MTU2MTk0OTgzNywiaXNzIjoiNzFlZTIxN2UyZjFiZGZjYyIsImV4cCI6MTU2MTk1MzQzN30.djm9rwHa4VbET_8Z4LFxFac26pdk5kqzsFVhpC7Iz-Q', 'extradata': None, 'message': None, 'resultCode': None, 'status': 'success'}
+
+2019-07-01 10:56:02:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
+POST请求:/cloudfi/api/store/batchhandle/store
+[{'transactionid': '555', 'number': '555', 'name': '门店1', 'profitcenterid': ''}]
+响应:
+{'allowchange': False, 'data': None, 'extradata': None, 'message': '更新成功', 'resultCode': None, 'status': 'success'}
+
+2019-07-01 10:56:06:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
+POST请求:/cloudfi/api/store/batchhandle/paytype
+[{'transactionid': '566', 'number': '566', 'name': '门店1', 'type': '收银', 'typename': ''}]
+响应:
+{'allowchange': False, 'data': None, 'extradata': None, 'message': '更新成功', 'resultCode': None, 'status': 'success'}
+
+2019-07-01 10:56:10:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
+POST请求:/cloudfi/api/store/batchhandle/incometype
+[{'transactionid': '577', 'number': '577', 'name': '收入项目1'}]
+响应:
+{'allowchange': False, 'data': None, 'extradata': None, 'message': '更新成功', 'resultCode': None, 'status': 'success'}
+
+2019-07-01 10:56:13:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
+POST请求:/cloudfi/api/store/batchhandle/busidaily
+[{'transactionid': '588', 'number': '588', 'busidate': '2019-6-14', 'incomeamount': 6000, 'payamount': 7000, 'storeid': 555, 'fullincome': 5000, 'discount': 0, 'busidailyentrys': [{'paytypeid': '', 'incometypeid': '566', 'amount': 888, 'netamount': 999, 'type': 'default'}, {'paytypeid': '', 'incometypeid': '577', 'amount': 888, 'netamount': 999, 'type': 'default'}]}]
+响应:
+{'allowchange': False, 'data': None, 'extradata': None, 'message': '更新成功', 'resultCode': None, 'status': 'success'}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_2: 获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_2'>通过</button>
+    <div id='div_pt1_2' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_2' type="button" title="点击按钮，展开或折叠该Case" class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_2'>通过</button>
+    <div id='div_pt1_2' class="in" align="left">
+    <pre style="overflow-y:scroll; overflow-x:hidden;height:200px; width:1070px; margin:auto; border:1px solid #e1e1e1;">
+    
+pt1_2: 
+2019-07-01 10:56:15:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
+GET请求:/cloudfi/token/generatetoke
+{'id': 'b9b0e8e985a911e894a01c3947952e7e', 'secret': '71ee217e2f1bdfcc'}
+响应:
+{'allowchange': False, 'data': 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiOWIwZThlOTg1YTkxMWU4OTRhMDFjMzk0Nzk1MmU3ZSIsImlhdCI6MTU2MTk0OTg1MywiaXNzIjoiNzFlZTIxN2UyZjFiZGZjYyIsImV4cCI6MTU2MTk1MzQ1M30.KPRBTyaWlBeG1-AJ2zZFUYMHbqxiolFvfb9ElFQnjok', 'extradata': None, 'message': None, 'resultCode': None, 'status': 'success'}
+
+2019-07-01 10:56:19:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
+POST请求:/cloudfi/api/store/batchhandle/store
+[{'transactionid': '555', 'number': '555', 'name': '门店1', 'profitcenterid': ''}]
+响应:
+{'allowchange': False, 'data': None, 'extradata': None, 'message': '更新成功', 'resultCode': None, 'status': 'success'}
+
+2019-07-01 10:56:21:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
+POST请求:/cloudfi/api/store/batchhandle/paytype
+[{'transactionid': '566', 'number': '566', 'name': '门店1', 'type': '收银', 'typename': ''}]
+响应:
+{'allowchange': False, 'data': None, 'extradata': None, 'message': '更新成功', 'resultCode': None, 'status': 'success'}
+
+2019-07-01 10:56:25:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
+POST请求:/cloudfi/api/store/batchhandle/incometype
+[{'transactionid': '577', 'number': '577', 'name': '收入项目1'}]
+响应:
+{'allowchange': False, 'data': None, 'extradata': None, 'message': '更新成功', 'resultCode': None, 'status': 'success'}
+
+2019-07-01 10:56:26:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
+POST请求:/cloudfi/api/store/batchhandle/busidaily
+[{'transactionid': '588', 'number': '588', 'busidate': '2019-6-14', 'incomeamount': 6000, 'payamount': 7000, 'storeid': 555, 'fullincome': 5000, 'discount': 0, 'busidailyentrys': [{'paytypeid': '', 'incometypeid': '566', 'amount': 888, 'netamount': 999, 'type': 'default'}, {'paytypeid': '', 'incometypeid': '577', 'amount': 888, 'netamount': 999, 'type': 'default'}]}]
+响应:
+{'allowchange': False, 'data': None, 'extradata': None, 'message': '更新成功', 'resultCode': None, 'status': 'success'}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='total_row' class="text-center active">
+    <td>总计</td>
+    <td>2</td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td>通过率：100.00%</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+    <div style=" position:fixed;right:50px; bottom:30px; width:20px; height:20px;cursor:pointer">
+    <a href="#"><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
+    </span></a></div>
+    
+</body>
+</html>
