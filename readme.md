@@ -1,225 +1,176 @@
-﻿[打包]
-python3 setup.py bdist_wheel
+﻿# HttpTesting
+[![LICENSE](https://img.shields.io/github/license/HttpRunner/HttpRunner.svg)](https://github.com/HttpRunner/HttpRunner/blob/master/LICENSE) [![travis-ci](https://travis-ci.org/HttpRunner/HttpRunner.svg?branch=master)](https://travis-ci.org/HttpRunner/HttpRunner) [![coveralls](https://coveralls.io/repos/github/HttpRunner/HttpRunner/badge.svg?branch=master)](https://coveralls.io/github/HttpRunner/HttpRunner?branch=master) [![pypi version](https://img.shields.io/pypi/v/HttpRunner.svg)](https://pypi.python.org/pypi/HttpRunner) [![pyversions](https://img.shields.io/pypi/pyversions/HttpRunner.svg)](https://pypi.python.org/pypi/HttpRunner)
 
-[上传PYPI]
-twine upload dist/*
+  
+  
 
+HttpTesting 是HTTP(S) 协议测试框架，通过YAML来编写测试用例；支持通过pip直接从PyPi安装，支持命令行运行代码，不固定结构，通过命令生成脚手架。
 
-[测试用例]
+  
 
-包路径testScenario\testScenarioCase.py ;此文件用于unittest框架，执行测试用例
-读取用例来源于，场景：data\Scenario ，单接口:data\TCode*
+## 代码打包与上传PyPi
 
-[执行]
+  
 
-唯一入口main.py,此文件执行所有用例，包含单接口和场景用例*
+### 通过setuptools工具进行框架打包,需要编写setup.py
+	from setuptools import setup, find_packages, command
+	setup(
+		name='HttpTesting',#应用名称
+		version='1.0.14',#版本号
+		description='HttpTesting',#描述
+		long_description="长描述", #此描述显示到PyPi页
+		long_description_content_type='text/markdown',
+		author='天枢',#作者
+		author_email='lengyaohui@163.com',
+		url='https://gitlab.acewill.cn/lengyaohui/amtesting.git',
+		license='Apache 2.0',
+		python_requires='!=3.0.,!=3.1.,!=3.2.,!=3.3.,<4.0.',
+		packages=find_packages(),#查找包方法
+		package_data={
+			'HttpTesting':[
+				'config/*.yaml',
+				'testcase/*.yaml',
+				'report/*.html',
+				'report/*.xlsx',
+			],
+			'':['*.py'],
+		},	
+		#依赖包
+		install_requires=[
+			'ddt==1.1.3',
+			'Flask==1.0.2',
+			'PyYAML==3.12',
+			'requests==2.18.4',
+			'requests-toolbelt==0.8.0',
+		],
+		#排出打包文件
+		exclude_package_data={
+			'':['README.txt'],
+		},
+		#PyPi页面左侧显示
+		classifiers=[
+			'Development Status::Beta',
+			'Programming Language::Python::3.4',
+			'Programming Language::Python::3.5',
+			'Programming Language::Python::3.6',
+			'Programming Language::Python::3.7',
+		],
+		#命令行使用命令
+		entry_points={
+			'console_scripts':[
+				'amt=HttpTesting.main:run_min',
+				'AMT=HttpTesting.main.run_min',
+			],
+		},
+		#发布时执行的cmd命令
+		cmdclass={
+			'upload':从Command继承的类，
+		},
+	)
+  
 
-[用例格式]
+- 打包：python3 setup.py bdist_wheel
 
+  
 
-   #字段功能说明:
-  #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 
-  - 
-       Desc: 用例描述
-  -
-      #获取token
-      Url: Url相对路径
-      Method: 请求方法GET或POST  
-      Data: 请求要传入的参数dict或json类型
-         id: "b9b0e8e985a911e894a01c3947952e7e"
-         secret: "71ee217e2f1bdfcc"
-      InPara: "" 接口入参，没有入参填空
-      OutPara: 接口出参字段
-          ${H_token}$: res['data']
-      Assert: 断言 
-          "self.assertEquals(res['status'], 'success', res['status'])" 
-  #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   *
+- 上传PyP: itwine upload dist/*
 
+  
+  
 
-示例：
-NAME: POS日报表
-POS_INFO:
-Case2: #用例1
-    -
-        Desc: 获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
-    -
-        #获取token
-        Url: /cloudfi/token/generatetoke
-        Method: GET
-        Data: 
-            id: "b9b0e8e985a911e894a01c3947952e7e"
-            secret: "71ee217e2f1bdfcc"
-        InPara: ""
-        OutPara: 
-            ${H_token}$: res['data']
-        Assert: "self.assertEquals(res['status'], 'success', res['status'])"
-    -
-        #POS门店信息
-        Url: /cloudfi/api/store/batchhandle/store
-        Method: POST
-        Data: 
-            -
-                transactionid: "555"
-                number: "555"
-                name: 门店1
-                profitcenterid: ""
-        InPara: ${H_token}$
-        OutPara: ""
-        Assert: "self.assertEquals(res['status'], 'success', res['message'])"
-    -
-        #POS消费项目
-        Url: /cloudfi/api/store/batchhandle/paytype
-        Method: POST
-        Data: 
-            -
-                transactionid: "566"
-                number: "566"
-                name: "门店1"
-                type: "收银"
-                typename: ""
-        InPara: ${H_token}$
-        OutPara: ""
-        Assert: "self.assertEquals(res['status'], 'success', res['message'])"
-    -
-        #POS收入项目
-        Url: /cloudfi/api/store/batchhandle/incometype
-        Method: POST
-        Data: 
-            -
-                transactionid: "577"
-                number: "577"
-                name: "收入项目1"
-        InPara: ${H_token}$
-        OutPara: ""
-        Assert: "self.assertEquals(res['status'], 'success', res['message'])"
-    -
-        #POS日报表
-        Url: /cloudfi/api/store/batchhandle/busidaily
-        Method: POST
-        Data: 
-            -
-                transactionid: "588"
-                number: "588"
-                busidate: "2019-6-14"
-                incomeamount: 6000
-                payamount: 7000
-                storeid: 555
-                fullincome: 5000
-                discount: 0
-                busidailyentrys:
-                    - 
-                        paytypeid: ""
-                        incometypeid: "566"
-                        amount: 888
-                        netamount: 999
-                        type: "default"
-                    -
-                        paytypeid: ""
-                        incometypeid: "577"
-                        amount: 888
-                        netamount: 999
-                        type: "default"
-        InPara: ${H_token}$
-        OutPara: ""
-        Assert: "self.assertEquals(res['status'], 'success', res['message'])"
-[测试报告]
+## pip安装
 
-文件夹report\report.html*
+  
 
-[全局路径]
-文件夹globalVar\gl.py
-[框架配置]
+### 安装方法:
 
-文件夹config*
+  
 
-[调用示例]
-有两种用例编写方法，1.数据驱动，传参；2.部分数据驱动加调用传参
-示例1：
-import os
-import unittest
-import ddt
-from library.scripts import load_ddt_data
-from library import HTMLTESTRunnerCN
-from library.http import HttpWebRequest
-from library.case import exec_test_case
-from globalVar import gl
-'''
-天子星－云财务接口场景
-'''
-@ddt.ddt
-class TestScenario(unittest.TestCase):
-'''天子星－云财务接口场景'''
-def setUp(self):
-    pass
+- pip install HttpTesting==1.0.14
 
+  
 
-@ddt.data(*load_ddt_data(Itype='s',filename='demo.yaml',caseflag='POS_INFO'))
-def testPosInfo(self, data):
-    '''POS信息:获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表'''
-    exec_test_case(self, data)
-if name=="main":
-suite = unittest.TestSuite()
-tests = [unittest.TestLoader().loadTestsFromTestCase(TestScenario)]
-suite.addTests(tests)
+### HttpTesting amt 或 AMT命令
 
-filePath = os.path.join(gl.reportPath, 'Report.html')  # 确定生成报告的路径
-print(filePath)
+  
 
-with open(filePath, 'wb') as fp:
-    runner = HTMLTESTRunnerCN.HTMLTestRunner(
-        stream=fp,
-        title=u'接口自动化测试报告',
-        description=u'详细测试用例结果',  # 不传默认为空
-        tester=u"yhleng"  # 测试人员名字，不传默认为小强
-    )
-    # 运行测试用例
-    runner.run(suite)
-示例2：
-import os
-import unittest
-import ddt
-from library.scripts import load_ddt_data
-from library import HTMLTESTRunnerCN
-from library.http import HttpWebRequest
-from library.case import exec_test_case
-from globalVar import gl
-'''
-天子星－云财务接口场景
-'''
-@ddt.ddt
-class TestScenario(unittest.TestCase):
-'''天子星－云财务接口场景'''
-def setUp(self):
-    pass
+- amt --config set 此命令用来设置框架基本配置
 
+- amt --file template.yaml 执行YAML用例，支持绝对或相对路径。
 
-@ddt.data(*load_ddt_data(Itype='s',filename='POS_INFO.yaml',caseflag='POS_INFO'))
-def testPosInfo(self, data):
-    '''POS信息:获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表'''
-    ###实例化http请求类###
-    req = HttpWebRequest()
+- amt --dir testcase 批量执行testcase目录下的YAML用例，支持绝对路径或相对路径。
 
-    '''--------------------------获取token信息----------------------'''
-    res = req.get(params=data['TokenData'], desc=data['Desc'], gurl=data['TokenUrl'])
-    token = res['data']
-    self.assertEquals(res['status'], 'success', res['status'])
+- amt --startproject demo 生成脚手架demo目录
 
-    '''--------------------------POS获取门店信息----------------------'''  
-    req.headers['token'] = token
-    res = req.post(data=data['StoreData'], desc=data['Desc'], gurl=data['StoreUrl'])
-    self.assertEquals(res['status'], 'success', res['message'])
+  
+  
+  
 
-    '''--------------------------POS获取消费项目----------------------'''  
-    req.headers['token'] = token
-    res = req.post(data=data['PayData'], desc=data['Desc'], gurl=data['PayTypeUrl'])
-    self.assertEquals(res['status'], 'success', res['message'])
+## 用例编写
 
-    '''--------------------------POS获取收入项目----------------------'''  
-    req.headers['token'] = token
-    res = req.post(data=data['IncomeData'], desc=data['Desc'], gurl=data['IncomeUrl'])
-    self.assertEquals(res['status'], 'success', res['message'])
+### YAML用例格式  
 
-    '''--------------------------POS获取日报表----------------------'''  
-    req.headers['token'] = token
-    res = req.post(data=data['BusData'], desc=data['Desc'], gurl=data['BusidailyUrl'])
-    self.assertEquals(res['status'], 'success', res['message'])
+    TESTCASE:
+	    #Case1由两个请求组成的场景
+        Case1:
+	        -
+	            Desc:用例详细描述
+	        -
+	            Url: /login/login
+	            Method: GET
+	            Headers:
+	                content-type: "application/json"
+	                cache-control: "no-cache"
+	            Data:
+	                name: "test"
+	                pass: "test123"
+	            InPara: ""
+	            OutPara: 
+	                "$H_token$": result.data
+	            Assert:
+	                - eq: [result.status, 'success']
+	        -
+	            Url: /cloudfi/api/store/batchhandle/store
+	            Method: GET
+	            Headers:
+	                content-type: "application/json"
+	                cache-control: "no-cache"
+	            Data:
+	                name: "test"
+	                pass: "test123"
+	            InPara: ""
+	            OutPara: 
+	                "$H_token$": result.data
+	            Assert:
+	                - eq: [result.status, 'success']
+
+- 通过OutPara字段来做公共变量，给其它接口调用，方法：
+
+  "$H_token $": result.data
+  result.data 是请求结果，返回的嵌套级别
+  
+  result：请求影响res.json()
+  cookie：请求影响cookies 字典类型
+  res:  请求影响对象
+  Headers: 请求影响头
+ 
+### 参数说明
+- "$H_token $": H_开头代表是要进行信息头传参
+- $D_token $: D_开头代表是要进行data数据传参
+
+## 用例执行
+- 1、生成脚手架
+- 2、编写脚手架中testcase下YAML模版用例
+- 3、切换到testcase目录
+- 4、amt --dir testcase 自动运行testcase下YAML用例
+- 5、自动生成测试报告Html
+
+##  框架基本配置
+- 1、通过命令打开框架config.yaml
+- 2、amt --config set
+- 3、修改基本配置，并保存
+
+## 全局环境变量
+- 1、通过--config命令配置全局环境变量
+- 2、amt --config gl
+- 3、修改配置需要谨慎

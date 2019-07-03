@@ -2,7 +2,7 @@ from setuptools import setup, find_packages, command
 
 setup(
     name='HttpTesting', # 应用名
-    version='1.0.13', # 版本号
+    version='1.0.14', # 版本号
     description="HttpTesting",
     long_description="long_description",
     # long_description_content_type='text/markdown',
@@ -11,7 +11,7 @@ setup(
     url='https://gitlab.acewill.cn/lengyaohui/amtesting.git',
     license="Apache 2.0",
     python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4",
-    packages=find_packages(exclude=['report']), # 包括在安装包内的 Python 包
+    packages=find_packages(), # 包括在安装包内的 Python 包
     package_data = {
         'HttpTesting': [
             'config/*.yaml',

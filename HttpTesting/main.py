@@ -23,28 +23,37 @@ def run_min():
 
     parse = argparse.ArgumentParser("执行测试用例......")
     parse.add_argument("--file", default='')
-    parse.add_argument("--dir", default=gl.testCasePath)
+    parse.add_argument("--dir", default='')
     parse.add_argument("--startproject", default='')
+    parse.add_argument("--config", default='')
 
     args = parse.parse_args()
     case_file = args.file
     case_dir = args.dir
     start_project = args.startproject
+    config = args.config
+
+    if config == 'set':
+        os.system(gl.configFile)
 
     if start_project !='':
         create_falsework(os.path.join(os.getcwd(), start_project))
-    else:
-        #获取case yam文件名写入执行队列
-        if case_file == '':
-            for root, dirs, files in os.walk(case_dir):
-                for f in files:
-                    if 'yaml' in f:
-                        case_exec_queue.put(os.path.join(case_dir, f))
-        else:
-            case_exec_queue.put(case_file)
 
+        #获取case yam文件名写入执行队列
+    if case_file != '':
+        case_exec_queue.put(case_file)
         #调用开始
         Run_Test_Case.invoke()
+
+    if case_dir != '':
+        for root, dirs, files in os.walk(case_dir):
+            for f in files:
+                if 'yaml' in f:
+                    case_exec_queue.put(os.path.join(case_dir, f))
+        #调用开始
+        Run_Test_Case.invoke()
+
+
 
 
 #########################################################################
