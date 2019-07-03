@@ -36,7 +36,7 @@ EMAIL_ENABLE: False
 EMAIL:
     Smtp_Server: smtp.exmail.qq.com
     Smtp_Sender: lengyaohui.bj@acewill.cn
-    Password: Aqw129
+    Password: --  #最好配置到环境变量
     Msg_Title: 接口自动化测试结果
     Receivers: ['lengyaohui@163.com']  #收件人
     From: 自动化测试系统
