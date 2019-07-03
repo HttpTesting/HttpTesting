@@ -1,11 +1,16 @@
 from setuptools import setup, find_packages, command
+import io
+
+with io.open('README.md', encoding='utf-8') as fp:
+    long_description = fp.read()
+
 
 setup(
     name='HttpTesting', # 应用名
-    version='1.0.14', # 版本号
+    version='1.0.15', # 版本号
     description="HttpTesting",
-    long_description="long_description",
-    # long_description_content_type='text/markdown',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     author="天枢",
     author_email="lengyaohui@163.com",
     url='https://gitlab.acewill.cn/lengyaohui/amtesting.git',
