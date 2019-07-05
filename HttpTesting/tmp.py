@@ -1,5 +1,4 @@
-from library.scripts import get_yaml_field
-path = r'D:\test_project\amtest\testcase\template.yaml'
-content = get_yaml_field(path)
 
-print(content)
+
+a = {"SESSION": "8j3h9o1j08j2n34n513bj"}
+print(*a)

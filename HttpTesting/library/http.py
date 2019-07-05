@@ -1,10 +1,16 @@
-import requests
 from HttpTesting.base.base_config import BaseConfig
 from HttpTesting.library.scripts import (get_datetime_str, retry, get_yaml_field)
 from requests.exceptions import (HTTPError, ConnectionError, ConnectTimeout)
 from HttpTesting.globalVar import gl
 from HttpTesting.library.Multipart import MultipartFormData
 
+#########################################################################
+#requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+#去掉因请法度时verfiy=False 关闭SSL带来的警告
+import requests
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+###########################################################################
 class HttpWebRequest(object):
     """
     HTTP请求
@@ -36,7 +42,7 @@ class HttpWebRequest(object):
         print(tmpl)    
 
         try:
-            res =requests.request("GET", url, params=kwargs['params'], headers=kwargs['headers'])
+            res =requests.request("GET", url, params=kwargs['params'], headers=kwargs['headers'], verify=False)
             headers = res.headers
             cookie = res.cookies.get_dict()
             if res.status_code ==200:
@@ -82,28 +88,32 @@ class HttpWebRequest(object):
                     "POST", 
                     url, 
                     data=data, 
-                    headers=kwargs['headers']
+                    headers=kwargs['headers'],
+                    verify= False
                     )
             elif 'application/json' in kwargs['headers']['content-type']:
                 res = requests.request(
                     "POST", 
                     url, 
                     json=data, 
-                    headers=kwargs['headers']
+                    headers=kwargs['headers'],
+                    verify= False
                     )
             elif 'application/x-www-form-urlencoded' in kwargs['headers']['content-type']:
                 res = requests.request(
                     "POST", 
                     url, 
                     data=data, 
-                    headers=kwargs['headers']
+                    headers=kwargs['headers'],
+                    verify= False
                     )                
             else:
                 res = requests.request(
                     "POST", 
                     url, 
                     params=data, 
-                    headers=kwargs['headers']
+                    headers=kwargs['headers'],
+                    verify= False
                     )
 
             headers = res.headers

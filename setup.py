@@ -13,7 +13,7 @@ setup(
     long_description_content_type='text/markdown',
     author="天枢",
     author_email="lengyaohui@163.com",
-    url='https://github.com/xzdylyh/HttpTesting.git',
+    url='https://github.com/HttpTesting/HttpTesting',
     license="Apache 2.0",
     python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4",
     packages=find_packages(), # 包括在安装包内的 Python 包

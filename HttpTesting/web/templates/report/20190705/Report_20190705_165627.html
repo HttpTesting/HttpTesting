@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>接口自动化测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+<style type="text/css" media="screen">
+body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px; font-size: 80%; }
+table       { font-size: 100%; }
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+/* -- report ------------------------------------------------------------------------ */
+#total_row  { font-weight: bold; }
+.passCase   { color: #5cb85c; }
+.failCase   { color: #d9534f; font-weight: bold; }
+.errorCase  { color: #f0ad4e; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+</style>
+
+</head>
+<body >
+<script language="javascript" type="text/javascript">
+output_list = Array();
+/*level 调整增加只显示通过用例的分类 --Findyou
+0:Summary //all hiddenRow
+1:Failed  //pt hiddenRow, ft none
+2:Pass    //pt none, ft hiddenRow
+3:All     //pt none, ft none
+*/
+function showCase(level) {
+    //展开或折叠用例按钮显示
+    var hidden_case = document.getElementById("case_hidden_btn");
+    if(level !=0) {
+
+        hidden_case.style.display = "block";
+    }else {
+        hidden_case.style.display = "none";
+    }
+
+    //更改通过时，显示通过按钮，样式，颜色bootstrap按钮
+    var btnpass = $('button[id^="btn_pt"]');
+    for(var i=0;i<btnpass.length;i++){
+        if(btnpass[i].innerText=="通过"){
+            btnpass[i].className="btn btn-success btn-xs";
+        }else{
+            btnpass[i].className="btn btn-danger btn-xs";
+        }
+    }
+
+
+
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level == 2 || level == 0 ) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level < 2) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+    }
+    //加入【详细】切换文字变化 --Findyou
+    detail_class=document.getElementsByClassName('detail');
+	//console.log(detail_class.length)
+	if (level == 3) {
+		for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="收起"
+		}
+	}
+	else{
+			for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="详细"
+		}
+	}
+}
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        //ID修改 点 为 下划线 -Findyou
+        tid0 = 't' + cid.substr(1) + '_' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        //修改点击无法收起的BUG，加入【详细】切换文字变化 --Findyou
+        if (toHide) {
+            document.getElementById(tid).className = 'hiddenRow';
+            document.getElementById(cid).innerText = "详细"
+        }
+        else {
+            document.getElementById(tid).className = '';
+            document.getElementById(cid).innerText = "收起"
+        }
+    }
+}
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+function hidden_case() {
+    var case_btn = document.getElementById("case_hidden_btn");
+    var btn_text = case_btn.innerText;
+
+    var a = $('div[id^="div_pt"]');
+    for(var i=0;i<a.length;i++){
+        if(btn_text=='展开所有'){
+            a[i].className = 'in';
+            a[i].style.height = "auto";
+            case_btn.innerText = "折叠所有";
+        }else {
+            a[i].className = 'collapse';
+            a[i].style.height = "0px";
+            case_btn.innerText = "展开所有";
+        }
+    }
+
+    var b = $('div[id^="div_ft"]');
+    for(var i=0;i<b.length;i++){
+        if(btn_text=='展开所有'){
+            b[i].className = 'in';
+            b[i].style.height = "auto";
+            case_btn.innerText = "折叠所有";
+        }else {
+            b[i].className = 'collapse';
+            b[i].style.height = "0px";
+            case_btn.innerText = "展开所有";
+        }
+    }
+}
+</script>
+
+<div class="container-fluid"> <div class="row"> <div class="col-lg-8">
+<h4 style="font-family: Microsoft YaHei">接口自动化测试报告</h4>
+<p class='attribute'><strong>测试人员 : </strong> 测试组</p>
+<p class='attribute'><strong>开始时间 : </strong> 2019-07-05 16:56:27</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:04:32.087195</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 2，通过 1，错误 1，通过率= 50.00%</p>
+
+<p class='description'>详细测试用例结果</p>
+</div>
+<div class="col-lg-4">
+    <div id="container" style="height: 220px"></div>            
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+
+    <script type="text/javascript">
+            var dom = document.getElementById("container");
+            var myChart = echarts.init(dom);
+            option = null;
+            option = {
+                title : {
+                    text: '自动化测试结果统计图',
+                    subtext: '接口',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: ['失败','成功','错误']
+                },
+                series : [
+                    {
+                        name: '接口',
+                        type: 'pie',
+                        radius : '80',
+                        center: ['220', '140'],
+                        data:[
+                            {value:0, name:'失败'},
+                            {value:1, name:'错误'},
+                            {value:1, name:'成功'}
+                        ],
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+    </script>   
+
+    </div>
+    </div>
+</div>
+
+
+<p id='show_detail_line'>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 50.00% }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 0 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 1 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 2 }</a>
+</p>
+<table id='result_table' class="table table-condensed table-bordered table-hover">
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 14px;">
+    <td>用例集/测试用例</td>
+    <td>总计</td>
+    <td>通过</td>
+    <td>失败</td>
+    <td>错误</td>
+    <td>详细</td>
+</tr>
+
+<tr class='errorClass warning'>
+    <td>HttpTesting.case.load_case.TestCaseExec</td>
+    <td class="text-center">2</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center">1</td>
+    <td class="text-center">
+        <a href="javascript:showClassDetail('c1',2)" class="detail" id='c1'>详细</a>
+        <a href='javascript:hidden_case()' id="case_hidden_btn" style="display:none">展开所有</a>
+    </td>
+    
+</tr>
+
+<tr id='pt1_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_case_1: 微生活API</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='ft1_2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_case_2: 人力管家－职工入职</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_2'>错误</button>
+    <div id='div_ft1_2' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_2' type="button" title="点击按钮，展开或折叠该Case" class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_2'>错误</button>
+    <div id='div_ft1_2' class="in" align="left">
+    <pre style="overflow-y:scroll; overflow-x:hidden;height:200px; width:1070px; margin:auto; border:1px solid #e1e1e1;">
+    
+ft1_2: 
+2019-07-05 16:56:45 GET请求:https://dev.cxyhr.cn/login/login.htm
+{'name': 'customservice', 'pass': 'a2019rlgj'}
+响应:
+{'result': {'userMenu': [{'ID': 79, 'createTime': 1552037263000, 'des': '薪酬-计算发放', 'imagUrl': 'pay-calculate', 'isLeft': 0, 'menuCode': 'pay-calculate', 'menuName': '计算发放', 'moduleID': 14, 'parentID': 0, 'url': '/Pay/payCalculate', 'valid': 1}, {'ID': 77, 'createTime': 1552037263000, 'des': '薪酬-薪酬账套', 'imagUrl': 'pay-series', 'isLeft': 0, 'menuCode': 'pay-series', 'menuName': '薪酬账套', 'moduleID': 14, 'parentID': 0, 'url': '/Pay/paySeries', 'valid': 1}, {'ID': 65, 'createTime': 1552037263000, 'des': '组织员工-黑名单', 'imagUrl': 'org-blacklist', 'isLeft': 0, 'menuCode': 'org-blacklist', 'menuName': '黑名单', 'moduleID': 5, 'parentID': 0, 'url': '/OrgEmployee/ByOrg/action_blacklist', 'valid': 1}, {'ID': 67, 'createTime': 1552037263000, 'des': '考勤-月考勤', 'imagUrl': 'attendance-month', 'isLeft': 0, 'menuCode': 'attendanceEntire-month', 'menuName': '月考勤', 'moduleID': 10, 'parentID': 0, 'url': '/AttendanceEntire/Month', 'valid': 1}, {'ID': 66, 'createTime': 1552037263000, 'des': '考勤-日考勤', 'imagUrl': 'attendance-day', 'isLeft': 0, 'menuCode': 'attendanceEntire-day', 'menuName': '日考勤', 'moduleID': 10, 'parentID': 0, 'url': '/AttendanceEntire/Day', 'valid': 1}], 'smartScheduleAddr': 'https://testznpb.cxyhr.cn', 'menuLeft': [], 'menu': [{'ID': -3, 'menuCode': 'permission', 'menuName': '权限管理', 'parentID': -1}, {'ID': -5, 'menuCode': 'org', 'menuName': '组织与员工', 'parentID': -1}, {'ID': -9, 'menuCode': 'schedule', 'menuName': '排班', 'parentID': -1}, {'ID': 136, 'createTime': 1552037263000, 'des': '申请-补卡申请', 'imagUrl': 'apply-card', 'isLeft': 0, 'menuCode': 'apply-card', 'menuName': '补卡申请', 'moduleID': 12, 'parentID': -12, 'url': '/Apply/Card', 'valid': 1}, {'ID': -10, 'menuCode': 'attendanceEntire', 'menuName': '考勤', 'parentID': -1}, {'ID': 137, 'createTime': 1552037263000, 'des': '申请-调班申请', 'imagUrl': 'apply-classes', 'isLeft': 0, 'menuCode': 'apply-classes', 'menuName': '调班申请', 'moduleID': 12, 'parentID': -12, 'url': '/Apply/Classes', 'valid': 1}, {'ID': -11, 'menuCode': 'config', 'menuName': '规则设置', 'parentID': -1}, {'ID': 138, 'createTime': 1555642260000, 'imagUrl': 'apply-schedual', 'isLeft': 0, 'menuName': '排班申请', 'moduleID': 12, 'parentID': -12, 'url': '/Apply/Schedual', 'valid': 1}, {'ID': -12, 'menuCode': 'apply', 'menuName': '申请', 'parentID': -1}, {'ID': -14, 'menuCode': 'pay', 'menuName': '薪酬', 'parentID': -1}, {'ID': -15, 'menuCode': 'mwreport', 'menuName': '木屋报表', 'parentID': -1}, {'ID': -16, 'menuCode': 'commonreport', 'menuName': '公用报表', 'parentID': -1}, {'ID': -17, 'menuCode': 'workflow', 'menuName': '审批', 'parentID': -1}, {'ID': -22, 'menuCode': 'account', 'menuName': '账号管理', 'parentID': -1}, {'ID': -35, 'menuCode': 'xhsjreport', 'menuName': '小恒水饺报表', 'parentID': -1}, {'ID': 425, 'createTime': 1557625057000, 'des': '规则设置-门店计件规则', 'imagUrl': 'mendianjijianguize', 'isLeft': 0, 'menuCode': 'config-storepiecerule', 'menuName': '门店计件规则', 'moduleID': 11, 'parentID': -11, 'url': '/storebypiece/pieceworkorder', 'valid': 1}, {'ID': 426, 'createTime': 1559226558000, 'des': '薪酬-外部数据管理', 'imagUrl': 'pay-externaldata', 'isLeft': 0, 'menuCode': 'pay-externaldata', 'menuName': '外部数据管理', 'moduleID': 14, 'parentID': -14, 'url': '/Pay/externalDataManage', 'valid': 1}, {'ID': 427, 'createTime': 1559226558000, 'des': '申请-宿管申请', 'imagUrl': 'apply-dormitory', 'isLeft': 0, 'menuCode': 'apply-dormitory', 'menuName': '宿管申请', 'moduleID': 12, 'parentID': -12, 'url': '/Apply/Dormitory', 'valid': 1}, {'ID': 300, 'createTime': 1552037263000, 'des': '服务优选-优选管理', 'imagUrl': 'evaluate-list', 'isLeft': 0, 'menuCode': 'evaluate-manage', 'menuName': '优选管理', 'moduleID': 57, 'parentID': -57, 'url': '/evaluate/list', 'valid': 1}, {'ID': 429, 'createTime': 1559226560000, 'imagUrl': 'apply-reissue', 'isLeft': 0, 'menuCode': 'apply-reissue', 'menuName': '补发工资申请', 'moduleID': 12, 'parentID': -12, 'url': '/Apply/Reissue', 'valid': 1}, {'ID': 301, 'createTime': 1552037263000, 'des': '服务优选-规则管理', 'imagUrl': 'evaluate-manage', 'isLeft': 0, 'menuCode': 'evaluate-rule', 'menuName': '规则管理', 'moduleID': 57, 'parentID': -57, 'url': '/evaluate/manage', 'valid': 1}, {'ID': 431, 'createTime': 1560737724000, 'des': '规则设置-社保规则', 'imagUrl': 'socialrule', 'isLeft': 0, 'menuCode': 'config-social', 'menuName': '社保规则', 'moduleID': 11, 'parentID': -11, 'url': '/Settings/social', 'valid': 1}, {'ID': 432, 'createTime': 1560737724000, 'des': '组织员工-社保管理', 'imagUrl': 'org-social', 'isLeft': 0, 'menuCode': 'org-social', 'menuName': '社保管理', 'moduleID': 5, 'parentID': -5, 'url': '/OrgEmployee/ByOrg/action_social', 'valid': 1}, {'ID': 52, 'createTime': 1552037263000, 'des': '角色-角色管理', 'imagUrl': 'auth-role', 'isLeft': 0, 'menuCode': 'permission-role', 'menuName': '角色管理', 'moduleID': 3, 'parentID': -3, 'url': '/Permission/roleManagement', 'valid': 1}, {'ID': 53, 'createTime': 1552037263000, 'des': '组织员工-组织架构图', 'imagUrl': 'org-manage', 'isLeft': 0, 'menuCode': 'org-structureMap', 'menuName': '组织架构图', 'moduleID': 5, 'parentID': -5, 'url': '/OrgEmployee/ByOrg/action_orgmanage', 'valid': 1}, {'ID': 54, 'createTime': 1552037263000, 'des': '排班-普通排班', 'imagUrl': 'schedule-department', 'isLeft': 0, 'menuCode': 'schedule-common', 'menuName': '普通排班', 'moduleID': 9, 'parentID': -9, 'url': '/Schedule/department/department/department', 'valid': 1}, {'ID': -55, 'menuCode': 'train', 'menuName': '培训', 'parentID': -1}, {'ID': 312, 'createTime': 1550395440000, 'des': '规则设置-奖惩规则', 'imagUrl': 'sanction-rule', 'isLeft': 0, 'menuCode': 'config-reward', 'menuName': '奖惩规则', 'moduleID': 11, 'parentID': -11, 'url': '/sanction/rule', 'valid': 0}, {'ID': -57, 'menuCode': 'evaluate', 'menuName': '服务优选', 'parentID': -1}, {'ID': 57, 'createTime': 1552037263000, 'des': '组织员工-岗位', 'imagUrl': 'org-post', 'isLeft': 0, 'menuCode': 'org-post', 'menuName': '岗位', 'moduleID': 5, 'parentID': -5, 'url': '/OrgEmployee/ByPost', 'valid': 1}, {'ID': 313, 'createTime': 1550395440000, 'des': '申请-奖惩申请', 'imagUrl': 'sanction-apply', 'isLeft': 0, 'menuCode': 'apply-reward', 'menuName': '奖惩申请', 'moduleID': 12, 'parentID': -12, 'url': '/sanction/apply', 'valid': 0}, {'ID': 58, 'createTime': 1552037263000, 'des': '组织员工-组织树管理', 'imagUrl': 'org-structure-tree', 'isLeft': 0, 'menuCode': 'org-orgTree', 'menuName': '组织树管理', 'moduleID': 5, 'parentID': -5, 'url': '/OrgEmployee/ByOrg/action_editorg', 'valid': 1}, {'ID': 59, 'createTime': 1552037263000, 'des': '组织员工-岗位树管理', 'imagUrl': 'org-post', 'isLeft': 0, 'menuCode': 'org-postTree', 'menuName': '岗位树管理', 'moduleID': 5, 'parentID': -5, 'url': '/OrgEmployee/ByOrg/action_editpost', 'valid': 1}, {'ID': 60, 'createTime': 1552037263000, 'des': '组织员工-新员工入职', 'imagUrl': 'ruzhi', 'isLeft': 0, 'menuCode': 'org-addEmployee', 'menuName': '新员工入职', 'moduleID': 5, 'parentID': -5, 'url': '/OrgEmployee/ByOrg/action_newemployee', 'valid': 1}, {'ID': 316, 'createTime': 1550395440000, 'des': '申请-工资表申请', 'imagUrl': 'apply-actstaff', 'isLeft': 0, 'menuCode': 'apply-actstaff', 'menuName': '工资表申请', 'moduleID': 12, 'parentID': -12, 'url': '/salaryapply/list', 'valid': 1}, {'ID': 61, 'createTime': 1552037263000, 'des': '组织员工-员工转正', 'imagUrl': 'org-regular', 'isLeft': 0, 'menuCode': 'org-regular', 'menuName': '员工转正', 'moduleID': 5, 'parentID': -5, 'url': '/OrgEmployee/ByOrg/action_office', 'valid': 1}, {'ID': 317, 'createTime': 1550395440000, 'des': '薪酬-计件工资', 'imagUrl': 'pay-multi', 'isLeft': 0, 'menuCode': 'pay-multi', 'menuName': '计件工资', 'moduleID': 14, 'parentID': -14, 'url': '/countsalary/list', 'valid': 1}, {'ID': 62, 'createTime': 1552037263000, 'des': '组织员工-员工异动', 'imagUrl': 'org-transaction', 'isLeft': 0, 'menuCode': 'org-transaction', 'menuName': '员工异动', 'moduleID': 5, 'parentID': -5, 'url': '/OrgEmployee/ByOrg/action_transaction', 'valid': 1}, {'ID': 63, 'createTime': 1552037263000, 'des': '组织员工-员工离职', 'imagUrl': 'org-dimission', 'isLeft': 0, 'menuCode': 'org-dimission', 'menuName': '员工离职', 'moduleID': 5, 'parentID': -5, 'url': '/OrgEmployee/ByOrg/action_dimission', 'valid': 1}, {'ID': 64, 'createTime': 1552037263000, 'des': '组织员工-花名册', 'imagUrl': 'org-roster', 'isLeft': 0, 'menuCode': 'org-roster', 'menuName': '花名册', 'moduleID': 5, 'parentID': -5, 'url': '/OrgEmployee/ByOrg/action_roster', 'valid': 1}, {'ID': 65, 'createTime': 1552037263000, 'des': '组织员工-黑名单', 'imagUrl': 'org-blacklist', 'isLeft': 0, 'menuCode': 'org-blacklist', 'menuName': '黑名单', 'moduleID': 5, 'parentID': -5, 'url': '/OrgEmployee/ByOrg/action_blacklist', 'valid': 1}, {'ID': 66, 'createTime': 1552037263000, 'des': '考勤-日考勤', 'imagUrl': 'attendance-day', 'isLeft': 0, 'menuCode': 'attendanceEntire-day', 'menuName': '日考勤', 'moduleID': 10, 'parentID': -10, 'url': '/AttendanceEntire/Day', 'valid': 1}, {'ID': 67, 'createTime': 1552037263000, 'des': '考勤-月考勤', 'imagUrl': 'attendance-month', 'isLeft': 0, 'menuCode': 'attendanceEntire-month', 'menuName': '月考勤', 'moduleID': 10, 'parentID': -10, 'url': '/AttendanceEntire/Month', 'valid': 1}, {'ID': 68, 'createTime': 1552037263000, 'des': '规则设置-基础数据', 'imagUrl': 'system', 'isLeft': 0, 'menuCode': 'config-system', 'menuName': '基础数据', 'moduleID': 11, 'parentID': -11, 'url': '/Settings/system', 'valid': 1}, {'ID': 69, 'createTime': 1552037263000, 'des': '规则设置-排班规则', 'imagUrl': 'schedule', 'isLeft': 0, 'menuCode': 'config-schedule', 'menuName': '排班规则', 'moduleID': 11, 'parentID': -11, 'url': '/Settings/schedule', 'valid': 1}, {'ID': 70, 'createTime': 1552037263000, 'des': '申请-请假申请', 'imagUrl': 'apply-leave', 'isLeft': 0, 'menuCode': 'apply-leave', 'menuName': '请假申请', 'moduleID': 12, 'parentID': -12, 'url': '/Apply/Vacation', 'valid': 1}, {'ID': 71, 'createTime': 1552037263000, 'des': '申请-加班申请', 'imagUrl': 'apply-overtime', 'isLeft': 0, 'menuCode': 'apply-overtime', 'menuName': '加班申请', 'moduleID': 12, 'parentID': -12, 'url': '/Apply/Overtime', 'valid': 1}, {'ID': 72, 'createTime': 1552037263000, 'des': '申请-出差/外出申请', 'imagUrl': 'apply-trip', 'isLeft': 0, 'menuCode': 'apply-trip', 'menuName': '出差/外出申请', 'moduleID': 12, 'parentID': -12, 'url': '/Apply/BizTrip', 'valid': 1}, {'ID': 76, 'createTime': 1552037263000, 'des': '规则设置-假期规则', 'imagUrl': 'holiday', 'isLeft': 0, 'menuCode': 'config-vacation', 'menuName': '假期规则', 'moduleID': 11, 'parentID': -11, 'url': '/Settings/vacation', 'valid': 1}, {'ID': 77, 'createTime': 1552037263000, 'des': '薪酬-薪酬账套', 'imagUrl': 'pay-series', 'isLeft': 0, 'menuCode': 'pay-series', 'menuName': '薪酬账套', 'moduleID': 14, 'parentID': -14, 'url': '/Pay/paySeries', 'valid': 1}, {'ID': 79, 'createTime': 1552037263000, 'des': '薪酬-计算发放', 'imagUrl': 'pay-calculate', 'isLeft': 0, 'menuCode': 'pay-calculate', 'menuName': '计算发放', 'moduleID': 14, 'parentID': -14, 'url': '/Pay/payCalculate', 'valid': 1}, {'ID': 80, 'createTime': 1552037263000, 'des': '规则设置-考勤规则', 'imagUrl': 'attendance', 'isLeft': 0, 'menuCode': 'config-attendance', 'menuName': '考勤规则', 'moduleID': 11, 'parentID': -11, 'url': '/Settings/rule', 'valid': 1}, {'ID': 81, 'createTime': 1552037263000, 'des': '规则设置-考勤机', 'imagUrl': 'ATmachine', 'isLeft': 0, 'menuCode': 'config-ATmachine', 'menuName': '考勤机', 'moduleID': 11, 'parentID': -11, 'url': '/Settings/iclock', 'valid': 1}, {'ID': 82, 'createTime': 1552037263000, 'des': '审批-审批', 'imagUrl': 'approval', 'isLeft': 0, 'menuCode': 'workflow-approval', 'menuName': '审批', 'moduleID': 17, 'parentID': -17, 'url': '/Workflow', 'valid': 1}, {'ID': 83, 'createTime': 1552037263000, 'des': '规则设置-薪酬规则', 'imagUrl': 'payment', 'isLeft': 0, 'menuCode': 'config-pay', 'menuName': '薪酬规则', 'moduleID': 11, 'parentID': -11, 'url': '/Settings/payrule', 'valid': 1}, {'ID': 84, 'createTime': 1552037263000, 'des': '规则设置-员工扩展', 'imagUrl': 'extendTable', 'isLeft': 0, 'menuCode': 'config-extendTable', 'menuName': '员工扩展', 'moduleID': 11, 'parentID': -11, 'url': '/Settings/extendTable', 'valid': 1}, {'ID': 85, 'createTime': 1552037263000, 'des': '规则设置-必填项设置', 'imagUrl': 'require', 'isLeft': 0, 'menuCode': 'config-requireItem', 'menuName': '必填项设置', 'moduleID': 11, 'parentID': -11, 'url': '/Settings/requireItem', 'valid': 1}, {'ID': 86, 'createTime': 1552037263000, 'des': '规则设置-安全设置', 'imagUrl': 'auth-agent', 'isLeft': 0, 'menuCode': 'config-safeSetting', 'menuName': '安全设置', 'moduleID': 11, 'parentID': -11, 'url': '/Settings/safeSetting', 'valid': 1}, {'ID': 87, 'createTime': 1552037263000, 'des': '规则设置-审批设置', 'imagUrl': 'apply', 'isLeft': 0, 'menuCode': 'config-workflow', 'menuName': '审批设置', 'moduleID': 11, 'parentID': -11, 'url': '/Settings/workflow', 'valid': 1}, {'ID': 88, 'createTime': 1552037263000, 'des': '规则设置-组织与员工规则', 'imagUrl': 'orgRule', 'isLeft': 0, 'menuCode': 'config-orgRule', 'menuName': '组织与员工规则', 'moduleID': 11, 'parentID': -11, 'url': '/Settings/orgRule', 'valid': 1}, {'ID': 89, 'createTime': 1552037263000, 'des': '申请-存休申请', 'imagUrl': 'apply-saverest', 'isLeft': 0, 'menuCode': 'apply-saverest', 'menuName': '存休申请', 'moduleID': 12, 'parentID': -12, 'url': '/Apply/SaveRest', 'valid': 1}, {'ID': 90, 'createTime': 1552037263000, 'des': '申请-晋级申请', 'imagUrl': 'apply-promotion', 'isLeft': 0, 'menuCode': 'apply-promotion', 'menuName': '晋级申请', 'moduleID': 12, 'parentID': -12, 'url': '/Apply/Promotion', 'valid': 1}, {'ID': 91, 'createTime': 1552037263000, 'des': '申请-调薪申请', 'imagUrl': 'apply-raises', 'isLeft': 0, 'menuCode': 'apply-raises', 'menuName': '调薪申请', 'moduleID': 12, 'parentID': -12, 'url': '/Apply/Raises', 'valid': 1}, {'ID': 350, 'createTime': 1555422824000, 'des': '申请-父母工资申请', 'imagUrl': 'apply-parentSalary', 'isLeft': 0, 'menuCode': 'apply-parentSalary', 'menuName': '父母工资申请', 'moduleID': 12, 'parentID': -12, 'url': '/Apply/ParentSalary', 'valid': 1}, {'ID': 351, 'createTime': 1555422824000, 'des': '申请-子女教育金申请', 'imagUrl': 'apply-childrenEducation', 'isLeft': 0, 'menuCode': 'apply-childrenEducation', 'menuName': '子女教育金申请', 'moduleID': 12, 'parentID': -12, 'url': '/Apply/ChildEducation', 'valid': 1}, {'ID': 96, 'createTime': 1552037263000, 'des': '排班-智能排班', 'imagUrl': 'smartSchedule', 'isLeft': 0, 'menuCode': 'schedule-smart', 'menuName': '智能排班', 'moduleID': 9, 'parentID': -9, 'url': '', 'valid': 0}, {'ID': 97, 'createTime': 1552037263000, 'des': '规则设置-接口维护', 'imagUrl': 'interface', 'isLeft': 0, 'menuCode': 'config-interface', 'menuName': '接口维护', 'moduleID': 11, 'parentID': -11, 'url': '/Settings/interface', 'valid': 1}, {'ID': 100, 'createTime': 1552037263000, 'des': '组织员工-宿舍管理', 'imagUrl': 'dormitory', 'isLeft': 0, 'menuCode': 'org-dormitory', 'menuName': '宿舍管理', 'moduleID': 5, 'parentID': -5, 'url': '/OrgEmployee/ByOrg/action_dormitory', 'valid': 1}, {'ID': 119, 'createTime': 1552037263000, 'des': '培训-培训', 'imagUrl': 'train', 'isLeft': 0, 'menuCode': 'train-train', 'menuName': '培训', 'moduleID': 55, 'parentID': -55, 'url': 'redirectUrl=/api/nxb/login.htm', 'valid': 1}, {'ID': 251, 'createTime': 1552037263000, 'des': '规则设置-通知规则设置', 'imagUrl': 'notification-rules', 'isLeft': 0, 'menuCode': 'config-notificationrule', 'menuName': '通知规则设置', 'moduleID': 11, 'parentID': -11, 'url': '/Settings/noticeRule', 'valid': 1}], 'token': 't5G1PjvKw%2BAoywCxCHTu7%2BYNigv%2BPeURF1Lmft0VWyBERcjK2C%2B%2FrRHM44xcdrHal9VX5y3BtyAauOkpIUNJV0idySMKTJwh4s4igTA7xG0PxsCsNT6i7A%3D%3D'}, 'success': 'true', 'err_msg': '请求处理成功', 'err_code': 8888}
+
+2019-07-05 17:00:29 POST请求:https://dev.cxyhr.cn/acewill/employee/createNumByEmployeeNumRule.htm
+{'orgID': 462, 'type': 1, 'stateCode': 120001, 'entryDate': '2019-06-19', 'oldUserNum': None, 'userType': 100010, 'clickState': 0, 'ruleID': None, 'ruleNumTpl': 'MW00011798', 'userId': None, 'userEntryId': None, 'oldCheckWorkNo': None}
+响应:
+{'result': 0, 'err_msg': '请重新登录', 'success': True, 'err_code': 4444}
+Traceback (most recent call last):
+  File "D:\test_project\venv\cloudfii\lib\site-packages\ddt.py", line 144, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\test_project\project\HttpTesting\HttpTesting\case\load_case.py", line 33, in test_case
+    exec_test_case(self, data)
+  File "D:\test_project\project\HttpTesting\HttpTesting\library\case.py", line 114, in exec_test_case
+    oPara[key] = eval(out_param_parse(head, value))
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+TypeError: 'int' object is not subscriptable
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='total_row' class="text-center active">
+    <td>总计</td>
+    <td>2</td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>通过率：50.00%</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+    <div style=" position:fixed;right:50px; bottom:30px; width:20px; height:20px;cursor:pointer">
+    <a href="#"><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
+    </span></a></div>
+    
+</body>
+</html>
