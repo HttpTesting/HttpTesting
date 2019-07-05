@@ -18,6 +18,7 @@ HttpTesting/config/exeConfig.yaml
 HttpTesting/globalVar/__init__.py
 HttpTesting/globalVar/gl.py
 HttpTesting/library/HTMLTESTRunnerCN.py
+HttpTesting/library/Multipart.py
 HttpTesting/library/__init__.py
 HttpTesting/library/assert_case.py
 HttpTesting/library/case.py

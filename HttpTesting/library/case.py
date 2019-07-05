@@ -131,7 +131,7 @@ def exec_test_case(self, data):
 
 
 if __name__ == "__main__":
-    param = "Data.transactionid"
+    param = "result.res[0].cno"
     pm = param.split(".")[0]
     if '[' in pm:
         pm = pm.split("[")[0]

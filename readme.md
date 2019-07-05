@@ -12,7 +12,7 @@ HttpTesting 是HTTP(S) 协议测试框架，通过YAML来编写测试用例；�
 	from setuptools import setup, find_packages, command
 	setup(
 		name='HttpTesting',#应用名称
-		version='1.0.14',#版本号
+		version='1.0.16',#版本号
 		description='HttpTesting',#描述
 		long_description="长描述", #此描述显示到PyPi页
 		long_description_content_type='text/markdown',
@@ -69,7 +69,7 @@ HttpTesting 是HTTP(S) 协议测试框架，通过YAML来编写测试用例；�
 
   
 
-- 上传PyP: itwine upload dist/*
+- 上传PyP: twine upload dist/*
 
   
   

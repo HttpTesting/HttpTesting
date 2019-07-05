@@ -8,6 +8,6 @@ class Ac(object):
     """
     设置断言常量
     """
-    eq = "self.assertEquals({},'{}')"
+    eq = "self.assertEquals(str({}),'{}')"
 
 

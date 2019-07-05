@@ -53,7 +53,6 @@ class HttpWebRequest(object):
         return res, headers, cookie, result
 
 
-
     # post请求
     @retry(reNum=3)
     def post(self, **kwargs):
@@ -65,9 +64,6 @@ class HttpWebRequest(object):
             url = str(kwargs['gurl']).strip()
 
         data = kwargs['data']
-        #转换数据为form-data数据
-        if 'form-data' in kwargs['headers']['content-type']:
-            data = MultipartFormData.to_form_data(data, headers=kwargs['headers'])
 
         #报告输出模版    
         tmpl = self.OUT_TMPL.format(
@@ -79,7 +75,37 @@ class HttpWebRequest(object):
         print(tmpl)
 
         try:
-            res = requests.request("POST", url, json=data, headers=kwargs['headers'])
+                    #转换数据为form-data数据
+            if 'form-data' in kwargs['headers']['content-type']:
+                data = MultipartFormData.to_form_data(data, headers=kwargs['headers'])
+                res = requests.request(
+                    "POST", 
+                    url, 
+                    data=data, 
+                    headers=kwargs['headers']
+                    )
+            elif 'application/json' in kwargs['headers']['content-type']:
+                res = requests.request(
+                    "POST", 
+                    url, 
+                    json=data, 
+                    headers=kwargs['headers']
+                    )
+            elif 'application/x-www-form-urlencoded' in kwargs['headers']['content-type']:
+                res = requests.request(
+                    "POST", 
+                    url, 
+                    data=data, 
+                    headers=kwargs['headers']
+                    )                
+            else:
+                res = requests.request(
+                    "POST", 
+                    url, 
+                    params=data, 
+                    headers=kwargs['headers']
+                    )
+
             headers = res.headers
             cookie = res.cookies.get_dict()
 
