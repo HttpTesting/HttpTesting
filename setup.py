@@ -7,13 +7,13 @@ with io.open('README.md', encoding='utf-8') as fp:
 
 setup(
     name='HttpTesting', # 应用名
-    version='1.0.18', # 版本号
+    version='1.0.19', # 版本号
     description="HttpTesting",
     long_description=long_description,
     long_description_content_type='text/markdown',
     author="天枢",
     author_email="lengyaohui@163.com",
-    url='https://gitlab.acewill.cn/lengyaohui/amtesting.git',
+    url='https://github.com/xzdylyh/HttpTesting.git',
     license="Apache 2.0",
     python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4",
     packages=find_packages(), # 包括在安装包内的 Python 包
