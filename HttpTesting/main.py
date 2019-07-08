@@ -21,12 +21,28 @@ def run_min():
     cur_dir= os.getcwd()
     os.chdir(cur_dir)
 
-    parse = argparse.ArgumentParser("执行测试用例......")
-    parse.add_argument("--file", default='')
-    parse.add_argument("--dir", default='')
-    parse.add_argument("--startproject", default='')
-    parse.add_argument("--config", default='')
-
+    parse = argparse.ArgumentParser(description='Start HttpTesting......')
+    parse.add_argument(
+        "--file", 
+        default='', 
+        help='The file path; File absolute or relative path.'
+        )
+    parse.add_argument(
+        "--dir", 
+        default='',
+        help='The folder path; folder absolute or relative path.'
+        )
+    parse.add_argument(
+        "--startproject", 
+        default='',
+        help='Generate test case templates.'
+        )
+    parse.add_argument(
+        "--config", 
+        default='',
+        help='Basic setting of framework.'
+        )
+    
     args = parse.parse_args()
     case_file = args.file
     case_dir = args.dir
@@ -132,27 +148,27 @@ class Run_Test_Case(object):
     @staticmethod
     def run(filePath):
         """
-        去行unittest并生成报告
-        :param filePath: report.html绝对路径
-        :return: 无
+        Execute the test and generate the test report file.
+        :param filePath: Report file absolute path.
+        :return: There is no.
         """
         
-        #加载unittest框架，必须写在此处否则会先加载ddt
+        #Load the unittest framework, which must be written here or DDT will be loaded first.
         from HttpTesting.case import load_case
 
-        # unittest测试套件
+        # Unittest test suite.
         suite = unittest.TestSuite()
         suite.addTests(Run_Test_Case.load_tests_list(load_case))
 
-        # 执行测试并生成测试报告文件
+        # Execute the test and generate the test report file.
         with open(filePath, 'wb') as fp:
             runner = HTMLTESTRunnerCN.HTMLTestRunner(
                 stream=fp,
                 title= '接口自动化测试报告',
-                description= '详细测试用例结果',  # 不传默认为空
-                tester= "测试组"  # 测试人员名字，不传默认为小强
+                description= '详细测试用例结果',  # Do not default to null.
+                tester= "测试组"  # tester name ,not default to jack.
             )
-            # 运行测试用例
+            # Run the test case.
             runner.run(suite)
 
 
@@ -160,41 +176,59 @@ class Run_Test_Case(object):
     @staticmethod
     def invoke():
         """
-        开始执行测试生成测试报告
-        :return:
+        Start executing tests generate test reports.
+        :return: There is no.
         """
-        ##########################读取配置信息##################################
+        ##########################Read configuration information###############
         config  = get_yaml_field(gl.configFile)
         dd_enable = config['ENABLE_DDING']
         dd_token = config['DD_TOKEN']
         dd_url = config['DING_URL']
-
+        report_service = config['REPORT_SERVICE_ENABLE']
         email_enable = config['EMAIL_ENABLE']
         ########################################################################
+        #Enable a test reporting web service.
+        _HOST = config['REPORT_HOST']
+        _PORT = config['REPORT_PORT']
 
-        # 测试报告文件名
+        #Whether to enable web services.
+        if report_service:
+            boolRet = scripts.check_http_status(_HOST, _PORT)
+            if not boolRet:
+                os.system('python {} --host {} --port {}'.format(
+                        os.path.join(gl.webPath, 'service.py'),
+                        _HOST,
+                        _PORT
+                    )
+                )
+
+        # Test report file name.
         time_str = time.strftime('%Y%m%d_%H%M%S', time.localtime())
         filePath = Run_Test_Case.create_report_file()
         print(filePath)
 
-        # 开始测试发送钉钉消息
+        # Start test the send pin message.
         if dd_enable:
-            scripts.send_msg_dding('{}:★开始API接口自动化测试★'.format(time_str),  dd_url, dd_token)
+            scripts.send_msg_dding(
+                '{}:★开始API接口自动化测试★'.format(time_str),  
+                dd_url, 
+                dd_token
+            )
 
-        # 执行测试并生成测试报告文件
+        # Execute the test and send the test report.
         Run_Test_Case.run(filePath)
 
-        # 复制report下子文件夹到 templates/report/下
+        # Copy the folder under the report directory under  /templates/report/
         low_path = Run_Test_Case.copy_report(filePath, Run_Test_Case.file_name)
 
         if dd_enable:
-            # 模版消息
+            # Template message.
             msg = Run_Test_Case.tmpl_msg(low_path, Run_Test_Case.file_name)
             print(msg)
             scripts.send_msg_dding(msg, dd_url, dd_token)
 
         if email_enable:
-            # 发送测试报告To Email
+            # Send test report to EMAIL.
             email = EmailClass()
             email.send(filePath)
 

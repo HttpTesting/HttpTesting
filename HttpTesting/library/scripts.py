@@ -230,6 +230,21 @@ def get_sys_environ(name):
         raise ex
     return value
 
+def check_http_status(host, port, **kwargs):
+    """
+    Check that the  HTTP status is normal.
+    :param host: The host address.
+    :param port: The port number.
+    :return bool: The return value is a Boolean.
+    """
+    url = 'http://{}:{}'.format(host, port)
+    try:
+        res = requests.request("GET", url, **kwargs)
+        if res.status_code == 200:
+            return True
+    except:
+        return False
+
 
 if __name__=="__main__":
     env = get_sys_environ('HTTPTESTING_PWD')

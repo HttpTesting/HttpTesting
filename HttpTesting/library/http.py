@@ -1,5 +1,10 @@
 from HttpTesting.base.base_config import BaseConfig
-from HttpTesting.library.scripts import (get_datetime_str, retry, get_yaml_field)
+from HttpTesting.library.scripts import (
+    get_datetime_str, 
+    retry, 
+    get_yaml_field
+    )
+from HttpTesting.library.log import LOG
 from requests.exceptions import (HTTPError, ConnectionError, ConnectTimeout)
 from HttpTesting.globalVar import gl
 from HttpTesting.library.Multipart import MultipartFormData
@@ -54,7 +59,7 @@ class HttpWebRequest(object):
             result = {"errcode": 9002, "errmsg": str(ex)}
 
 
-
+        LOG.console_info('GET: {} STATUS: {}'.format(url, res.status_code))
         print(result) #res结果报告展示输出
         return res, headers, cookie, result
 
@@ -127,6 +132,7 @@ class HttpWebRequest(object):
         except (HTTPError, ConnectionError, ConnectTimeout) as ex:
             result =  {"errcode": 9002, "errmsg": str(ex)}
 
+        LOG.console_info('POST: {} STATUS: {}'.format(url, res.status_code))
         print(result) #res结果报告展示输出
         return res, headers, cookie, result
 
