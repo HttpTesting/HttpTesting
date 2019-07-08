@@ -508,3 +508,194 @@ TEST_CASE:
                 ${D_usernum}$: result.result[0].codeName
             Assert:
                 - eq: [result.success, 'true']
+
+    Case18:
+        - #登录
+            Desc: 人力管家－职工入职-考勤规则
+        -
+            Url: https://dev.cxyhr.cn/login/login.htm
+            Method: GET
+            Headers:
+                content-type: "application/x-www-form-urlencoded"
+            Data: 
+               name: customservice
+               pass: a2019rlgj
+            InPara: ""
+            OutPara: 
+                ${H_cookie}$: cookie.SESSION
+            Assert:
+                - eq: [result.success, 'true']
+
+        - #考勤规则
+            Url: https://dev.cxyhr.cn/acewill/checkwork/checkworkrule/selectCheckworkRule.htm
+            Method: GET
+            Headers:
+                content-type: "application/x-www-form-urlencoded"
+            Data: 
+            InPara: ${H_cookie}$
+            OutPara: 
+                ${D_usernum}$: result.result[0].ID
+            Assert:
+                - eq: [result.success, 'true']
+
+    Case19:
+        - #登录
+            Desc: 人力管家－职工入职-扩展字段
+        -
+            Url: https://dev.cxyhr.cn/login/login.htm
+            Method: GET
+            Headers:
+                content-type: "application/x-www-form-urlencoded"
+            Data: 
+               name: customservice
+               pass: a2019rlgj
+            InPara: ""
+            OutPara: 
+                ${H_cookie}$: cookie.SESSION
+            Assert:
+                - eq: [result.success, 'true']
+
+        - #扩展字段
+            Url: https://dev.cxyhr.cn/acewill/employee/selectEmployeeForExtend.htm
+            Method: GET
+            Headers:
+                content-type: "application/x-www-form-urlencoded"
+            Data: 
+                id: ""
+                type: ""
+                changeType: "employee"
+            InPara: ${H_cookie}$
+            OutPara: 
+                ${D_usernum}$: result.result[0].ID
+            Assert:
+                - eq: [result.success, 'true']
+    Case20:
+        - #登录
+            Desc: 人力管家－职工入职-岗位
+        -
+            Url: https://dev.cxyhr.cn/login/login.htm
+            Method: GET
+            Headers:
+                content-type: "application/x-www-form-urlencoded"
+            Data: 
+               name: customservice
+               pass: a2019rlgj
+            InPara: ""
+            OutPara: 
+                ${H_cookie}$: cookie.SESSION
+            Assert:
+                - eq: [result.success, 'true']
+
+        - #岗位
+            Url: https://dev.cxyhr.cn/acewill/basedata/rank/selectbynum.htm
+            Method: GET
+            Headers:
+                content-type: "application/x-www-form-urlencoded"
+            Data: 
+                postID: 6169
+            InPara: ${H_cookie}$
+            OutPara: 
+                ${D_usernum}$: result.result[0].ID
+            Assert:
+                - eq: [result.success, 'true']
+    Case21:
+        - #登录
+            Desc: 人力管家－职工入职-组织--北京公司--人力资源部
+        -
+            Url: https://dev.cxyhr.cn/login/login.htm
+            Method: GET
+            Headers:
+                content-type: "application/x-www-form-urlencoded"
+            Data: 
+               name: customservice
+               pass: a2019rlgj
+            InPara: ""
+            OutPara: 
+                ${H_cookie}$: cookie.SESSION
+            Assert:
+                - eq: [result.success, 'true']
+
+        - #组织--北京公司--人力资源部
+            Url: https://dev.cxyhr.cn/acewill/employee/createNumByEmployeeNumRule.htm
+            Method: POST
+            Headers:
+                content-type: "application/x-www-form-urlencoded"
+            Data: 
+                orgID: 370
+                type: ""
+                stateCode: 120001
+                entryDate: 2019-06-19
+                oldUserNum: ""
+                userType: 100010
+                clickState: 0
+                ruleID: ""
+                ruleNumTpl: ""
+                userId: ""
+                userEntryId: ""
+                oldCheckWorkNo: ""
+            InPara: ${H_cookie}$
+            OutPara: 
+                ${D_usernum}$: result.result.userNum
+            Assert:
+                - eq: [result.success, 'true']
+    Case22:
+        - #登录
+            Desc: 人力管家－职工入职-员工宿舍
+        -
+            Url: https://dev.cxyhr.cn/login/login.htm
+            Method: GET
+            Headers:
+                content-type: "application/x-www-form-urlencoded"
+            Data: 
+               name: customservice
+               pass: a2019rlgj
+            InPara: ""
+            OutPara: 
+                ${H_cookie}$: cookie.SESSION
+            Assert:
+                - eq: [result.success, 'true']
+
+        - #员工宿舍
+            Url: https://dev.cxyhr.cn/acewill/basedata/dormitory/findbypage.htm
+            Method: POST
+            Headers:
+                content-type: "application/x-www-form-urlencoded"
+            Data: 
+                pageNum: 1
+                pageSize: 50
+                dormitoryCode: ""
+            InPara: ${H_cookie}$
+            OutPara: 
+                ${D_usernum}$: result.result.pageNum
+            Assert:
+                - eq: [result.success, 'true']
+    Case23:
+        - #登录
+            Desc: 人力管家－职工入职-提交
+        -
+            Url: https://dev.cxyhr.cn/login/login.htm
+            Method: GET
+            Headers:
+                content-type: "application/x-www-form-urlencoded"
+            Data: 
+               name: customservice
+               pass: a2019rlgj
+            InPara: ""
+            OutPara: 
+                ${H_cookie}$: cookie.SESSION
+            Assert:
+                - eq: [result.success, 'true']
+
+        - #提交
+            Url: https://dev.cxyhr.cn/acewill/employee/addEmployeeEntry.htm
+            Method: POST
+            Headers:
+                content-type: "application/x-www-form-urlencoded"
+            Data: 
+                employeeEntryMSG: '{"employeeEntry":{"clickState":0,"userName":"美美","userNum":"MW00011799","userNumCopy":"MW00011799","photourl":"","checkWorkNo":"80413","firstWorkTime":"","country":"151001","idCardType":"149002","userIDCard":"963258","birthDay":"1980-06-04","isMarried":"","gender":"118002","nation":"","hukouType":"","healthEndTime":"","phone":"","weChat":"","mail":"","userType":"100010","qq":0,"urgentPerson":"","urgentPhone":"","organizeID":370,"chcekOrgID":"","postID":6169,"rankID":"235","startTime":"2019-06-19","offerTime":"","expectOfferTime":"","checkworkcode":"","bankName":"","bankCard":"","checkworkid":"68","expiryDate":"","state":"120001","origin":"","age":39,"baseSalary":0,"unit":"2","contractType":"","hireType":"","contractDateType":"","contractSignDate":"","education":"","gongling":"","subWorkYear":0,"siling":"","idCardEndTime":"","hukouAddress":"","hukouCode":0,"positionID":83,"positionName":"部门主管","political":"","showBankUrl":false,"showContractUrl":false,"showHealthUrl":false,"showIdentityUrl":false,"showRetirecontractUrl":false,"socialSecurity":"","parentSalary":"","childrenEducationSalary":"","parentBankCard":"","parentBankName":"","parentBankNameName":"","leaveType":"666","isBlack":0,"ID":""},"jobexperienceList":[],"educateList":[],"dormitory":{"ID":"","address":"","dormitoryCode":""},"extendList":[{"ID":5,"dbName":"_huodezhengshu","des":"","tableName":"employee","valid":1,"showType":"show_inputStr"},{"ID":4,"dbName":"_tongjineng","des":"","tableName":"employee","valid":1,"showType":"show_inputStr"},{"ID":10,"dbName":"_xianjuzhudizhi","des":"","tableName":"employee","valid":1,"showType":"show_inputStr"},{"ID":14,"dbName":"_biyeyuanxiao","des":"234","tableName":"employee","valid":1,"showType":"show_inputStr"},{"ID":15,"dbName":"_zhuanye","des":"234","tableName":"employee","valid":1,"showType":"show_inputStr"},{"ID":16,"dbName":"_biyeshijian","des":"","tableName":"employee","valid":1,"showType":"show_inputStr"},{"ID":18,"dbName":"_peiou","des":"","tableName":"employee","valid":1,"showType":"show_inputStr"},{"ID":19,"dbName":"_zhaopinqudao","des":"","tableName":"employee","valid":1,"showType":"show_inputStr"},{"ID":23,"dbName":"_huiyuankahao","des":"24","tableName":"employee","valid":1,"showType":"show_inputStr"},{"ID":25,"dbName":"_fangbu","des":"","tableName":"employee","valid":1,"showType":"show_radio"},{"ID":26,"dbName":"_goumaiyiwaixianriqi","des":"","tableName":"employee","valid":1,"showType":"show_date"}],"checkworkOrgList":[],"empaccessory":{"identityUrl":"","healthUrl":"","bankUrl":"","contractUrl":"","photoUrl":"","signatureUrl":"","retirecontractUrl":""},"isCommit":1,"saveOrUpdate":"S"}'
+            InPara: ${H_cookie}$
+            OutPara: ""
+            Assert:
+                - eq: [result.success, 'true']
+                - eq: [result.err_code, '021201']
+

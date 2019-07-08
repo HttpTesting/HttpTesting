@@ -29,7 +29,7 @@ def run_min():
         )
     parse.add_argument(
         "--dir", 
-        default='',
+        default="",
         help='The folder path; folder absolute or relative path.'
         )
     parse.add_argument(
@@ -84,8 +84,8 @@ class Run_Test_Case(object):
     @classmethod
     def load_tests_list(cls, to):
         """
-        指定加载测试用例顺序
-        :return:
+        Specifies the order in which test cases are loaded
+        :return: There is no.
         """
         tests = [unittest.TestLoader().loadTestsFromModule(to)]
 
@@ -166,7 +166,8 @@ class Run_Test_Case(object):
                 stream=fp,
                 title= '接口自动化测试报告',
                 description= '详细测试用例结果',  # Do not default to null.
-                tester= "测试组"  # tester name ,not default to jack.
+                tester= "测试组",  # tester name ,not default to jack.
+                verbosity=2
             )
             # Run the test case.
             runner.run(suite)
