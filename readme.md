@@ -98,6 +98,7 @@ HttpTesting 是HTTP(S) 协议测试框架，通过YAML来编写测试用例；�
 
 - amt --startproject demo 生成脚手架demo目录
 
+- amt --har  D:\httphar.har 根据har文件，生成测试用例YAML.
   
   
   

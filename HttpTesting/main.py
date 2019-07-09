@@ -10,6 +10,7 @@ from HttpTesting.library.emailstmp import EmailClass
 from HttpTesting.library.case_queue import case_exec_queue
 from HttpTesting import case
 from HttpTesting.library.falsework import create_falsework
+from HttpTesting.library.har import ConvertHarToYAML
 import argparse
 
 
@@ -42,13 +43,26 @@ def run_min():
         default='',
         help='Basic setting of framework.'
         )
-    
+    parse.add_argument(
+        "--har", 
+        default='',
+        help='Convert the har files to YAML. har file is *.har'
+        )
+
     args = parse.parse_args()
     case_file = args.file
     case_dir = args.dir
     start_project = args.startproject
     config = args.config
+    har = args.har
 
+    #Convert har files to YAML.
+    #r'D:\httphar.har'
+    if har != '':
+        temp_dict = ConvertHarToYAML.convert_har_to_ht(har)
+        ConvertHarToYAML.write_case_to_yaml('', temp_dict)
+
+    #Setting global var.
     if config == 'set':
         os.system(gl.configFile)
 

@@ -26,6 +26,7 @@ HttpTesting/library/case_queue.py
 HttpTesting/library/emailstmp.py
 HttpTesting/library/excel.py
 HttpTesting/library/falsework.py
+HttpTesting/library/har.py
 HttpTesting/library/http.py
 HttpTesting/library/log.py
 HttpTesting/library/request.py

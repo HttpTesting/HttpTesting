@@ -103,7 +103,8 @@ def exec_test_case(self, data):
 
                 #解释用例中的出参
                 out_data = data[i]
-                stra = str(value).split(".")[0]
+                strsplit = stra = str(value).split(".")
+                stra = strsplit[0]
                 if '[' in stra:
                     stra = stra.split("[")[0]
 
@@ -111,7 +112,15 @@ def exec_test_case(self, data):
                     head = stra
                 else:
                     head = "out_data"
-                oPara[key] = eval(out_param_parse(head, value))
+                #处理cookie 
+                if strsplit[0].lower() == 'cookie':
+                    queue_val = '{}={}'.format(
+                        strsplit[1], 
+                        eval(out_param_parse(head, value))
+                        )
+                else:
+                    queue_val = eval(out_param_parse(head, value))
+                oPara[key] = queue_val
             outParaQueue.append(oPara)
 
 
@@ -131,7 +140,7 @@ def exec_test_case(self, data):
 
 
 if __name__ == "__main__":
-    param = "Data.transactionid"
+    param = "result.res[0].cno"
     pm = param.split(".")[0]
     if '[' in pm:
         pm = pm.split("[")[0]

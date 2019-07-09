@@ -1,8 +1,8 @@
 Metadata-Version: 2.1
 Name: HttpTesting
-Version: 1.0.18
+Version: 1.0.21
 Summary: HttpTesting
-Home-page: https://gitlab.acewill.cn/lengyaohui/amtesting.git
+Home-page: https://github.com/HttpTesting/HttpTesting
 Author: 天枢
 Author-email: lengyaohui@163.com
 License: Apache 2.0

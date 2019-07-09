@@ -111,10 +111,10 @@ def load_ddt_data(Itype='t', filename='Charge.yaml', caseflag='CHARGE_CASE1'):
 
 def load_case_data(flag='TEST_CASE'):
     """
-    :func 
-        从yaml加载ddt数据
+    :Desc: 
+        load DDT data form YAML.
     :param flag:  
-        yaml中接口case的起始节点
+        The starting node of the interface case in YAML.
         default:
             TEST_CASE
     :import
@@ -126,7 +126,7 @@ def load_case_data(flag='TEST_CASE'):
         or
         scripts.load_case_data()
 
-    :return: ddt数据list
+    :return: [] DDT data list
     """
     ddtData = []
 
@@ -134,30 +134,31 @@ def load_case_data(flag='TEST_CASE'):
         if not case_exec_queue.empty():
             case_name = case_exec_queue.get()
 
-            #读取case用例
+            #Read the case
             readYam = get_yaml_field(case_name)
-            #yam开始节点，默认为TEST_CASE
+            #yaml start the node，The default is TEST_CASE.
             dictCase = readYam[flag]
 
-            #循环遍历，配置数据中节点下，所以case开头用例
+            #Loop through the configuration data under the node, 
+            # so case begins the use case
             for key in dictCase:
-                #配置数据中以case开头的，被认为是一条用例
+                #What begins with a case in configuration data is considered a use case.
                 if str(key).lower().startswith('case'):
 
-                    #组织ddt[]数据，每一条case为一个dict对象
+                    #Organize DDT [] data, and each case is a dict object
                     ddtData.append(dictCase[key])
         else:
-            raise Exception("CASE执行队列为空.")
+            raise Exception("The CASE execution queue is empty.")
     return ddtData
 
 
 
 def retry(**kw):
     """
-    装饰器：http请求，出错重试功能
-    :param arg: ()元组，异常类
-    :param kw: reNum = n；n为重试次数
-    :return: 函数本身
+    Decorator HTTP request error retry.
+    :param arg: ()tuples，Exception class
+    :param kw: reNum = n；N is the number of retries
+    :return: The function itself
     """
     def wrapper(func):
         @wraps(func)
@@ -170,7 +171,7 @@ def retry(**kw):
                     return ret
                 except (ConnectTimeout,ConnectionError,Timeout,HTTPError) as ex:
                     raise_ex = ex
-                print('重试第{0}次'.format(n))
+                print('Retry the {0} time'.format(n))
             return ret
         return _wrapper
     return wrapper
@@ -179,9 +180,9 @@ def retry(**kw):
 
 def rm_dirs_files(dirpath):
     """
-    删除目标,目录下文件及文件夹
-    :param dirpath: 目标目录
-    :return: 无
+    Delete folder and all files.
+    :param dirpath: The target path
+    :return: no
     """
     listdir = os.listdir(dirpath)
     if listdir:
@@ -195,9 +196,11 @@ def rm_dirs_files(dirpath):
 
 def send_msg_dding(msg, token, url=''):
     """
-    发送消息到,钉钉群
-    :param msg: 要发送到钉钉的消息文本
-    :return: 响影内容
+    Send the nail message text to the nail group.
+    :param msg: Message text.
+    :param token: Rebot token.
+    :param url: Nail request url.
+    :return: Response content
     """
     text = {
             "msgtype": "text", 
@@ -214,10 +217,34 @@ def send_msg_dding(msg, token, url=''):
     return res.json()
 
 
+def get_sys_environ(name):
+    """
+    Gets the environment variable by name
+    :param name: environment variable name
+    :return:  Reverse an environment variable value
+    """
+    try:
+        if name in os.environ:
+            value = os.environ[name]
+    except KeyError as ex:
+        raise ex
+    return value
+
+def check_http_status(host, port, **kwargs):
+    """
+    Check that the  HTTP status is normal.
+    :param host: The host address.
+    :param port: The port number.
+    :return bool: The return value is a Boolean.
+    """
+    url = 'http://{}:{}'.format(host, port)
+    try:
+        res = requests.request("GET", url, **kwargs)
+        if res.status_code == 200:
+            return True
+    except:
+        return False
+
 
 if __name__=="__main__":
-    msg = "测试机器人发送消息"
-    token = "3ba50c804de8e286a95948fdbeb3e8b8177f4e32099643c98388c53adc36e3ed"
-    res = send_msg_dding(msg, token)
-    print(res)
-
+    env = get_sys_environ('HTTPTESTING_PWD')

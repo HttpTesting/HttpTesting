@@ -24,10 +24,22 @@ app = Flask("service")
 Custom_Urls.urls_route(app)
 ##############################################
 
-parse = argparse.ArgumentParser("手动执行脚本......")
-parse.add_argument("--host", default='127.0.0.1')
-parse.add_argument("--port", default='5002')
-parse.add_argument("--debug", default=False)
+parse = argparse.ArgumentParser(description='Start the service.')
+parse.add_argument(
+    "--host", 
+    default='127.0.0.1', 
+    help='The host address; The default is 127.0.0.1'
+    )
+parse.add_argument(
+    "--port", 
+    default='5002', 
+    help='The port number; The default is 5002.'
+    )
+parse.add_argument(
+    "--debug", 
+    default=False,
+    help='Web service debug mode.'
+    )
 
 args = parse.parse_args()
 host = args.host

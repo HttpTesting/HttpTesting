@@ -1,4 +1,4 @@
 {
     "python.pythonPath": "D:\\test_project\\venv\\cloudfii\\Scripts\\python.exe",
-    "python.formatting.provider": "yapf"
+    "python.formatting.provider": "black"
 }
