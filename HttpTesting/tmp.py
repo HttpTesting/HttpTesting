@@ -176,7 +176,6 @@ class ConvertHarToYAML:
         return temp_dict
 
 
-
 if __name__ == "__main__":
     temp_dict = ConvertHarToYAML.convert_har_to_ht(r'D:\httphar.har')
     ConvertHarToYAML.write_case_to_yaml('', temp_dict)

@@ -18,13 +18,35 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 ###########################################################################
 class HttpWebRequest(object):
     """
-    HTTP请求
-    :Class object: object继承
+    HTTP post requests or get requests.
+    usage:
+        #instance class 
+        http = HttpWebRequest()
+
+        res = http.get(**kwargs)
+        
+        res = http.post(**kwargs)
     """
     def __init__(self):
         self.config  = get_yaml_field(gl.configFile)
         self.baseUrl  = BaseConfig.base_url()
         self.OUT_TMPL = """\n{0} {1}请求:{2}\r\n{3}\r\n响应:\r"""
+
+    def header_lower(self, hdict):
+        """
+        Convert HTTP header information to lowercase.
+        param:
+            hdict: Head dictionary type.
+        usage:
+            ret = header_lower(hdict)
+        return:
+            dict Head dictionary type.
+        """
+        tmp = {}
+        for key, val in hdict.items():
+            tmp[str(key).lower()] = str(val).lower()
+        return tmp 
+
 
     @retry(reNum=3)
     def get(self, **kwargs):
@@ -51,7 +73,10 @@ class HttpWebRequest(object):
             headers = res.headers
             cookie = res.cookies.get_dict()
             if res.status_code ==200:
-                result = res.json()
+                if 'json' in headers['Content-Type']:
+                    result = res.json()
+                else:
+                    result = res.text
             else:
                 result =  {"errcode": 9001, "errmsg": str(res)}
 
@@ -85,9 +110,10 @@ class HttpWebRequest(object):
         )
         print(tmpl)
 
+        header_dict = self.header_lower(kwargs['headers'])
         try:
                     #转换数据为form-data数据
-            if 'form-data' in kwargs['headers']['content-type']:
+            if 'form-data' in header_dict['content-type']:
                 data = MultipartFormData.to_form_data(data, headers=kwargs['headers'])
                 res = requests.request(
                     "POST", 
@@ -96,7 +122,7 @@ class HttpWebRequest(object):
                     headers=kwargs['headers'],
                     verify= False
                     )
-            elif 'application/json' in kwargs['headers']['content-type']:
+            elif 'application/json' in header_dict['content-type']:
                 res = requests.request(
                     "POST", 
                     url, 
@@ -104,7 +130,7 @@ class HttpWebRequest(object):
                     headers=kwargs['headers'],
                     verify= False
                     )
-            elif 'application/x-www-form-urlencoded' in kwargs['headers']['content-type']:
+            elif 'application/x-www-form-urlencoded' in header_dict['content-type']:
                 res = requests.request(
                     "POST", 
                     url, 
@@ -125,14 +151,16 @@ class HttpWebRequest(object):
             cookie = res.cookies.get_dict()
 
             if res.status_code ==200:
-                result = res.json()
+                if 'json' in headers['Content-Type']:
+                    result = res.json()
+                else:
+                    result = res.text
             else:
                 result =  {"errcode": 9001, "errmsg": str(res)}
 
         except (HTTPError, ConnectionError, ConnectTimeout) as ex:
             result =  {"errcode": 9002, "errmsg": str(ex)}
 
-        LOG.console_info('POST: {} STATUS: {}'.format(url, res.status_code))
         print(result) #res结果报告展示输出
         return res, headers, cookie, result
 

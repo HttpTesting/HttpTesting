@@ -176,7 +176,15 @@ class ConvertHarToYAML:
         return temp_dict
 
 
+a = {"Name":'MT'}
+def header_lower(hdict):
+    tmp = {}
+    for key, val in hdict.items():
+        tmp[str(key).lower()] = str(val).lower()
+    return tmp 
 
-if __name__ == "__main__":
-    temp_dict = ConvertHarToYAML.convert_har_to_ht(r'D:\httphar.har')
-    ConvertHarToYAML.write_case_to_yaml('', temp_dict)
+ret = header_lower(a)
+print(ret)
+# if __name__ == "__main__":
+#     temp_dict = ConvertHarToYAML.convert_har_to_ht(r'D:\httphar.har')
+#     ConvertHarToYAML.write_case_to_yaml('', temp_dict)

@@ -15,21 +15,31 @@ from HttpTesting.library.case_queue import case_exec_queue
 ########################################3
 
 '''
-天子星－云财务接口场景
+Use the python unittest framework.
 '''
 @ddt.ddt
 class TestCaseExec(unittest.TestCase):
-
+    """
+        Use the python unittest framework.
+        usage:
+            test_case(data)
+        return:
+            There is no.
+    """
     def setUp(self):
         pass
 
+    def tearDown(self):
+        pass
 
     @ddt.data(*load_case_data())
     def test_case(self, data):
-        # 用例描述
+        # Test method description
         # self._testMethodName = "方法名"
         self._testMethodDoc = data[0]['Desc']
-        #执行yaml测试用例数据
+
+
+        #Execution the YAML test case.
         exec_test_case(self, data)
         
 

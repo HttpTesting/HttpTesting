@@ -30,7 +30,7 @@ def run_min():
         )
     parse.add_argument(
         "--dir", 
-        default="",
+        default='',
         help='The folder path; folder absolute or relative path.'
         )
     parse.add_argument(
