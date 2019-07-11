@@ -3,19 +3,24 @@ import os
 import random
 from functools import wraps
 import yaml,requests
-
 from HttpTesting.globalVar import gl
-from requests.exceptions import (ConnectTimeout,ConnectionError,Timeout,HTTPError)
+from requests.exceptions import (
+    ConnectTimeout,
+    ConnectionError,
+    Timeout,
+    HTTPError
+    )
 from HttpTesting.library.case_queue import case_exec_queue
 
 
 '''
-#日期时间串
+Datetime string.
 '''
 def get_datetime_str():
     """
-    随机字符串
-    :return: 日期时间
+    Randrom time string.
+    return:
+        Time string.
     """
     time.sleep(0.5)
     datetime= str(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
@@ -24,33 +29,44 @@ def get_datetime_str():
 @property
 def get_timestamp_int():
     """
-    秒级时间戳
-    :return: 时间戳
+    Second timestamp.
+    usage:
+        ret = get_timestamp_int()
+    return:
+        integer timestamp.
     """
     return int(time.time())
 
 '''
-写yaml内容
+Write YAML file content.
 '''
 def write_ymal(path,data):
     """
-    写yaml文件
-    :param path: yaml文件路径
-    :param data: 数据内容
-    :return: 无
+    Write YAML file content.
+    param:
+        path: YAML file content.
+        data: Dictionary type data.
+    usage:
+        write_yaml(r'd:\template.yaml', data)
+    return:
+        There is no.
     """
     with open(path,'wb') as fp:
         yaml.dump(data,fp)
 
 
 '''
-读yaml文件
+Read YAML file.
 '''
 def get_yaml_field(path):
     """
-    获取yaml配置内容
-    :param path: yaml文件路径
-    :return: 返回字典所有内容
+    Gets the YAML configuration file content.
+    param:
+        path: YAML file path.
+    usage:
+        ret_dict = get_yaml_field(path)
+    return:
+        ret_dict is all of YAML's content.
     """
     with open(path,'rb') as fp:
         cont = fp.read()
@@ -60,53 +76,20 @@ def get_yaml_field(path):
 
 
 
-#获取配置文件中,运行标记
+#Get the flag in the configuration file.
 def get_run_flag(skey):
     """
-    获取配置文件中执行标记
-    :param skey: 场景字段
-    :return: 标记值;Y or N
+    Get the flag in the configuration file.
+    param:
+        skey: flag
+    usage:
+        ret = get_run_flag('Flag')
+    return:
+        ret: 'Y' or 'N'
     """
     yaml_dict = get_yaml_field(gl.exeConfigFile)
     ret_flag = yaml_dict['RUNING'][skey]['Flag']
     return ret_flag
-
-
-
-
-def load_ddt_data(Itype='t', filename='Charge.yaml', caseflag='CHARGE_CASE1'):
-    """
-    从yaml加载ddt数据
-    :param Itype: t:tcode; s:scenario
-    :param filename: 'Charge.yaml'
-    :param caseflag:  yaml中接口case的起始节点
-    :return: ddt数据list
-    """
-    ddtData = []
-    if Itype == 't':
-        configDir = gl.tcodePath
-    else:
-        configDir = gl.dataScenarioPath
-
-    #拼接yam数据路径，并读取数据内容
-    yamPath = os.path.join(configDir, filename)
-    readYam = get_yaml_field(yamPath)
-
-    dictCase = readYam[caseflag]
-
-    #循环遍历，配置数据中节点下，所以case开头用例
-    for key in dictCase:
-        #配置数据中以case开头的，被认为是一条用例
-        if str(key).lower().startswith('case'):
-
-            if Itype =='t':
-                # 为每个case添加一个Url
-                dictCase[key]['Url'] = dictCase['Url']
-
-            #组织ddt[]数据，每一条case为一个dict对象
-            ddtData.append(dictCase[key])
-
-    return ddtData
 
 
 def load_case_data(flag='TEST_CASE'):

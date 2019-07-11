@@ -129,7 +129,7 @@ class HttpWebRequest(object):
                 res = requests.request(
                     "POST", 
                     url, 
-                    data=data, 
+                    data=data.encode(), 
                     headers=kwargs['headers'],
                     verify= False
                     )

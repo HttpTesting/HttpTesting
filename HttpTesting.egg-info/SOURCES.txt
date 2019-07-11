@@ -34,7 +34,6 @@ HttpTesting/library/scripts.py
 HttpTesting/report/Report.html
 HttpTesting/report/count.xlsx
 HttpTesting/testcase/POS_INFO.yaml
-HttpTesting/testcase/template.yaml
 HttpTesting/web/__init__.py
 HttpTesting/web/service.py
 HttpTesting/web/sett/__init__.py

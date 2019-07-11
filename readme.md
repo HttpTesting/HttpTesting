@@ -2,7 +2,134 @@
 
 HttpTesting 是HTTP(S) 协议测试框架，通过YAML来编写测试用例；支持通过pip直接从PyPi安装，支持命令行运行代码，不固定结构，通过命令生成脚手架。
 
+
+## 快速使用
+
+### virtualenv虚拟环境 
+
+- pip install virtualenv
+
+- virtualenv  demo_env
+
+- 命令行模式切换到虚拟环境 ..../scripts/activate.bat
+
+- activate.bat 激活虚拟环境
+
+## pip安装
+
   
+
+### 安装方法:
+
+  
+
+- pip install HttpTesting==1.0.26
+
+
+
+### 已安装HttpTesting包,通过pip命令进行更新
+
+- pip list  查看HttpTesting安装包版本信息
+
+- pip install --upgrade HttpTesting==1.0.26
+
+
+
+
+### HttpTesting amt 或 AMT命令
+
+  
+
+- amt --config set 此命令用来设置框架基本配置
+
+- amt --file template.yaml 执行YAML用例，支持绝对或相对路径。
+
+- amt --dir testcase 批量执行testcase目录下的YAML用例，支持绝对路径或相对路径。
+
+- amt --startproject demo 生成脚手架demo目录
+
+- amt --har  D:\httphar.har 根据har文件，生成测试用例YAML.
+
+  
+  
+
+## 用例编写
+
+### YAML用例格式  
+
+    TESTCASE:
+	    #Case1由两个请求组成的场景
+        Case1:
+	        -
+	            Desc:用例详细描述
+	        -
+	            Url: /login/login
+	            Method: GET
+	            Headers:
+	                content-type: "application/json"
+	                cache-control: "no-cache"
+	            Data:
+	                name: "test"
+	                pass: "test123"
+	            InPara: ""
+	            OutPara: 
+	                "$H_token$": result.data
+	            Assert:
+	                - eq: [result.status, 'success']
+	        -
+	            Url: /cloudfi/api/store/batchhandle/store
+	            Method: GET
+	            Headers:
+	                content-type: "application/json"
+	                cache-control: "no-cache"
+	            Data:
+	                name: "test"
+	                pass: "test123"
+	            InPara: ""
+	            OutPara: 
+	                "$H_token$": result.data
+	            Assert:
+	                - eq: [result.status, 'success']
+
+- 通过OutPara字段来做公共变量，给其它接口调用，方法：
+
+  "$H_token $": result.data
+  result.data 是请求结果，返回的嵌套级别
+  
+  result：请求影响res.json()
+  cookie：请求影响cookies 字典类型
+  res:  请求影响对象
+  Headers: 请求影响头
+ 
+### 参数说明
+- InPara: 用来传头信息变量,默认为"" 
+- "$H_token $": H_开头代表是要进行信息头传参
+- $D_token $: D_开头代表是要进行data数据传参
+
+## 常用四种对象(通常做参数变量时使用)
+- res: 请求Response对象
+- result: Response.json() 或 Response.text
+- cookie: Response.cookie 响应cookie字典对象;  当做为参数时如果cookie.SESSION这样的写法代表取cookie中的SESSION对象. 如果只写cookie,会解析成"SESSION=xxxxxxx; NAME=xxxxxx"
+- headers: Response.headers 响应头字典对象
+
+## 用例执行
+- 1、生成脚手架
+- 2、编写脚手架中testcase下YAML模版用例
+- 3、切换到testcase目录
+- 4、amt --dir testcase 自动运行testcase下YAML用例
+- 5、自动生成测试报告Html
+
+##  框架基本配置
+- 1、通过命令打开框架config.yaml
+- 2、amt --config set
+- 3、修改基本配置，并保存
+
+## 全局环境变量
+- 1、通过--config命令配置全局环境变量
+- 2、amt --config gl
+- 3、修改配置需要谨慎
+
+
 
 ## 代码打包与上传PyPi
 
@@ -72,102 +199,3 @@ HttpTesting 是HTTP(S) 协议测试框架，通过YAML来编写测试用例；�
 - 上传PyP: twine upload dist/*
 
   
-  
-
-## pip安装
-
-  
-
-### 安装方法:
-
-  
-
-- pip install HttpTesting==1.0.14
-
-  
-
-### HttpTesting amt 或 AMT命令
-
-  
-
-- amt --config set 此命令用来设置框架基本配置
-
-- amt --file template.yaml 执行YAML用例，支持绝对或相对路径。
-
-- amt --dir testcase 批量执行testcase目录下的YAML用例，支持绝对路径或相对路径。
-
-- amt --startproject demo 生成脚手架demo目录
-
-- amt --har  D:\httphar.har 根据har文件，生成测试用例YAML.
-
-  
-  
-
-## 用例编写
-
-### YAML用例格式  
-
-    TESTCASE:
-	    #Case1由两个请求组成的场景
-        Case1:
-	        -
-	            Desc:用例详细描述
-	        -
-	            Url: /login/login
-	            Method: GET
-	            Headers:
-	                content-type: "application/json"
-	                cache-control: "no-cache"
-	            Data:
-	                name: "test"
-	                pass: "test123"
-	            InPara: ""
-	            OutPara: 
-	                "$H_token$": result.data
-	            Assert:
-	                - eq: [result.status, 'success']
-	        -
-	            Url: /cloudfi/api/store/batchhandle/store
-	            Method: GET
-	            Headers:
-	                content-type: "application/json"
-	                cache-control: "no-cache"
-	            Data:
-	                name: "test"
-	                pass: "test123"
-	            InPara: ""
-	            OutPara: 
-	                "$H_token$": result.data
-	            Assert:
-	                - eq: [result.status, 'success']
-
-- 通过OutPara字段来做公共变量，给其它接口调用，方法：
-
-  "$H_token $": result.data
-  result.data 是请求结果，返回的嵌套级别
-  
-  result：请求影响res.json()
-  cookie：请求影响cookies 字典类型
-  res:  请求影响对象
-  Headers: 请求影响头
- 
-### 参数说明
-- "$H_token $": H_开头代表是要进行信息头传参
-- $D_token $: D_开头代表是要进行data数据传参
-
-## 用例执行
-- 1、生成脚手架
-- 2、编写脚手架中testcase下YAML模版用例
-- 3、切换到testcase目录
-- 4、amt --dir testcase 自动运行testcase下YAML用例
-- 5、自动生成测试报告Html
-
-##  框架基本配置
-- 1、通过命令打开框架config.yaml
-- 2、amt --config set
-- 3、修改基本配置，并保存
-
-## 全局环境变量
-- 1、通过--config命令配置全局环境变量
-- 2、amt --config gl
-- 3、修改配置需要谨慎

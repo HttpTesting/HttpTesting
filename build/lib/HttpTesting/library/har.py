@@ -34,7 +34,7 @@ class ConvertHarToYAML:
         return:
             [] request list.
         """
-        ret = cls.from_har_to_dict('d:\httphar.har')
+        ret = cls.from_har_to_dict(harpath)
 
         req_dict = []
         for req in ret:
@@ -164,6 +164,6 @@ class ConvertHarToYAML:
 
 
 
-if __name__ == "__main__":
-    temp_dict = ConvertHarToYAML.convert_har_to_ht(r'D:\httphar.har')
-    ConvertHarToYAML.write_case_to_yaml('', temp_dict)
+# if __name__ == "__main__":
+#     temp_dict = ConvertHarToYAML.convert_har_to_ht(r'D:\httphar.har')
+#     ConvertHarToYAML.write_case_to_yaml('', temp_dict)

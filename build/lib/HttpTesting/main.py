@@ -15,10 +15,10 @@ import argparse
 
 
 ########################################################################
-#命令行模式
+#Command line mode.
 def run_min():
 
-    #为了命令行执行取命令行路径
+    #Takes the current path of the command line
     cur_dir= os.getcwd()
     os.chdir(cur_dir)
 
@@ -30,7 +30,7 @@ def run_min():
         )
     parse.add_argument(
         "--dir", 
-        default="",
+        default='',
         help='The folder path; folder absolute or relative path.'
         )
     parse.add_argument(
@@ -69,10 +69,10 @@ def run_min():
     if start_project !='':
         create_falsework(os.path.join(os.getcwd(), start_project))
 
-        #获取case yam文件名写入执行队列
+    #Get the yaml file name and write to the queue.
     if case_file != '':
         case_exec_queue.put(case_file)
-        #调用开始
+        #Began to call.
         Run_Test_Case.invoke()
 
     if case_dir != '':
@@ -80,16 +80,15 @@ def run_min():
             for f in files:
                 if 'yaml' in f:
                     case_exec_queue.put(os.path.join(case_dir, f))
-        #调用开始
+        #Began to call.
         Run_Test_Case.invoke()
 
 
 
 
 #########################################################################
-# 命令行模式下，不指写--dir参数；默认为testcase目录
-# 指定路径必须是绝对路径
-######示例##########
+# Not in command mode --dir defaults to the testcase directory.
+# Example:
 # python3 main.py --dir=r"D:\test_project\project\cloud_fi_v2\testcase"
 #########################################################################
 
@@ -220,7 +219,7 @@ class Run_Test_Case(object):
         # Test report file name.
         time_str = time.strftime('%Y%m%d_%H%M%S', time.localtime())
         filePath = Run_Test_Case.create_report_file()
-        print(filePath)
+
 
         # Start test the send pin message.
         if dd_enable:
@@ -232,7 +231,8 @@ class Run_Test_Case(object):
 
         # Execute the test and send the test report.
         Run_Test_Case.run(filePath)
-
+        
+        print(filePath)
         # Copy the folder under the report directory under  /templates/report/
         low_path = Run_Test_Case.copy_report(filePath, Run_Test_Case.file_name)
 
