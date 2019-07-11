@@ -220,7 +220,7 @@ class Run_Test_Case(object):
         # Test report file name.
         time_str = time.strftime('%Y%m%d_%H%M%S', time.localtime())
         filePath = Run_Test_Case.create_report_file()
-        print(filePath)
+
 
         # Start test the send pin message.
         if dd_enable:
@@ -232,7 +232,8 @@ class Run_Test_Case(object):
 
         # Execute the test and send the test report.
         Run_Test_Case.run(filePath)
-
+        
+        print(filePath)
         # Copy the folder under the report directory under  /templates/report/
         low_path = Run_Test_Case.copy_report(filePath, Run_Test_Case.file_name)
 

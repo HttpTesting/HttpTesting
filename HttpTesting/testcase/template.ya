@@ -72,7 +72,7 @@ TEST_CASE:
                pass: a2019rlgj
             InPara: ""
             OutPara: 
-                ${H_cookie}$: cookie.SESSION
+                ${H_cookie}$: cookie
             Assert:
                 - eq: [result.success, 'true']
         - #生成员工工号

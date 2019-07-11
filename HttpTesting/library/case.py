@@ -96,24 +96,28 @@ def exec_test_case(self, data):
             continue
         res = None
             
-        #接口入参
+        #Pass parameters with header information.
         if  data[i]['InPara'] != "":
-            for ki, value in enumerate(outParaQueue):
-                for key, val in value.items():
+            for ki, va in enumerate(outParaQueue):
+                for key, val in va.items():
                     if 'H_' in key: #H_头参数 D_数据参数
                         ke = key.split('H_')[1].split('}')[0]
                         data[i]['Headers'][ke] = val
-                    if 'D_' in key:
-                        #data参数 正则匹配
-                        m = str(data[i]['Data'])
-                        c = re.findall('\$\{.*?}\$', m)
-                        k = ""
-                        #替换数到data中
-                        for k in c:
-                            if key in c:
-                                m = eval(m.replace(k, val))
-                            data[i]['Data'] = m
-                            break #break
+
+        #Pass parameters with DATA information.
+        for ki, va in enumerate(outParaQueue):
+            for key, val in va.items():
+                if 'D_' in key:
+                    #data参数 正则匹配
+                    m = str(data[i]['Data'])
+                    c = re.findall('\$\{.*?}\$', m)
+                    k = ""
+                    #替换数到data中
+                    for k in c:
+                        if key in c:
+                            m = eval(m.replace(k, val))
+                        data[i]['Data'] = m
+                        break #break
 
         #处理请求
         if 'GET' in data[i]['Method']:
@@ -140,23 +144,34 @@ def exec_test_case(self, data):
             for key, value in data[i]['OutPara'].items():
                 #解释用例中的出参
                 out_data = data[i]
-                strsplit = stra = str(value).split(".")
-                stra = strsplit[0]
-                if '[' in stra:
-                    stra = stra.split("[")[0]
+                #
+                if '.' in value:
+                    strsplit = str(value).split(".")
+                    stra = strsplit[0]
+                    if '[' in stra:
+                        stra = stra.split("[")[0]
 
-                if stra.lower() != "data": 
-                    head = stra
-                else:
-                    head = "out_data"
-                #处理cookie 
-                if strsplit[0].lower() == 'cookie':
-                    queue_val = '{}={}'.format(
-                        strsplit[1], 
-                        eval(out_param_parse(head, value))
-                        )
-                else:
-                    queue_val = eval(out_param_parse(head, value))
+                    if stra.lower() != "data": 
+                        head = stra
+                    else:
+                        head = "out_data"
+                    #处理cookie 
+                    if strsplit[0].lower() == 'cookie':
+                        queue_val = '{}={}'.format(
+                            strsplit[1], 
+                            eval(out_param_parse(head, value))
+                            )
+                    else:
+                        queue_val = eval(out_param_parse(head, value))
+                else: #Parameter cookie  result 
+                    if 'cookie' in str(value).lower():
+                        temp_list = []
+                        for ky, vak in cookie.items():
+                            temp_list.append('{}={}'.format(ky, vak))
+                        queue_val = '; '.join(temp_list)
+                    else:
+                        queue_val = eval(value)
+
                 oPara[key] = queue_val
             outParaQueue.append(oPara)
 

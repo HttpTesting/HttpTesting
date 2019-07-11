@@ -47,13 +47,16 @@ class ConvertHarToYAML:
         return:
             [] request list.
         """
-        ret = cls.from_har_to_dict('d:\httphar.har')
+        ret = cls.from_har_to_dict(harpath)
 
-        req_dict = []
+        req_list = []
+
         for req in ret:
-            req_dict.append(req['request'])
+            req_list.append(req['request'])
 
-        return req_dict
+        return req_list
+
+
 
     @classmethod
     def parse_headers_dict(cls, header):
@@ -162,7 +165,7 @@ class ConvertHarToYAML:
             url = val['url']
             if '?' in val['url']:
                 url = val['url'].split('?')[0]
-
+                
             temp_dict['TEST_CASE'][case].append(collections.OrderedDict({
                 'Url': url,
                 'Method': val['method'],
@@ -179,3 +182,10 @@ class ConvertHarToYAML:
 if __name__ == "__main__":
     temp_dict = ConvertHarToYAML.convert_har_to_ht(r'D:\httphar.har')
     ConvertHarToYAML.write_case_to_yaml('', temp_dict)
+ 
+    # tmp = '{}={}; '
+    # joinStr = ''
+    # for ckDict in cookies:
+    #     joinStr = joinStr + tmp.format(ckDict['name'], ckDict['value'])
+    # joinStr = joinStr[:-2]
+    # print(joinStr)
