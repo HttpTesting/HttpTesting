@@ -7,7 +7,7 @@ with io.open('README.md', encoding='utf-8') as fp:
 
 setup(
     name='HttpTesting', # 应用名
-    version='1.0.33', # 版本号
+    version='1.0.34', # 版本号
     description="HttpTesting",
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -20,7 +20,7 @@ setup(
     package_data = {
         'HttpTesting': [
             'config/*.yaml',
-            'testcase/*.yaml',
+            'template/*.yaml',
             'report/*.html',
             'report/*.xlsx',
             ],
