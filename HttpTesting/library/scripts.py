@@ -71,7 +71,7 @@ def get_yaml_field(path):
     with open(path,'rb') as fp:
         cont = fp.read()
 
-    ret = yaml.load(cont)
+    ret = yaml.load(cont, Loader=yaml.FullLoader)
     return ret
 
 

@@ -7,7 +7,7 @@ with io.open('README.md', encoding='utf-8') as fp:
 
 setup(
     name='HttpTesting', # 应用名
-    version='1.0.29', # 版本号
+    version='1.0.33', # 版本号
     description="HttpTesting",
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -15,7 +15,7 @@ setup(
     author_email="lengyaohui@163.com",
     url='https://github.com/HttpTesting/HttpTesting',
     license="Apache 2.0",
-    python_requires=">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4",
+    python_requires=">=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4",
     packages=find_packages(), # 包括在安装包内的 Python 包
     package_data = {
         'HttpTesting': [
@@ -29,10 +29,10 @@ setup(
     #依赖包
     install_requires = [
         'ddt==1.1.3',
-        'Flask==1.0.2',
-        'PyYAML==3.12',
-        'requests==2.18.4',
-        'requests-toolbelt==0.8.0',
+        'Flask',
+        'PyYAML==5.1.1',
+        'requests',
+        'requests-toolbelt',
     ],
     exclude_package_data = { 
         '': ['README.txt'] 

@@ -55,7 +55,7 @@ templatesPath = os.path.join(webPath, 'templates')
 templatesReportPath = os.path.join(templatesPath, 'report')
 reportFile = os.path.join(reportPath, "Report.html")
 exeConfigFile = os.path.join(configPath, "exeConfig.yaml")
-testCasePath = os.path.join(PATH(os.path.dirname(globalPath)), 'testcase')
+testCasePath = os.path.join(PATH(os.path.dirname(globalPath)), 'template')
 ##########################################################################
 
 if __name__=="__main__":

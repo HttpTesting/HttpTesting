@@ -1,8 +1,0 @@
-ddt==1.1.3
-email
-Flask==1.0.2
-pip==10.0.1
-PyYAML==3.12
-requests==2.18.4
-requests-toolbelt==0.8.0
-

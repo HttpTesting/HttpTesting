@@ -168,10 +168,10 @@ function hidden_case() {
 
 <div class="container-fluid"> <div class="row"> <div class="col-lg-8">
 <h4 style="font-family: Microsoft YaHei">接口自动化测试报告</h4>
-<p class='attribute'><strong>测试人员 : </strong> 微生活－测试组</p>
-<p class='attribute'><strong>开始时间 : </strong> 2019-07-01 10:55:58</p>
-<p class='attribute'><strong>合计耗时 : </strong> 0:00:29.463660</p>
-<p class='attribute'><strong>测试结果 : </strong> 共 2，通过 2，通过率= 100.00%</p>
+<p class='attribute'><strong>测试人员 : </strong> 测试组</p>
+<p class='attribute'><strong>开始时间 : </strong> 2019-07-12 09:04:40</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:12.156833</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 1，通过 1，通过率= 100.00%</p>
 
 <p class='description'>详细测试用例结果</p>
 </div>
@@ -214,7 +214,7 @@ function hidden_case() {
                         data:[
                             {value:0, name:'失败'},
                             {value:0, name:'错误'},
-                            {value:2, name:'成功'}
+                            {value:1, name:'成功'}
                         ],
                         itemStyle: {
                             emphasis: {
@@ -239,8 +239,8 @@ function hidden_case() {
 <p id='show_detail_line'>
 <a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 100.00% }</a>
 <a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 0 }</a>
-<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 2 }</a>
-<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 2 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 1 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 1 }</a>
 </p>
 <table id='result_table' class="table table-condensed table-bordered table-hover">
 <colgroup>
@@ -261,13 +261,13 @@ function hidden_case() {
 </tr>
 
 <tr class='passClass warning'>
-    <td>TestCaseExec</td>
-    <td class="text-center">2</td>
-    <td class="text-center">2</td>
+    <td>HttpTesting.case.load_case.TestCaseExec</td>
+    <td class="text-center">1</td>
+    <td class="text-center">1</td>
     <td class="text-center">0</td>
     <td class="text-center">0</td>
     <td class="text-center">
-        <a href="javascript:showClassDetail('c1',2)" class="detail" id='c1'>详细</a>
+        <a href="javascript:showClassDetail('c1',1)" class="detail" id='c1'>详细</a>
         <a href='javascript:hidden_case()' id="case_hidden_btn" style="display:none">展开所有</a>
     </td>
     
@@ -285,80 +285,27 @@ function hidden_case() {
     <pre style="overflow-y:scroll; overflow-x:hidden;height:200px; width:1070px; margin:auto; border:1px solid #e1e1e1;">
     
 pt1_1: 
-2019-07-01 10:55:58:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
-GET请求:/cloudfi/token/generatetoke
+2019-07-12 09:04:40 GET请求:http://10.152.64.9:4040/cloudfi/token/generatetoke
 {'id': 'b9b0e8e985a911e894a01c3947952e7e', 'secret': '71ee217e2f1bdfcc'}
 响应:
-{'allowchange': False, 'data': 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiOWIwZThlOTg1YTkxMWU4OTRhMDFjMzk0Nzk1MmU3ZSIsImlhdCI6MTU2MTk0OTgzNywiaXNzIjoiNzFlZTIxN2UyZjFiZGZjYyIsImV4cCI6MTU2MTk1MzQzN30.djm9rwHa4VbET_8Z4LFxFac26pdk5kqzsFVhpC7Iz-Q', 'extradata': None, 'message': None, 'resultCode': None, 'status': 'success'}
+{'allowchange': False, 'data': 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiOWIwZThlOTg1YTkxMWU4OTRhMDFjMzk0Nzk1MmU3ZSIsImlhdCI6MTU2Mjg5Mzk1OCwiaXNzIjoiNzFlZTIxN2UyZjFiZGZjYyIsImV4cCI6MTU2Mjg5NzU1OH0.kZapmGSK4J_V3NV7GXOUapbuYcslfhnZg_WzUJNzBxE', 'extradata': None, 'message': None, 'resultCode': None, 'status': 'success'}
 
-2019-07-01 10:56:02:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
-POST请求:/cloudfi/api/store/batchhandle/store
+2019-07-12 09:04:43 POST请求:http://10.152.64.9:4040/cloudfi/api/store/batchhandle/store
 [{'transactionid': '555', 'number': '555', 'name': '门店1', 'profitcenterid': ''}]
 响应:
 {'allowchange': False, 'data': None, 'extradata': None, 'message': '更新成功', 'resultCode': None, 'status': 'success'}
 
-2019-07-01 10:56:06:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
-POST请求:/cloudfi/api/store/batchhandle/paytype
+2019-07-12 09:04:45 POST请求:http://10.152.64.9:4040/cloudfi/api/store/batchhandle/paytype
 [{'transactionid': '566', 'number': '566', 'name': '门店1', 'type': '收银', 'typename': ''}]
 响应:
 {'allowchange': False, 'data': None, 'extradata': None, 'message': '更新成功', 'resultCode': None, 'status': 'success'}
 
-2019-07-01 10:56:10:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
-POST请求:/cloudfi/api/store/batchhandle/incometype
+2019-07-12 09:04:49 POST请求:http://10.152.64.9:4040/cloudfi/api/store/batchhandle/incometype
 [{'transactionid': '577', 'number': '577', 'name': '收入项目1'}]
 响应:
 {'allowchange': False, 'data': None, 'extradata': None, 'message': '更新成功', 'resultCode': None, 'status': 'success'}
 
-2019-07-01 10:56:13:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
-POST请求:/cloudfi/api/store/batchhandle/busidaily
-[{'transactionid': '588', 'number': '588', 'busidate': '2019-6-14', 'incomeamount': 6000, 'payamount': 7000, 'storeid': 555, 'fullincome': 5000, 'discount': 0, 'busidailyentrys': [{'paytypeid': '', 'incometypeid': '566', 'amount': 888, 'netamount': 999, 'type': 'default'}, {'paytypeid': '', 'incometypeid': '577', 'amount': 888, 'netamount': 999, 'type': 'default'}]}]
-响应:
-{'allowchange': False, 'data': None, 'extradata': None, 'message': '更新成功', 'resultCode': None, 'status': 'success'}
-
-
-    </pre>
-    </div>
-    </td>
-</tr>
-
-<tr id='pt1_2' class='hiddenRow'>
-    <td class='passCase'><div class='testcase'>test_case_2: 获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表</div></td>
-    <td colspan='5' align='center'>
-    <!--默认收起错误信息 -Findyou
-    <button id='btn_pt1_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_2'>通过</button>
-    <div id='div_pt1_2' class="collapse">  -->
-    <!-- 默认展开错误信息 -Findyou -->
-    <button id='btn_pt1_2' type="button" title="点击按钮，展开或折叠该Case" class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_2'>通过</button>
-    <div id='div_pt1_2' class="in" align="left">
-    <pre style="overflow-y:scroll; overflow-x:hidden;height:200px; width:1070px; margin:auto; border:1px solid #e1e1e1;">
-    
-pt1_2: 
-2019-07-01 10:56:15:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
-GET请求:/cloudfi/token/generatetoke
-{'id': 'b9b0e8e985a911e894a01c3947952e7e', 'secret': '71ee217e2f1bdfcc'}
-响应:
-{'allowchange': False, 'data': 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiOWIwZThlOTg1YTkxMWU4OTRhMDFjMzk0Nzk1MmU3ZSIsImlhdCI6MTU2MTk0OTg1MywiaXNzIjoiNzFlZTIxN2UyZjFiZGZjYyIsImV4cCI6MTU2MTk1MzQ1M30.KPRBTyaWlBeG1-AJ2zZFUYMHbqxiolFvfb9ElFQnjok', 'extradata': None, 'message': None, 'resultCode': None, 'status': 'success'}
-
-2019-07-01 10:56:19:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
-POST请求:/cloudfi/api/store/batchhandle/store
-[{'transactionid': '555', 'number': '555', 'name': '门店1', 'profitcenterid': ''}]
-响应:
-{'allowchange': False, 'data': None, 'extradata': None, 'message': '更新成功', 'resultCode': None, 'status': 'success'}
-
-2019-07-01 10:56:21:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
-POST请求:/cloudfi/api/store/batchhandle/paytype
-[{'transactionid': '566', 'number': '566', 'name': '门店1', 'type': '收银', 'typename': ''}]
-响应:
-{'allowchange': False, 'data': None, 'extradata': None, 'message': '更新成功', 'resultCode': None, 'status': 'success'}
-
-2019-07-01 10:56:25:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
-POST请求:/cloudfi/api/store/batchhandle/incometype
-[{'transactionid': '577', 'number': '577', 'name': '收入项目1'}]
-响应:
-{'allowchange': False, 'data': None, 'extradata': None, 'message': '更新成功', 'resultCode': None, 'status': 'success'}
-
-2019-07-01 10:56:26:用例描述--&gt;获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
-POST请求:/cloudfi/api/store/batchhandle/busidaily
+2019-07-12 09:04:51 POST请求:http://10.152.64.9:4040/cloudfi/api/store/batchhandle/busidaily
 [{'transactionid': '588', 'number': '588', 'busidate': '2019-6-14', 'incomeamount': 6000, 'payamount': 7000, 'storeid': 555, 'fullincome': 5000, 'discount': 0, 'busidailyentrys': [{'paytypeid': '', 'incometypeid': '566', 'amount': 888, 'netamount': 999, 'type': 'default'}, {'paytypeid': '', 'incometypeid': '577', 'amount': 888, 'netamount': 999, 'type': 'default'}]}]
 响应:
 {'allowchange': False, 'data': None, 'extradata': None, 'message': '更新成功', 'resultCode': None, 'status': 'success'}
@@ -371,8 +318,8 @@ POST请求:/cloudfi/api/store/batchhandle/busidaily
 
 <tr id='total_row' class="text-center active">
     <td>总计</td>
-    <td>2</td>
-    <td>2</td>
+    <td>1</td>
+    <td>1</td>
     <td>0</td>
     <td>0</td>
     <td>通过率：100.00%</td>
