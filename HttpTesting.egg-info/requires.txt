@@ -1,5 +1,0 @@
-ddt==1.1.3
-Flask
-PyYAML==5.1.1
-requests
-requests-toolbelt
