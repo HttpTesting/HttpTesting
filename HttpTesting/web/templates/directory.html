@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试报告目录</title>
+    <script>
+        function set_display(dir_list) {
+            var name = document.getElementsByName(dir_list);
+            for (var i=0;i<=name.length;i++){
+                var display = name[i].style.display;
+                if (display != 'none'){
+                    name[i].style.display = "none";
+                }else {
+                    name[i].style.display = "";
+                }
+
+            }
+
+        }
+    </script>
+</head>
+<body>
+<div>
+    {% for dir_list in all_list %}
+        <div>
+            <a href="javascript:void(0)" onclick="set_display('{{dir_list[0]}}');">{{dir_list[0]}}</a>
+            {% for i in dir_list %}
+                <div name="{{dir_list[0]}}" style="display:none">
+                    {% if "html" in i%}
+                        <a href="/report/{{dir_list[0]}}/{{i}}">{{i}}</a> </br>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>

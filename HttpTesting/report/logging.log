@@ -1,0 +1,427 @@
+[2019-07-08 14:55:41] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:55:42] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:55:42] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:55:44] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:55:45] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /acewill/employee/createNumByEmployeeNumRule.htm HTTP/1.1" 200 178
+[2019-07-08 14:55:45] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/acewill/employee/createNumByEmployeeNumRule.htm STATUS: 200
+[2019-07-08 14:55:47] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:55:48] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:55:48] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:55:51] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:55:51] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 916
+[2019-07-08 14:55:51] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:55:55] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:55:55] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:55:55] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:55:58] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:55:58] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 696
+[2019-07-08 14:55:58] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:56:00] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:00] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:56:00] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:56:02] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:02] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 862
+[2019-07-08 14:56:02] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:56:05] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:05] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:56:05] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:56:07] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:08] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 862
+[2019-07-08 14:56:08] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:56:09] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:10] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:56:10] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:56:13] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:14] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 577
+[2019-07-08 14:56:14] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:56:16] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:17] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:56:17] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:56:20] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:20] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 None
+[2019-07-08 14:56:20] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:56:22] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:22] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:56:22] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:56:25] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:25] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 553
+[2019-07-08 14:56:25] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:56:27] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:27] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:56:27] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:56:31] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:31] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 752
+[2019-07-08 14:56:31] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:56:35] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:35] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:56:35] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:56:37] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:37] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 None
+[2019-07-08 14:56:37] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:56:41] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:41] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:56:41] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:56:43] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:43] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 689
+[2019-07-08 14:56:43] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:56:45] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:46] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:56:46] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:56:49] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:50] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 499
+[2019-07-08 14:56:50] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:56:53] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:54] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:56:54] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:56:56] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:56:57] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 1716
+[2019-07-08 14:56:57] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:57:00] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:57:01] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:57:01] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:57:03] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:57:03] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 571
+[2019-07-08 14:57:03] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:57:06] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:57:06] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:57:06] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:57:08] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:57:08] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 382
+[2019-07-08 14:57:08] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:59:27] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:59:28] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:59:28] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:59:32] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:59:32] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /acewill/employee/createNumByEmployeeNumRule.htm HTTP/1.1" 200 178
+[2019-07-08 14:59:32] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/acewill/employee/createNumByEmployeeNumRule.htm STATUS: 200
+[2019-07-08 14:59:34] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:59:34] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:59:34] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:59:38] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:59:38] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 916
+[2019-07-08 14:59:38] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:59:42] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:59:42] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:59:42] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:59:44] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:59:45] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 696
+[2019-07-08 14:59:45] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:59:46] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:59:47] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:59:47] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:59:50] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:59:51] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 862
+[2019-07-08 14:59:51] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 14:59:54] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:59:55] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 14:59:55] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 14:59:57] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 14:59:57] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 862
+[2019-07-08 14:59:57] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 15:00:01] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:01] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 15:00:01] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 15:00:05] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:05] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 577
+[2019-07-08 15:00:05] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 15:00:09] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:09] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 15:00:09] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 15:00:12] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:12] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 None
+[2019-07-08 15:00:12] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 15:00:15] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:15] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 15:00:15] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 15:00:18] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:18] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 553
+[2019-07-08 15:00:18] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 15:00:21] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:21] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 15:00:21] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 15:00:23] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:23] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 752
+[2019-07-08 15:00:23] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 15:00:25] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:26] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 15:00:26] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 15:00:27] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:28] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 None
+[2019-07-08 15:00:28] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 15:00:31] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:32] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 15:00:32] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 15:00:35] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:36] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 689
+[2019-07-08 15:00:36] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 15:00:37] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:38] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 15:00:38] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 15:00:40] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:40] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 499
+[2019-07-08 15:00:40] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 15:00:44] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:44] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 15:00:44] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 15:00:47] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:47] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 1716
+[2019-07-08 15:00:47] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 15:00:49] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:49] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 15:00:49] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 15:00:52] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:52] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 571
+[2019-07-08 15:00:52] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-08 15:00:55] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:55] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 None
+[2019-07-08 15:00:55] INFO [console_info: log.py, 44] GET: https://dev.cxyhr.cn/login/login.htm STATUS: 200
+[2019-07-08 15:00:57] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-08 15:00:57] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "POST /system/codecontent/selectByDifintionCode.htm HTTP/1.1" 200 382
+[2019-07-08 15:00:57] INFO [console_info: log.py, 44] POST: https://dev.cxyhr.cn/system/codecontent/selectByDifintionCode.htm STATUS: 200
+[2019-07-10 10:23:30] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-10 10:23:31] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 85
+[2019-07-10 10:31:52] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:31:52] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "GET http://10.152.64.9:4040/cloudfi/token/generatetoke?id=b9b0e8e985a911e894a01c3947952e7e&secret=71ee217e2f1bdfcc HTTP/1.1" 200 258
+[2019-07-10 10:33:42] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:33:42] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "GET http://10.152.64.9:4040/cloudfi/token/generatetoke?id=b9b0e8e985a911e894a01c3947952e7e&secret=71ee217e2f1bdfcc HTTP/1.1" 200 261
+[2019-07-10 10:35:20] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:35:20] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/store HTTP/1.1" 200 113
+[2019-07-10 10:35:27] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:35:29] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/paytype HTTP/1.1" 200 113
+[2019-07-10 10:35:31] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:35:31] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/incometype HTTP/1.1" 200 113
+[2019-07-10 10:35:33] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:35:33] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/busidaily HTTP/1.1" 200 113
+[2019-07-10 10:41:27] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:41:27] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "GET http://10.152.64.9:4040/cloudfi/token/generatetoke?id=b9b0e8e985a911e894a01c3947952e7e&secret=71ee217e2f1bdfcc HTTP/1.1" 200 261
+[2019-07-10 10:42:49] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:42:49] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "GET http://10.152.64.9:4040/cloudfi/token/generatetoke?id=b9b0e8e985a911e894a01c3947952e7e&secret=71ee217e2f1bdfcc HTTP/1.1" 200 259
+[2019-07-10 10:42:51] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:42:51] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/store HTTP/1.1" 200 113
+[2019-07-10 10:42:54] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:42:55] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/paytype HTTP/1.1" 200 113
+[2019-07-10 10:42:57] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:42:57] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/incometype HTTP/1.1" 200 113
+[2019-07-10 10:43:00] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:43:01] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/busidaily HTTP/1.1" 200 113
+[2019-07-10 10:55:05] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:55:05] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "GET http://10.152.64.9:4040/cloudfi/token/generatetoke?id=b9b0e8e985a911e894a01c3947952e7e&secret=71ee217e2f1bdfcc HTTP/1.1" 200 259
+[2019-07-10 10:55:09] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:55:09] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/store HTTP/1.1" 200 113
+[2019-07-10 10:55:13] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:55:14] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/paytype HTTP/1.1" 200 113
+[2019-07-10 10:55:16] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:55:16] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/incometype HTTP/1.1" 200 113
+[2019-07-10 10:55:18] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-10 10:55:18] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/busidaily HTTP/1.1" 200 113
+[2019-07-11 09:32:31] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 09:32:31] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "GET http://10.152.64.9:4040/cloudfi/token/generatetoke?id=b9b0e8e985a911e894a01c3947952e7e&secret=71ee217e2f1bdfcc HTTP/1.1" 200 258
+[2019-07-11 09:33:26] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 09:33:26] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/store HTTP/1.1" 200 113
+[2019-07-11 09:33:31] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 09:33:32] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/paytype HTTP/1.1" 200 113
+[2019-07-11 09:33:52] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 09:33:52] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/incometype HTTP/1.1" 200 113
+[2019-07-11 09:34:04] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 09:34:04] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/busidaily HTTP/1.1" 200 113
+[2019-07-11 09:38:00] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-11 09:38:00] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 85
+[2019-07-11 09:38:28] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-11 09:38:29] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 85
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] utf-8  confidence = 0.99
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] SHIFT_JIS Japanese confidence = 0.01
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-JP Japanese confidence = 0.01
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] GB2312 Chinese confidence = 0.01
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-KR Korean confidence = 0.01
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] CP949 Korean confidence = 0.01
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] Big5 Chinese confidence = 0.01
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-TW Taiwan confidence = 0.01
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1251 Russian confidence = 0.01
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] KOI8-R Russian confidence = 0.01
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] ISO-8859-5 Russian confidence = 0.0
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] MacCyrillic Russian confidence = 0.07999684620433524
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] IBM866 Russian confidence = 0.19760624465912982
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] IBM855 Russian confidence = 0.07999684620433524
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] ISO-8859-7 Greek confidence = 0.0
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1253 Greek confidence = 0.0
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] ISO-8859-5 Bulgairan confidence = 0.0
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1251 Bulgarian confidence = 0.0
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] TIS-620 Thai confidence = 0.11694189391175314
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] ISO-8859-9 Turkish confidence = 0.4372326049350444
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1255 Hebrew confidence = 0.0
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1255 Hebrew confidence = 0.0
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1255 Hebrew confidence = 0.0
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] utf-8  confidence = 0.99
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] SHIFT_JIS Japanese confidence = 0.01
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-JP Japanese confidence = 0.01
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] GB2312 Chinese confidence = 0.01
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-KR Korean confidence = 0.01
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] CP949 Korean confidence = 0.01
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] Big5 Chinese confidence = 0.01
+[2019-07-11 09:39:06] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-TW Taiwan confidence = 0.01
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] utf-8  confidence = 0.99
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] SHIFT_JIS Japanese confidence = 0.01
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-JP Japanese confidence = 0.01
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] GB2312 Chinese confidence = 0.01
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-KR Korean confidence = 0.01
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] CP949 Korean confidence = 0.01
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] Big5 Chinese confidence = 0.01
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-TW Taiwan confidence = 0.01
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1251 Russian confidence = 0.01
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] KOI8-R Russian confidence = 0.01
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] ISO-8859-5 Russian confidence = 0.0
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] MacCyrillic Russian confidence = 0.07999684620433524
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] IBM866 Russian confidence = 0.19760624465912982
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] IBM855 Russian confidence = 0.07999684620433524
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] ISO-8859-7 Greek confidence = 0.0
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1253 Greek confidence = 0.0
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] ISO-8859-5 Bulgairan confidence = 0.0
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1251 Bulgarian confidence = 0.0
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] TIS-620 Thai confidence = 0.11694189391175314
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] ISO-8859-9 Turkish confidence = 0.4372326049350444
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1255 Hebrew confidence = 0.0
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1255 Hebrew confidence = 0.0
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1255 Hebrew confidence = 0.0
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] utf-8  confidence = 0.99
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] SHIFT_JIS Japanese confidence = 0.01
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-JP Japanese confidence = 0.01
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] GB2312 Chinese confidence = 0.01
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-KR Korean confidence = 0.01
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] CP949 Korean confidence = 0.01
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] Big5 Chinese confidence = 0.01
+[2019-07-11 09:39:32] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-TW Taiwan confidence = 0.01
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] utf-8  confidence = 0.99
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] SHIFT_JIS Japanese confidence = 0.01
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-JP Japanese confidence = 0.01
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] GB2312 Chinese confidence = 0.01
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-KR Korean confidence = 0.01
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] CP949 Korean confidence = 0.01
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] Big5 Chinese confidence = 0.01
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-TW Taiwan confidence = 0.01
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1251 Russian confidence = 0.01
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] KOI8-R Russian confidence = 0.01
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] ISO-8859-5 Russian confidence = 0.0
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] MacCyrillic Russian confidence = 0.07999684620433524
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] IBM866 Russian confidence = 0.19760624465912982
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] IBM855 Russian confidence = 0.07999684620433524
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] ISO-8859-7 Greek confidence = 0.0
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1253 Greek confidence = 0.0
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] ISO-8859-5 Bulgairan confidence = 0.0
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1251 Bulgarian confidence = 0.0
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] TIS-620 Thai confidence = 0.11694189391175314
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] ISO-8859-9 Turkish confidence = 0.4372326049350444
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1255 Hebrew confidence = 0.0
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1255 Hebrew confidence = 0.0
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] windows-1255 Hebrew confidence = 0.0
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] utf-8  confidence = 0.99
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] SHIFT_JIS Japanese confidence = 0.01
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-JP Japanese confidence = 0.01
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] GB2312 Chinese confidence = 0.01
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-KR Korean confidence = 0.01
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] CP949 Korean confidence = 0.01
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] Big5 Chinese confidence = 0.01
+[2019-07-11 09:39:56] DEBUG [get_confidence: charsetgroupprober.py, 100] EUC-TW Taiwan confidence = 0.01
+[2019-07-11 09:39:57] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-11 09:39:57] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 85
+[2019-07-11 09:40:03] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-11 09:40:04] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 85
+[2019-07-11 09:40:42] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-11 09:40:43] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 502 166
+[2019-07-11 09:42:34] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-11 09:42:36] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 85
+[2019-07-11 09:43:25] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-11 09:43:26] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 85
+[2019-07-11 09:43:32] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-11 09:43:33] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 85
+[2019-07-11 09:46:26] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-11 09:46:27] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 85
+[2019-07-11 09:52:50] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-11 09:52:51] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 85
+[2019-07-11 09:54:10] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-11 09:54:10] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 85
+[2019-07-11 09:55:02] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-11 09:55:04] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 85
+[2019-07-11 09:56:08] DEBUG [_new_conn: connectionpool.py, 815] Starting new HTTPS connection (1): dev.cxyhr.cn:443
+[2019-07-11 09:56:09] DEBUG [_make_request: connectionpool.py, 396] https://dev.cxyhr.cn:443 "GET /login/login.htm?name=customservice&pass=a2019rlgj HTTP/1.1" 200 85
+[2019-07-11 09:57:50] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 09:57:50] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "GET http://10.152.64.9:4040/cloudfi/token/generatetoke?id=b9b0e8e985a911e894a01c3947952e7e&secret=71ee217e2f1bdfcc HTTP/1.1" 200 259
+[2019-07-11 09:57:52] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 09:57:52] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/store HTTP/1.1" 200 113
+[2019-07-11 09:57:54] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 09:57:55] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/paytype HTTP/1.1" 200 113
+[2019-07-11 09:57:59] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 09:57:59] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/incometype HTTP/1.1" 200 113
+[2019-07-11 09:58:02] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 09:58:02] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/busidaily HTTP/1.1" 200 113
+[2019-07-11 14:16:09] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 14:16:09] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "GET http://10.152.64.9:4040/cloudfi/token/generatetoke?id=b9b0e8e985a911e894a01c3947952e7e&secret=71ee217e2f1bdfcc HTTP/1.1" 200 259
+[2019-07-11 14:16:12] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 14:16:12] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/store HTTP/1.1" 200 113
+[2019-07-11 14:16:14] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 14:16:15] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/paytype HTTP/1.1" 200 113
+[2019-07-11 14:16:18] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 14:16:18] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/incometype HTTP/1.1" 200 113
+[2019-07-11 14:16:22] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 14:16:22] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/busidaily HTTP/1.1" 200 113
+[2019-07-11 15:50:37] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 15:50:37] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "GET http://10.152.64.9:4040/cloudfi/token/generatetoke?id=b9b0e8e985a911e894a01c3947952e7e&secret=71ee217e2f1bdfcc HTTP/1.1" 200 260
+[2019-07-11 15:50:40] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 15:50:40] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/store HTTP/1.1" 200 113
+[2019-07-11 15:50:44] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 15:50:45] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/paytype HTTP/1.1" 200 113
+[2019-07-11 15:50:48] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 15:50:49] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/incometype HTTP/1.1" 200 113
+[2019-07-11 15:50:52] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-11 15:50:52] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/busidaily HTTP/1.1" 200 113
+[2019-07-12 08:52:05] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-12 08:52:05] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "GET http://10.152.64.9:4040/cloudfi/token/generatetoke?id=b9b0e8e985a911e894a01c3947952e7e&secret=71ee217e2f1bdfcc HTTP/1.1" 200 260
+[2019-07-12 08:52:07] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-12 08:52:07] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/store HTTP/1.1" 200 113
+[2019-07-12 08:52:08] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-12 08:52:09] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/paytype HTTP/1.1" 200 113
+[2019-07-12 08:52:12] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-12 08:52:12] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/incometype HTTP/1.1" 200 113
+[2019-07-12 08:52:16] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-12 08:52:16] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/busidaily HTTP/1.1" 200 113
+[2019-07-12 09:04:40] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-12 09:04:40] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "GET http://10.152.64.9:4040/cloudfi/token/generatetoke?id=b9b0e8e985a911e894a01c3947952e7e&secret=71ee217e2f1bdfcc HTTP/1.1" 200 259
+[2019-07-12 09:04:43] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-12 09:04:43] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/store HTTP/1.1" 200 113
+[2019-07-12 09:04:45] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-12 09:04:46] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/paytype HTTP/1.1" 200 113
+[2019-07-12 09:04:49] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-12 09:04:49] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/incometype HTTP/1.1" 200 113
+[2019-07-12 09:04:51] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 127.0.0.1:8888
+[2019-07-12 09:04:51] DEBUG [_make_request: connectionpool.py, 396] http://127.0.0.1:8888 "POST http://10.152.64.9:4040/cloudfi/api/store/batchhandle/busidaily HTTP/1.1" 200 113
+[2019-07-15 16:29:00] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 10.152.64.9:4040
+[2019-07-15 16:29:00] DEBUG [_make_request: connectionpool.py, 396] http://10.152.64.9:4040 "GET /cloudfi/token/generatetoke?id=b9b0e8e985a911e894a01c3947952e7e&secret=71ee217e2f1bdfcc HTTP/1.1" 200 259
+[2019-07-15 16:29:02] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 10.152.64.9:4040
+[2019-07-15 16:29:02] DEBUG [_make_request: connectionpool.py, 396] http://10.152.64.9:4040 "POST /cloudfi/api/store/batchhandle/store HTTP/1.1" 200 239
+[2019-07-15 16:30:43] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 10.152.64.9:4040
+[2019-07-15 16:30:43] DEBUG [_make_request: connectionpool.py, 396] http://10.152.64.9:4040 "GET /cloudfi/token/generatetoke?id=b9b0e8e985a911e894a01c3947952e7e&secret=71ee217e2f1bdfcc HTTP/1.1" 200 257
+[2019-07-15 16:30:46] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 10.152.64.9:4040
+[2019-07-15 16:30:46] DEBUG [_make_request: connectionpool.py, 396] http://10.152.64.9:4040 "POST /cloudfi/api/store/batchhandle/store HTTP/1.1" 200 239
+[2019-07-15 16:30:47] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 10.152.64.9:4040
+[2019-07-15 16:30:47] DEBUG [_make_request: connectionpool.py, 396] http://10.152.64.9:4040 "GET /cloudfi/token/generatetoke?id=b9b0e8e985a911e894a01c3947952e7e&secret=71ee217e2f1bdfcc HTTP/1.1" 200 259
+[2019-07-15 16:30:51] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 10.152.64.9:4040
+[2019-07-15 16:30:51] DEBUG [_make_request: connectionpool.py, 396] http://10.152.64.9:4040 "POST /cloudfi/api/store/batchhandle/store HTTP/1.1" 200 239
+[2019-07-15 16:32:14] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 10.152.64.9:4040
+[2019-07-15 16:32:14] DEBUG [_make_request: connectionpool.py, 396] http://10.152.64.9:4040 "GET /cloudfi/token/generatetoke?id=b9b0e8e985a911e894a01c3947952e7e&secret=71ee217e2f1bdfcc HTTP/1.1" 200 259
+[2019-07-15 16:32:17] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 10.152.64.9:4040
+[2019-07-15 16:32:17] DEBUG [_make_request: connectionpool.py, 396] http://10.152.64.9:4040 "POST /cloudfi/api/store/batchhandle/store HTTP/1.1" 200 113
+[2019-07-15 16:32:19] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 10.152.64.9:4040
+[2019-07-15 16:32:19] DEBUG [_make_request: connectionpool.py, 396] http://10.152.64.9:4040 "POST /cloudfi/api/store/batchhandle/paytype HTTP/1.1" 200 113
+[2019-07-15 16:32:23] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 10.152.64.9:4040
+[2019-07-15 16:32:23] DEBUG [_make_request: connectionpool.py, 396] http://10.152.64.9:4040 "POST /cloudfi/api/store/batchhandle/incometype HTTP/1.1" 200 113
+[2019-07-15 16:32:26] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 10.152.64.9:4040
+[2019-07-15 16:32:26] DEBUG [_make_request: connectionpool.py, 396] http://10.152.64.9:4040 "POST /cloudfi/api/store/batchhandle/busidaily HTTP/1.1" 200 113
+[2019-07-15 16:32:30] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 10.152.64.9:4040
+[2019-07-15 16:32:30] DEBUG [_make_request: connectionpool.py, 396] http://10.152.64.9:4040 "GET /cloudfi/token/generatetoke?id=b9b0e8e985a911e894a01c3947952e7e&secret=71ee217e2f1bdfcc HTTP/1.1" 200 261
+[2019-07-15 16:32:32] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 10.152.64.9:4040
+[2019-07-15 16:32:32] DEBUG [_make_request: connectionpool.py, 396] http://10.152.64.9:4040 "POST /cloudfi/api/store/batchhandle/store HTTP/1.1" 200 113
+[2019-07-15 16:32:34] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 10.152.64.9:4040
+[2019-07-15 16:32:34] DEBUG [_make_request: connectionpool.py, 396] http://10.152.64.9:4040 "POST /cloudfi/api/store/batchhandle/paytype HTTP/1.1" 200 113
+[2019-07-15 16:32:37] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 10.152.64.9:4040
+[2019-07-15 16:32:37] DEBUG [_make_request: connectionpool.py, 396] http://10.152.64.9:4040 "POST /cloudfi/api/store/batchhandle/incometype HTTP/1.1" 200 113
+[2019-07-15 16:32:39] DEBUG [_new_conn: connectionpool.py, 206] Starting new HTTP connection (1): 10.152.64.9:4040
+[2019-07-15 16:32:39] DEBUG [_make_request: connectionpool.py, 396] http://10.152.64.9:4040 "POST /cloudfi/api/store/batchhandle/busidaily HTTP/1.1" 200 113

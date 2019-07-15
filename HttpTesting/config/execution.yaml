@@ -1,0 +1,7 @@
+NAME: 测试用例执行配置
+
+
+#业务场景,执行配置:通过此配置,决定场景是否运行,Y运行;N不运行
+RUNING:
+    POS_INFO: #获取Token-POS门店信息-POS消费项目-POS收入项目-POS日报表
+        Flag: "Y" 
