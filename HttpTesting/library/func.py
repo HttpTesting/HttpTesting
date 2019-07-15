@@ -42,7 +42,7 @@ class FUNC:
 
 if __name__ == "__main__":
 
-    data = {"name":"%{md5('aaaa')}%", "ag":"%{md5('cccc')}%"}
+    data = {"name":"%{timestamp()}%", "ag":"%{md5('cccc')}%"}
     ret = parse_args_func(FUNC, data)
     print(ret)
 
