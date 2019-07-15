@@ -1,15 +1,15 @@
 #coding=utf-8
 import os
 from flask import render_template
-from HttpTesting.library.scripts import get_yaml_field
-from HttpTesting.globalVar import gl
+# from HttpTesting.library.scripts import get_yaml_field
+# from HttpTesting.globalVar import gl
 
-def case():
-    """读取case"""
-    path = os.path.join(gl.dataScenarioPath, "POS_INFO.yaml")
-    yam_dict = get_yaml_field(path)['POS_INFO']['Case1']
+# def case():
+#     """读取case"""
+#     path = os.path.join(gl.dataScenarioPath, "POS_INFO.yaml")
+#     yam_dict = get_yaml_field(path)['POS_INFO']['Case1']
     
-    return render_template('dt.html', data=yam_dict)
+#     return render_template('dt.html', data=yam_dict)
 
 def  report(report_dir, report_name):
     """

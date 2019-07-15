@@ -10,12 +10,16 @@ def out_param_parse(oname, param):
         oname: object
         param: args
     Usage:
+        ret = out_param_parse('result', 'result.res.data[0].id')
     Example:
         Data.tr.id为 Data['tr']['id']
         res.tr.id为 res['tr]['id]
         res[0].tr.id 为res[0]['tr']['id']
         cookie.SESSION 为 Response cookie, cookie['SESSION']
         headers.Content-Type为 headers['Content-Type']
+    Return: 
+        Example:
+        result['res']['data'][0]['id']
     """
     paramList = param.split(".")
     dt = oname

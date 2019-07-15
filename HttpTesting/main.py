@@ -5,7 +5,7 @@ import logging
 from HttpTesting.globalVar import gl
 from HttpTesting.library import HTMLTESTRunnerCN
 from HttpTesting.library import scripts
-from HttpTesting.library.scripts import get_yaml_field
+from HttpTesting.library.scripts import (get_yaml_field, start_web_service)
 from HttpTesting.library.emailstmp import EmailClass
 from HttpTesting.library.case_queue import case_exec_queue
 from HttpTesting import case
@@ -22,29 +22,35 @@ def run_min():
     cur_dir= os.getcwd()
     os.chdir(cur_dir)
 
-    parse = argparse.ArgumentParser(description='Start HttpTesting......')
+    parse = argparse.ArgumentParser(description='HttpTesting parameters')
+
     parse.add_argument(
-        "--file", 
+        "-file", 
         default='', 
         help='The file path; File absolute or relative path.'
         )
     parse.add_argument(
-        "--dir", 
+        "-dir", 
         default='',
         help='The folder path; folder absolute or relative path.'
         )
     parse.add_argument(
-        "--startproject", 
+        "-startproject", 
         default='',
         help='Generate test case templates.'
         )
     parse.add_argument(
-        "--config", 
+        "-config", 
         default='',
         help='Basic setting of framework.'
         )
     parse.add_argument(
-        "--har", 
+        "-har", 
+        default='',
+        help='Convert the har files to YAML. har file is *.har'
+        )
+    parse.add_argument(
+        "-service", 
         default='',
         help='Convert the har files to YAML. har file is *.har'
         )
@@ -55,6 +61,12 @@ def run_min():
     start_project = args.startproject
     config = args.config
     har = args.har
+    service = args.service
+
+    #Start the a web service.
+    if str(service).lower() != '' and str(service).lower() == 'start' :
+        start_web_service()
+
 
     #Convert har files to YAML.
     #r'D:\httphar.har'

@@ -229,5 +229,33 @@ def check_http_status(host, port, **kwargs):
         return False
 
 
+def start_web_service():
+    """
+    Start a web service.
+
+    Args: 
+
+    Uasge:
+        start_web_service()
+
+    Return:
+        There is no.
+    """
+    #Get configuration information.
+    ret = get_yaml_field(gl.configFile)
+
+    # Host and port Numbers.
+    _HOST = ret['REPORT_HOST']
+    _PORT = ret['REPORT_PORT']
+
+    # Web startup file.
+    service =  'service.py'
+
+    #Set the web directory to the current command line directory.
+    cmd = 'cd {} && python {} --host {} --port {}'.format(gl.webPath, service, _HOST, _PORT)
+
+    #Command to start service.
+    os.system(cmd)
+
 if __name__=="__main__":
     env = get_sys_environ('HTTPTESTING_PWD')

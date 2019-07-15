@@ -32,9 +32,9 @@ class EmailClass(object):
         msg['To'] = self.To
         msg['Subject'] = Header('%s%s'%(self.msg_title, self.curDateTime), 'utf-8')
 
-        #两个附件路径
+        # #两个附件路径
         reportfile = html_path
-        countPath = os.path.join(gl.reportPath, 'count.xlsx')
+        # countPath = os.path.join(gl.reportPath, 'count.xlsx')
 
         #增加邮件内容为html
         fp = open(reportfile, 'rb')
@@ -44,9 +44,9 @@ class EmailClass(object):
 
         #增加附件
         html = self.add_attach(reportfile, filename='Report%s.html'%self.curDateTime) #自动化测试报告附件
-        xlsx = self.add_attach(countPath, filename='接口开发情况统计表.xlsx') #xlsx接口进度表
+        # xlsx = self.add_attach(countPath, filename='接口开发情况统计表.xlsx') #xlsx接口进度表
         msg.attach(html)
-        msg.attach(xlsx)
+        # msg.attach(xlsx)
 
         return msg
 

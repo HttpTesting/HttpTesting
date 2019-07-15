@@ -22,4 +22,4 @@ class Custom_Urls(object):
         app.add_url_rule("/", view_func=views.report_dir)
         app.add_url_rule("/report/", view_func=views.report_dir)
 
-        app.add_url_rule("/case/", view_func=views.case)
+        # app.add_url_rule("/case/", view_func=views.case)
