@@ -3,59 +3,104 @@
 HttpTesting 是HTTP(S) 协议测试框架，通过YAML来编写测试用例；支持通过pip直接从PyPi安装，支持命令行运行代码，不固定结构，通过命令生成脚手架。
 
 
-## 快速入门
+## 快速开始
 
-### virtualenv虚拟环境 
+### python虚拟环境virtualenv使用
 
-- pip install virtualenv
+- 安装虚拟环境: pip install virtualenv
 
-- virtualenv  demo_env
+- 创建虚拟环境: virtualenv  demo_env
 
-- 命令行模式切换到虚拟环境 ..../scripts/activate.bat
+- 命令行模式切换到虚拟环境Script目录: /../scripts/
 
-- activate.bat 激活虚拟环境
+- 激活虚拟环境: activate.bat 
 
-## pip安装
+### HttpTesting安装
 
-  
 
-### 安装方法:
-
-  
+#### pip在线安装
 
 - pip install HttpTesting==1.0.26
 
+#### 下载whl文件进行安装
+
+- pip install HttpTesting-1.0.40-py3-none-any.whl 
 
 
-### 已安装HttpTesting包,通过pip命令进行更新
+#### 更新HttpTesting包
+
+已安装HttpTesting包,通过pip命令进行更新
 
 - pip list  查看HttpTesting安装包版本信息
+
+- pip install --upgrade HttpTesting
 
 - pip install --upgrade HttpTesting==1.0.26
 
 
 
-
-### HttpTesting amt 或 AMT命令
-
-  
-
-- amt --config set 此命令用来设置框架基本配置
-
-- amt --file template.yaml 执行YAML用例，支持绝对或相对路径。
-
-- amt --dir testcase 批量执行testcase目录下的YAML用例，支持绝对路径或相对路径。
-
-- amt --startproject demo 生成脚手架demo目录
-
-- amt --har  D:\httphar.har 根据har文件，生成测试用例YAML.
+### amt 或 AMT命令
 
   
-  
+
+- amt -config set [此命令用来设置config.yaml基本配置]
+
+- amt -file template.yaml [执行YAML用例，支持绝对或相对路径。]
+
+- amt -dir testcase [批量执行testcase目录下的YAML用例，支持绝对路径或相对路径。]
+
+- amt -startproject demo [生成脚手架demo目录]
+
+- amt -har  D:\httphar.har [根据har文件，生成测试用例YAML.]
+
+- amt -service start 启动Report Web服务.
+
+#### 基本配置
+
+- URL设置
+
+- 钉钉机器人设置
+
+- 测试报告设置
+
+- EMAIL邮箱设置
+
+
+#### 用例执行
+
+- YAML执行: amt -file template.yaml
+
+- YAML批量执行: amt -dir testcase
+
+
+
+####  脚手架生成
+
+- 脚手架功能,是生成一个测试用例模版.
+
+
+
+#### HAR
+
+har命令来解析, Charles抓包工具导出的http .har请求文件, 自动生成HttpTesting用例格式.
+
+
+
+
 
 ## 用例编写
 
+
+### 用例模型
+
+TESTCASE{
+	'case1':['description',{},{}],  #场景模式每个{}一个接口
+	'case2':['description',{}],     #单接口模式
+	}
+
+
 ### YAML用例格式  
+
 
     TESTCASE:
 	    #Case1由两个请求组成的场景
@@ -91,43 +136,64 @@ HttpTesting 是HTTP(S) 协议测试框架，通过YAML来编写测试用例；�
 	            Assert:
 	                - eq: [result.status, 'success']
 
-- 通过OutPara字段来做公共变量，给其它接口调用，方法：
 
-  "$H_token $": result.data
-  result.data 是请求结果，返回的嵌套级别
-  
-  result：请求影响res.json()
-  cookie：请求影响cookies 字典类型
-  res:  请求影响对象
-  Headers: 请求影响头
- 
 ### 参数说明
+
 - InPara: 用来传头信息变量,默认为"" 
 - "$H_token $": H_开头代表是要进行信息头传参
 - $D_token $: D_开头代表是要进行data数据传参
 
+
+#### InPara与OutPara字段变量使用
+
+OutPara字段用来做公共变量,供其它接口使用,默认为""; InPara字段用来参数输入,用来传Headers头参数,默认为"".
+
+-  示例: "$H_token $": result.data 是请求结果，返回的嵌套级别
+-  OutPara为dict类型,可以做多个公共变量.
+
+
+#### Assert断言
+
+Assert字段默认为[].
+
+- eq: [a, b]  判断 a与b相等
+- nq: [a, b]  判断 a与b不相等
+- al: [a, b]  判断 a is b 相当于id(a) == id(b)
+- at: [a, b]  判断 a is not b 相当于id(a) != id(b)
+- ai: [a, b]  判断 a in b 
+- ani:[a, b]  判断 a in not b
+- ais:[a, b]  判断 isinstance(a, b) True
+- anis:[a, b] 判断 isinstance(a, b) False
+- ln:[a]      判断 a is None
+- lnn:[a]     判断 a is not none
+- bt:[a]      判断 a 为True
+- bf:[a]      判断 a 为False
+
+
+#### 内置函数及扩展
+
+待增加此功能.
+
+
 ## 常用四种对象(通常做参数变量时使用)
 - res: 请求Response对象
-- result: Response.json() 或 Response.text
-- cookie: Response.cookie 响应cookie字典对象;  当做为参数时如果cookie.SESSION这样的写法代表取cookie中的SESSION对象. 如果只写cookie,会解析成"SESSION=xxxxxxx; NAME=xxxxxx"
-- headers: Response.headers 响应头字典对象
+- result: res.json 或 res.text
+- cookie: res.cookie 响应cookie字典对象;  当做为参数时如果cookie.SESSION这样的写法代表取cookie中的SESSION对象. 如果只写cookie,会解析成"SESSION=xxxxxxx; NAME=xxxxxx"
+- headers: res.headers 响应头字典对象
 
 ## 用例执行
 - 1、生成脚手架
 - 2、编写脚手架中testcase下YAML模版用例
 - 3、切换到testcase目录
-- 4、amt --dir testcase 自动运行testcase下YAML用例
+- 4、amt -dir testcase 自动运行testcase下YAML用例
 - 5、自动生成测试报告Html
+
 
 ##  框架基本配置
 - 1、通过命令打开框架config.yaml
-- 2、amt --config set
+- 2、amt -config set
 - 3、修改基本配置，并保存
 
-## 全局环境变量
-- 1、通过--config命令配置全局环境变量
-- 2、amt --config gl
-- 3、修改配置需要谨慎
 
 
 

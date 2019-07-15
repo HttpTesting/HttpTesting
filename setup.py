@@ -7,7 +7,7 @@ with io.open('README.md', encoding='utf-8') as fp:
 
 setup(
     name='HttpTesting', # 应用名
-    version='1.0.34', # 版本号
+    version='1.0.46', # 版本号
     description="HttpTesting",
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -48,8 +48,8 @@ setup(
     entry_points={
         'console_scripts': [
             'amt=HttpTesting.main:run_min',
-            'AMT=HttpTesting.main:run_min',
-        ]
+            'AMT=HttpTesting.main:run_min',      
+            ]
     },
     #发布到pypi
     # cmdclass={
