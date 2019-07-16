@@ -1,8 +1,7 @@
-
-
 import hashlib 
 import re
 import time
+import uuid
 from HttpTesting.library.scripts import parse_args_func
 
 class FUNC:
@@ -10,7 +9,10 @@ class FUNC:
     Framework function library.
 
     Usage:
+        from HttpTesting.library.func import FUNC
+
         %{FUNC.md5(txt)}%
+        %{FUNC.timestamp()}%
     """
 
     @staticmethod
@@ -31,6 +33,7 @@ class FUNC:
         
         return mo.hexdigest()
 
+
     @staticmethod
     def timestamp():
         """
@@ -39,11 +42,39 @@ class FUNC:
         return int(time.time())
 
 
+    @staticmethod
+    def datetimestr():
+        """
+        Generate date-time strings.
+
+        Args:
+
+        Return:
+            String  2019-07-16 10:50:16
+        """
+        datetime= str(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime()))
+        return datetime
+
+
+    @staticmethod
+    def uuid1():
+        """
+        Generate uuid1.
+
+        Usage:
+            ret = FUNC.uuid1()
+        Return:
+            String uuid1  example: ad7678fe-a775-11e9-907f-88b111064583
+        """
+
+        return str(uuid.uuid1()).replace('-','')
+
+
+
+
+
 
 if __name__ == "__main__":
-
-    data = {"name":"%{timestamp()}%", "ag":"%{md5('cccc')}%"}
-    ret = parse_args_func(FUNC, data)
-    print(ret)
-
+    a = FUNC.uuid1()
+    print(a)
     

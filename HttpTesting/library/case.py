@@ -71,7 +71,7 @@ def assert_func(self, res, headers, cookie, result, assertlist):
             ac = getattr(Ac, key)
 
             #Distinguish between two parameters and one parameter by key.
-            if key == 'an' or key == 'at' or key == 'af' or key == 'ann':
+            if key == 'ln' or key == 'lnn' or key == 'bt' or key == 'bf':
                 eval(ac.format(out_param_parse(oname, value[0])))
             else:
                 eval(ac.format(out_param_parse(oname, value[0]), value[1])) 
@@ -140,7 +140,9 @@ def exec_test_case(self, data):
                 )
         else:
             raise "Error:请求Mehod:{}错误.".format(data[i]['Method'])
-
+            
+        #断言解析
+        assert_func(self, res, headers, cookie, result, data[i]['Assert'])
 
         #出参写入队列
         if data[i]['OutPara'] != "":
@@ -179,8 +181,7 @@ def exec_test_case(self, data):
                 oPara[key] = queue_val
             outParaQueue.append(oPara)
 
-        #断言解析
-        assert_func(self, res, headers, cookie, result, data[i]['Assert'])
+
 
 
 

@@ -165,43 +165,50 @@
 #         # print(temp_dict)
 #         return temp_dict
 
-import os
-from HttpTesting.globalVar import gl
-from HttpTesting.library.scripts import get_yaml_field
+# import os
+# from HttpTesting.globalVar import gl
+# from HttpTesting.library.scripts import get_yaml_field
 
 
-def start_web_service():
-    """
-    Start a web service.
-    Args:
-    Uasge:
-        start_web_service()
-    Return:
-        There is no.
-    """
-    #Get configuration information.
-    ret = get_yaml_field(gl.configFile)
+# def start_web_service():
+#     """
+#     Start a web service.
+#     Args:
+#     Uasge:
+#         start_web_service()
+#     Return:
+#         There is no.
+#     """
+#     #Get configuration information.
+#     ret = get_yaml_field(gl.configFile)
 
-    # Host and port Numbers.
-    _HOST = ret['REPORT_HOST']
-    _PORT = ret['REPORT_PORT']
+#     # Host and port Numbers.
+#     _HOST = ret['REPORT_HOST']
+#     _PORT = ret['REPORT_PORT']
 
-    # Web startup file.
-    service =  'service.py'
+#     # Web startup file.
+#     service =  'service.py'
 
-    #Set the web directory to the current command line directory.
-    cmd = 'cd {} && python {} --host {} --port {}'.format(gl.webPath, service, _HOST, _PORT)
+#     #Set the web directory to the current command line directory.
+#     cmd = 'cd {} && python {} --host {} --port {}'.format(gl.webPath, service, _HOST, _PORT)
 
-    #Command to start service.
-    os.system(cmd)
+#     #Command to start service.
+#     os.system(cmd)
 
 
-if __name__ == "__main__":
-    start_web_service()
+# if __name__ == "__main__":
+#     start_web_service()
 #     # temp_dict = ConvertHarToYAML.convert_har_to_ht(r'D:\httphar.har')
 #     # ConvertHarToYAML.write_case_to_yaml('', temp_dict)
 #     # start_web_service()
 #     service = os.path.join(gl.webPath, 'service.py')
 #     os.system(r'python {}'.format(service))
 
+
+import uuid
+
+
+print(uuid.uuid1())  # 带参的方法参见Python Doc
+if []:
+    print('2222')
 

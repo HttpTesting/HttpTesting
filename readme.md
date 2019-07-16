@@ -94,8 +94,11 @@ har命令来解析, Charles抓包工具导出的http .har请求文件, 自动生
 ### 用例模型
 
 >TESTCASE{
+
 >>'case1':['description',{},{}],  #场景模式每个{}一个接口
+
 >>'case2':['description',{}],     #单接口模式
+
 >}
 
 
@@ -180,8 +183,11 @@ Assert字段默认为[].
 
 |函数名|参数|说明|
 |:---|:---|:---|
-|md5|txt字符串|生成md5字符串示例:cbfbf4ea6d7c8032584dcf0defa10276|
-|timestamp|-|秒级时间戳示例:1563183829|
+|md5|txt字符串|生成md5字符串示例: cbfbf4ea6d7c8032584dcf0defa10276|
+|timestamp|-|秒级时间戳示例: 1563183829|
+|uuid1|-|生成唯一id,uuid1示例:ebcd6df8a77611e99bb588b111064583|
+|datetimestr|-|生成日期时间串,示例:2019-07-16 10:50:16|
+
 
 - 其它后续添加
 

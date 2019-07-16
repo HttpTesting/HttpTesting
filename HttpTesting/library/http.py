@@ -119,7 +119,7 @@ class HttpWebRequest(object):
             get_datetime_str(),
             'POST',
             url,
-            kwargs['data']
+            data
         )
         print(tmpl)
 
