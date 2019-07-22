@@ -3,6 +3,13 @@
 HttpTesting 是HTTP(S) 协议测试框架，通过YAML来编写测试用例；支持通过pip直接从PyPi安装，支持命令行运行代码，不固定结构，通过命令生成脚手架。
 
 
+## 版本信息
+
+- v1.0 unittest
+
+- v2.0 pytest
+
+
 ## 快速开始
 
 ### python虚拟环境virtualenv使用

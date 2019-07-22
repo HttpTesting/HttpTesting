@@ -19,16 +19,16 @@ class Excel(object):
             ret = excel.open_workbook(filename=self.excelPath)
             #data = excel.open_workbook(filename=self.excelPath)
             return  ret
-        except Exception,ex:
-            print str(ex)
+        except Exception as ex:
+            print(ex)
 
     #获取指定行数据,返回数组
     def getRowData(self,rownum =0):
         try:
             data = self.OpenExcel(self.excelPath)
             table = data.sheet_by_index(0)
-        except Exception,ex:
-            return ex.message()
+        except Exception as ex:
+            return ex
         return table.row_values(rownum)
 
     #根据sheet名获取所有行数据，数组返回
@@ -96,6 +96,6 @@ class Excel(object):
 
 if __name__=="__main__":
     excelPath = os.path.join(gl.dataScenarioPath, '充值并撤销业务场景.xlsx').decode('utf-8')
-    print Excel(excelPath).getExcelDataByName(start_col=4)
+    print(Excel(excelPath).getExcelDataByName(start_col=4))
     #print os.path.abspath(os.path.dirname(os.getcwd()))+'\data\\testCase.xlsx'
-    print excelPath
+    print(excelPath)

@@ -204,11 +204,3 @@
 #     service = os.path.join(gl.webPath, 'service.py')
 #     os.system(r'python {}'.format(service))
 
-
-import uuid
-
-
-print(uuid.uuid1())  # 带参的方法参见Python Doc
-if []:
-    print('2222')
-

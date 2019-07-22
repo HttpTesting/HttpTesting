@@ -76,14 +76,14 @@ class HttpWebRequest(object):
         #Report output template.   
         tmpl = self.OUT_TMPL.format(
             get_datetime_str(),
-            'GET',
+            kwargs['method'],
             url,
             data
         )
         print(tmpl)    
 
         try:
-            res =requests.request("GET", url, params=kwargs['params'], headers=kwargs['headers'], verify=False)
+            res =requests.request(kwargs['method'], url, params=kwargs['params'], headers=kwargs['headers'], verify=False)
             headers = res.headers
             cookie = res.cookies.get_dict()
             if res.status_code ==200:
@@ -117,7 +117,7 @@ class HttpWebRequest(object):
         #Report output template. 
         tmpl = self.OUT_TMPL.format(
             get_datetime_str(),
-            'POST',
+            kwargs['method'],
             url,
             data
         )
@@ -129,7 +129,7 @@ class HttpWebRequest(object):
             if 'form-data' in header_dict['content-type']:
                 data = MultipartFormData.to_form_data(data, headers=kwargs['headers'])
                 res = requests.request(
-                    "POST", 
+                    kwargs['method'], 
                     url, 
                     data=data.encode(), 
                     headers=kwargs['headers'],
@@ -137,7 +137,7 @@ class HttpWebRequest(object):
                     )
             elif 'application/json' in header_dict['content-type']:
                 res = requests.request(
-                    "POST", 
+                    kwargs['method'], 
                     url, 
                     json=data, 
                     headers=kwargs['headers'],
@@ -145,7 +145,7 @@ class HttpWebRequest(object):
                     )
             elif 'application/x-www-form-urlencoded' in header_dict['content-type']:
                 res = requests.request(
-                    "POST", 
+                    kwargs['method'], 
                     url, 
                     data=data, 
                     headers=kwargs['headers'],
@@ -153,7 +153,7 @@ class HttpWebRequest(object):
                     )                
             else:
                 res = requests.request(
-                    "POST", 
+                    kwargs['method'], 
                     url, 
                     params=data, 
                     headers=kwargs['headers'],

@@ -124,19 +124,22 @@ def exec_test_case(self, data):
                         break #break
 
         #处理请求
-        if 'GET' in data[i]['Method']:
+        method = data[i]['Method']
+        if ('GET' in method) or (r'DELETE' in method):
             res, headers, cookie, result = req.get(
                 params=data[i]['Data'], 
                 desc=desc, 
                 gurl=data[i]['Url'],
-                headers=data[i]['Headers']
+                headers=data[i]['Headers'],
+                method= method
                 )
-        elif 'POST' in data[i]['Method']:
+        elif ('POST' in method) or ('PUT' in method):
             res, headers, cookie, result = req.post(
                 data=data[i]['Data'], 
                 desc=desc, 
                 gurl=data[i]['Url'],
-                headers=data[i]['Headers']
+                headers=data[i]['Headers'],
+                method= method
                 )
         else:
             raise "Error:请求Mehod:{}错误.".format(data[i]['Method'])
