@@ -54,6 +54,11 @@ def run_min():
         default='',
         help='Convert the har files to YAML. har file is *.har'
         )
+    parse.add_argument(
+        "-convert", 
+        default='',
+        help='Convert the har files to YAML. YAML file is *.yaml'
+        )
 
     args = parse.parse_args()
     case_file = args.file
@@ -62,6 +67,12 @@ def run_min():
     config = args.config
     har = args.har
     service = args.service
+    vert = args.convert
+
+    # Conver YAML.
+    if vert != '':
+        yamlfile = os.path.join(cur_dir, str(vert).strip())
+        scripts.generate_case_tmpl(yamlfile)
 
     #Start the a web service.
     if str(service).lower() != '' and str(service).lower() == 'start' :

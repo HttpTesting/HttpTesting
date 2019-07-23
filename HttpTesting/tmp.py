@@ -204,3 +204,8 @@
 #     service = os.path.join(gl.webPath, 'service.py')
 #     os.system(r'python {}'.format(service))
 
+
+
+m = {"name": 1, "vlaue": 2}
+
+print(m.__len__())

@@ -31,7 +31,7 @@ class HttpWebRequest(object):
     def __init__(self):
         self.config  = get_yaml_field(gl.configFile)
         self.baseUrl  = BaseConfig.base_url()
-        self.OUT_TMPL = """\n{0} {1}请求:{2}\r\n{3}\r\n响应:\r"""
+        self.OUT_TMPL = """用例描述: {0}\n{1} {2}请求:{3}\n请求:\n{4}\n响应:"""
 
     def header_lower(self, hdict):
         """
@@ -64,6 +64,7 @@ class HttpWebRequest(object):
             cookie: Request cookie.
             result: Request results result.json() or result.text
         """
+
         data = parse_args_func(FUNC ,kwargs['params'])
 
         #Whether to adopt , url = base_url + url
@@ -75,6 +76,7 @@ class HttpWebRequest(object):
 
         #Report output template.   
         tmpl = self.OUT_TMPL.format(
+            kwargs['desc'],
             get_datetime_str(),
             kwargs['method'],
             url,
@@ -96,8 +98,10 @@ class HttpWebRequest(object):
 
         except (HTTPError, ConnectionError, ConnectTimeout) as ex:
             result = {"errcode": 9002, "errmsg": str(ex)}
+        except Exception as ex:
+            result = {"errcode": 9003, "errmsg": str(ex) }
 
-        print(result) #The Response results are output to the report.
+        print('{}\n'.format(result)) #The Response results are output to the report.
         return res, headers, cookie, result
 
 
@@ -105,7 +109,7 @@ class HttpWebRequest(object):
     @retry(reNum=3)
     def post(self, **kwargs):
         """post请求"""
-
+ 
         #Whether to adopt , url = base_url + url
         if self.config['ENABLE_BASE_URL']:
             url = '{}{}'.format(self.baseUrl, str(kwargs['gurl']).strip())
@@ -116,6 +120,7 @@ class HttpWebRequest(object):
 
         #Report output template. 
         tmpl = self.OUT_TMPL.format(
+            kwargs['desc'],
             get_datetime_str(),
             kwargs['method'],
             url,
@@ -174,7 +179,7 @@ class HttpWebRequest(object):
         except (HTTPError, ConnectionError, ConnectTimeout) as ex:
             result =  {"errcode": 9002, "errmsg": str(ex)}
 
-        print(result) #The Response results are output to the report.
+        print('{}\n'.format(result)) #The Response results are output to the report.
         return res, headers, cookie, result
 
 

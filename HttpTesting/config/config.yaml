@@ -5,7 +5,7 @@
 #ENABLE_BASE_URL为True时，启用基础URL；为Fasle不启用使用case中url
 ENABLE_BASE_URL: True
 ####接口基本url地址####
-BASE_URL: http://10.152.64.9:4040
+BASE_URL: http://10.152.64.9:2222
 
 ##########################CASE配置#########################################
 RETRY: #请求失败重试设置

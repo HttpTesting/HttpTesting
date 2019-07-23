@@ -66,13 +66,21 @@ class ConvertHarToYAML:
             dict data.
         """
         if isinstance(postData, dict):
-            data = postData['params']
+            if 'params' in postData:
+                data = postData['params']
+            elif 'text' in postData:
+                data = eval(postData['text'])
+            else:
+                data = postData
         else:
             data = postData
         dt = {}
         try:
             for i_list in data:
-                dt[i_list['name']] = i_list['value']
+                if i_list.__len__() == 2:
+                    dt[i_list['name']] = i_list['value']
+                else:
+                    dt = data
         except (KeyError, TypeError) as ex:
             raise ex
         return dt
@@ -141,10 +149,12 @@ class ConvertHarToYAML:
             temp_dict['TEST_CASE'][case] =[]
             temp_dict['TEST_CASE'][case].append({'Desc':'请添加接口描述'})
 
-            if val['method'] == 'GET':
+            if val['queryString']:
                 data = val['queryString']
-            else:
+            elif val['postData']:
                 data = val['postData']
+            else:
+                data = ""
 
             url = val['url']
             if '?' in val['url']:

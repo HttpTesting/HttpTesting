@@ -100,29 +100,22 @@ def exec_test_case(self, data):
             continue
         res = None
             
-        #Pass parameters with header information.
-        if  data[i]['InPara'] != "":
-            for ki, va in enumerate(outParaQueue):
-                for key, val in va.items():
-                    if 'H_' in key: #H_头参数 D_数据参数
-                        ke = key.split('H_')[1].split('}')[0]
-                        data[i]['Headers'][ke] = val
-
         #Pass parameters with DATA information.
-        for ki, va in enumerate(outParaQueue):
-            for key, val in va.items():
-                if 'D_' in key:
+        for ki, value in enumerate(outParaQueue):
+            for key, val in value.items():
+                filed_list= ['Headers', 'Data']
+                for filed in filed_list:
                     #data参数 正则匹配
-                    m = str(data[i]['Data'])
-                    c = re.findall('\$\{.*?}\$', m)
-                    k = ""
-                    #替换数到data中
-                    for k in c:
-                        if key in c:
-                            m = eval(m.replace(k, val))
-                        data[i]['Data'] = m
-                        break #break
-
+                    m = str(data[i][filed])
+                    content = re.findall('\$\{.*?}\$', m)
+                    if content:
+                        k = ""
+                        #替换数到data中
+                        for k in content:
+                            if key in content:
+                                m = eval(m.replace(k, val))
+                            data[i][filed] = m
+                            break #break
         #处理请求
         method = data[i]['Method']
         if ('GET' in method) or (r'DELETE' in method):

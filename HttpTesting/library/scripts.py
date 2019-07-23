@@ -1,7 +1,10 @@
 import time
 import os
+import io
 import random
 import re
+import socket
+import collections
 from functools import wraps
 import yaml,requests
 from HttpTesting.globalVar import gl
@@ -296,7 +299,151 @@ def parse_args_func(func_class, data):
     return data
 
 
+def write_file(filepath, mode,txt):
+    """
+    The write file.
 
+    Args:
+        filepath: File absolute path.
+        mode: Read and Write.
+        txt: text content.
+    
+    Usage:
+        write_file('/xxxx/temp.txt', 'w', 'xxxxxx')
+
+    Return:
+        There is no.
+    """
+    with open(filepath, mode, encoding='utf-8') as fp:
+        fp.write(txt)
+
+
+
+def get_ip_or_name():
+    """
+    To obtain the local computer name or IP address.
+
+    Args:
+
+    Usage:
+        addr, name = get_ip_or_name()
+    
+    Return:
+        IP address, Computer name.
+    """
+    #Access to the local computer name.
+    name = socket.getfqdn(socket.gethostname())
+    #Access to the local computer address.
+    addr = socket.gethostbyname(name)
+
+    return addr, name
+
+
+
+def ordered_dump(data, stream=None, Dumper=yaml.Dumper, **kwds):
+    """
+    Convert the unordered dictionary to ordered and write yaml.
+    param:
+        data: 
+        stream: 
+        allow_unicode:
+        default_flow_style:
+        indent:
+    return: There is no.
+    """
+    class OrderedDumper(Dumper):
+        pass
+    def _dict_representer(dumper, data):
+        return dumper.represent_mapping(
+            yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG,
+            data.items())
+    OrderedDumper.add_representer(collections.OrderedDict, _dict_representer)
+    return yaml.dump(data, stream, OrderedDumper, **kwds)
+
+
+
+def ordered_yaml_load(yaml_path, Loader=yaml.Loader, object_pairs_hook=collections.OrderedDict):
+    class OrderedLoader(Loader):
+        pass
+
+    def construct_mapping(loader, node):
+        loader.flatten_mapping(node)
+        return object_pairs_hook(loader.construct_pairs(node))
+    OrderedLoader.add_constructor(
+        yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG,
+        construct_mapping)
+    with open(yaml_path, 'r', encoding='utf-8') as fp:
+        return yaml.load(fp.read(), OrderedLoader)
+
+
+
+
+def write_case_to_yaml(yamFile, data):
+    """
+    Write the test case to yaml.
+    param:
+        yamFile: Yaml file path.
+    return:
+        There is no.
+    """
+    with io.open(yamFile, 'w', encoding='utf-8') as fp:
+        ordered_dump(
+            data, 
+            fp, 
+            Dumper=yaml.SafeDumper, 
+            allow_unicode=True, 
+            default_flow_style=False, 
+            indent=4
+        )
+
+
+def convert_yaml(yamlfile):
+    """
+    ReWrite YAML.
+    """
+    #YAML content dict.
+    data = ordered_yaml_load(yamlfile)
+    #Write YAML content.
+    write_case_to_yaml(yamlfile, data)
+    #
+    print("Conversion to complete.")
+
+
+def generate_case_tmpl(fileyaml):
+    """
+    Generate case template.
+
+    param:
+        fileyaml: yaml file path.
+    
+    usage:
+        generate_case_tmpl(fileyaml)
+    
+    returns:
+        There is no.
+    """
+    data = ordered_yaml_load(fileyaml)
+
+    d = collections.OrderedDict()
+    d['Url'] = "https:/xxxxxx.xxxx/xxxx/xx"
+    d['Method'] = "POST"
+    d['Headers'] = {"content-type": "application/json;charset=UTF-8"}
+    d['Data'] = data
+    d['InPara'] = ""
+    d['OutPara'] = ""
+    d['Assert'] = []
+    # case template.
+    tmpl = {
+        "TEST_CASE":{
+            "Case1": [
+                {'Desc': '接口描述'},
+                d
+            ]
+        }
+    }
+    write_case_to_yaml(fileyaml, tmpl)
+    #
+    print("Conversion to complete.")
 
 if __name__=="__main__":
-    env = get_sys_environ('HTTPTESTING_PWD')
+    env = get_sys_environ('HttpTesting_PWD')
