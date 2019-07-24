@@ -98,6 +98,13 @@ har命令来解析, Charles抓包工具导出的http .har请求文件, 自动生
 
 ## 用例编写
 
+建议分成业务场景和单接口进行编写.
+
+- 业务场景: 所谓业务场景,即指在一个接口业务流程中,接口之间传参与出参有一定关联.
+
+- 单接口多用例: 指同一接口, 由不同的参数数据,组成不同的CASE.
+
+
 
 ### 用例模型
 
@@ -112,12 +119,12 @@ har命令来解析, Charles抓包工具导出的http .har请求文件, 自动生
 
 ### YAML用例格式  
 
+####  例子1:由两个请求组成的场景
 
     TESTCASE:
-	    #Case1由两个请求组成的场景
         Case1:
 	        -
-	            Desc:用例详细描述
+	            Desc: 登录-修改资料业务场景
 	        -
 	            Url: /login/login
 	            Method: GET
@@ -145,6 +152,44 @@ har命令来解析, Charles抓包工具导出的http .har请求文件, 自动生
 	                "$H_token$": result.data
 	            Assert:
 	                - eq: [result.status, 'success']
+
+
+####  例子2: 同一接口,不同参数,扩充为多个CASE
+
+    TESTCASE:
+
+		Case1:
+		    -
+			    Desc: 登录接口-正常登录
+			-
+	            Url: /login/login
+	            Method: GET
+	            Headers:
+	                content-type: "application/json"
+	                cache-control: "no-cache"
+	            Data:
+	                name: "test"
+	                pass: "test123"
+	            OutPara: 
+	                "$H_cookie$": cookie.SESSION
+	            Assert:
+	                - eq: [result.status, 'success']
+		Case2:
+		    -
+			    Desc: 登录接口-密码错误
+			-
+	            Url: /login/login
+	            Method: GET
+	            Headers:
+	                content-type: "application/json"
+	                cache-control: "no-cache"
+	            Data:
+	                name: "test"
+	                pass: "test123"
+	            OutPara:
+	                "$H_cookie$": cookie.SESSION 
+	            Assert:
+	                - eq: [result.status, 'error']
 
 
 ### 参数说明
