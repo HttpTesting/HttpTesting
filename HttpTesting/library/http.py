@@ -5,7 +5,6 @@ from HttpTesting.library.scripts import (
     get_yaml_field,
     parse_args_func
     )
-from HttpTesting.library.log import LOG
 from requests.exceptions import (HTTPError, ConnectionError, ConnectTimeout)
 from HttpTesting.globalVar import gl
 from HttpTesting.library.Multipart import MultipartFormData

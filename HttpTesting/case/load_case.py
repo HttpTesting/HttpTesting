@@ -26,17 +26,19 @@ class TestCaseExec(unittest.TestCase):
         return:
             There is no.
     """
-    def setUp(self):
-        pass
+    @classmethod
+    def setUpClass(cls):
+        cls.__name__ = "接口测试用例集"
 
-    def tearDown(self):
+    @classmethod
+    def tearDownClass(self):
         pass
 
     @ddt.data(*load_case_data())
     def test_case(self, data):
         # Test method description
-        # self._testMethodName = "方法名"
-        self._testMethodDoc = data[0]['Desc']
+        self._testMethodName = data[0]['Desc']
+        # self._testMethodDoc = data[0]['Desc']
 
 
         #Execution the YAML test case.

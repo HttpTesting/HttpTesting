@@ -15,12 +15,14 @@ import argparse
 
 
 ########################################################################
+cmd_path = ''
 #Command line mode.
 def run_min():
 
     #Takes the current path of the command line
-    cur_dir= os.getcwd()
+    cur_dir = os.getcwd()
     os.chdir(cur_dir)
+    cmd_path = cur_dir
 
     parse = argparse.ArgumentParser(description='HttpTesting parameters')
 
@@ -132,16 +134,20 @@ class Run_Test_Case(object):
         #测试报告文件名
         time_str = time.strftime('%Y%m%d_%H%M%S', time.localtime())
         report_dir = time_str.split('_')[0]
+        rdir = os.path.join(os.getcwd() ,'report')
+
         cls.file_name = 'Report_{}.html'.format(time_str)
-        portdir = os.path.join(gl.reportPath, report_dir)
+        portdir = os.path.join(rdir, report_dir)
 
         #按日期创建测试报告文件夹
         if not os.path.exists(portdir):
-            os.mkdir(os.path.join(gl.reportPath,report_dir))
-        rpath = os.path.join(gl.reportPath, report_dir)
-        cls.filePath = os.path.join(rpath, cls.file_name)  # 确定生成报告的路径
+            # os.mkdir(portdir)
+            os.makedirs(portdir)
+
+        cls.filePath = os.path.join(portdir, cls.file_name)  # 确定生成报告的路径
 
         return cls.filePath
+
 
     @staticmethod
     def copy_report(filePath, file_name):

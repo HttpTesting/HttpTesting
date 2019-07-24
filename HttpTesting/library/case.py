@@ -141,7 +141,7 @@ def exec_test_case(self, data):
         assert_func(self, res, headers, cookie, result, data[i]['Assert'])
 
         #出参写入队列
-        if data[i]['OutPara'] != "":
+        if data[i]['OutPara']:
             #组参数
             for key, value in data[i]['OutPara'].items():
                 #解释用例中的出参
