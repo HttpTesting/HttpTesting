@@ -4,9 +4,12 @@ HttpTesting 是HTTP(S) 协议测试框架，通过YAML来编写测试用例；�
 
 ## 版本信息
 
-- v 1.0 unittest
+|序号|版本号|描述|
+|:---|:---|:---| 
+|1|v1.0|使用unittest框架|
+|2|v1.1|使用pytest框架|
 
-- v 1.1 pytest
+
 
 
 ## 快速开始
@@ -47,21 +50,16 @@ HttpTesting 是HTTP(S) 协议测试框架，通过YAML来编写测试用例；�
 
 ### amt 或 AMT命令
 
-  
+|序号|命令参数|描述|
+|:---|:---|:---|  
+|1|amt -config set|此命令用来设置config.yaml基本配置|
+|2|amt -file template.yaml|执行YAML用例，支持绝对或相对路径|
+|3|amt -dir testcase|批量执行testcase目录下的YAML用例，支持绝对路径或相对路径|
+|4|amt -startproject demo|生成脚手架demo目录,以及用例模版|
+|5|amt -har httphar.har|根据抓包工具导出的http har文件，生成测试用例YAML|
+|6|amt -service start|启动Report Web服务|
+|7|amt -convert demo.yaml|转换数据为HttpTesting测试用例|
 
-- amt -config set [此命令用来设置config.yaml基本配置]
-
-- amt -file template.yaml [执行YAML用例，支持绝对或相对路径。]
-
-- amt -dir testcase [批量执行testcase目录下的YAML用例，支持绝对路径或相对路径。]
-
-- amt -startproject demo [生成脚手架demo目录]
-
-- amt -har  D:\httphar.har [根据har文件，生成测试用例YAML.]
-
-- amt -service start 启动Report Web服务.
-
-- amt -convert 转换字典列表等数据为case.将请求数据存储在xxxx.yaml中,使用命令行转换.自动生成xxxx.yaml测试用例
 
 #### 基本配置
 
@@ -98,13 +96,6 @@ har命令来解析, Charles抓包工具导出的http .har请求文件, 自动生
 
 ## 用例编写
 
-建议分成业务场景和单接口进行编写.
-
-- 业务场景: 所谓业务场景,即指在一个接口业务流程中,接口之间传参与出参有一定关联.
-
-- 单接口多用例: 指同一接口, 由不同的参数数据,组成不同的CASE.
-
-
 
 ### 用例模型
 
@@ -119,13 +110,14 @@ har命令来解析, Charles抓包工具导出的http .har请求文件, 自动生
 
 ### YAML用例格式  
 
-####  例子1:由两个请求组成的场景
 
     TESTCASE:
+	    #Case1由两个请求组成的场景
         Case1:
 	        -
-	            Desc: 登录-修改资料业务场景
+	            Desc: xxxx业务场景(登录->编辑)
 	        -
+			    Desc: 登录接口
 	            Url: /login/login
 	            Method: GET
 	            Headers:
@@ -136,32 +128,36 @@ har命令来解析, Charles抓包工具导出的http .har请求文件, 自动生
 	                pass: "test123"
 	            OutPara: 
 	                "$H_token$": result.data
+					"${content_type}$": header.content-type
+					"${name}$": Data.name 
+					"${pass}$": Data.pass
 	            Assert:
 	                - eq: [result.status, 'success']
 	        -
-	            Url: /cloudfi/api/store/batchhandle/store
+			    Desc: 编辑接口
+	            Url: /user/edit
 	            Method: GET
 	            Headers:
-	                content-type: "application/json"
+	                content-type: "${content_type}$"   
 	                cache-control: "no-cache"
 					token: "$H_token$"
 	            Data:
-	                name: "test"
-	                pass: "test123"
+	                name: "${name}$"
+	                pass: "${pass}$"
 	            OutPara: 
 	                "$H_token$": result.data
 	            Assert:
-	                - eq: [result.status, 'success']
+	                - ai: ['success', result.status]
+					- eq: ['result.status', '修改成功']
 
-
-####  例子2: 同一接口,不同参数,扩充为多个CASE
 
     TESTCASE:
-
+	    #同一接口,不同参数,扩充为多个CASE
 		Case1:
 		    -
-			    Desc: 登录接口-正常登录
+			    Desc: 登录接口-正常登录功能
             -
+			    Desc: 登录接口
 	            Url: /login/login
 	            Method: GET
 	            Headers:
@@ -176,8 +172,9 @@ har命令来解析, Charles抓包工具导出的http .har请求文件, 自动生
 	                - eq: [result.status, 'success']
 		Case2:
 		    -
-			    Desc: 登录接口-密码错误
+			    Desc: 登录接口-错误密码
             -
+			    Desc: 登录接口
 	            Url: /login/login
 	            Method: GET
 	            Headers:
@@ -190,7 +187,6 @@ har命令来解析, Charles抓包工具导出的http .har请求文件, 自动生
 	                "$H_cookie$": cookie.SESSION 
 	            Assert:
 	                - eq: [result.status, 'error']
-
 
 ### 参数说明
 
@@ -209,18 +205,20 @@ OutPara字段用来做公共变量,供其它接口使用,默认为"";
 
 Assert字段默认为[].
 
-- eq: [a, b]  判断 a与b相等
-- nq: [a, b]  判断 a与b不相等
-- al: [a, b]  判断 a is b 相当于id(a) == id(b)
-- at: [a, b]  判断 a is not b 相当于id(a) != id(b)
-- ai: [a, b]  判断 a in b 
-- ani:[a, b]  判断 a in not b
-- ais:[a, b]  判断 isinstance(a, b) True
-- anis:[a, b] 判断 isinstance(a, b) False
-- ln:[a]      判断 a is None
-- lnn:[a]     判断 a is not none
-- bt:[a]      判断 a 为True
-- bf:[a]      判断 a 为False
+|序号|断言方法|断言描述|
+|:---|:---|:---|
+|1|eq: [a, b]|判断 a与b相等,否则fail|
+|2|nq: [a, b]|判断 a与b不相等,否则fail|
+|3|al: [a, b]|判断 a is b 相当于id(a) == id(b),否则fail|
+|4|at: [a, b]|判断 a is not b 相当于id(a) != id(b)|
+|5|ai: [a, b]|判断 a in b ,否则fail|
+|6|ani: [a, b]|判断 a in not b,否则fail|
+|7|ais: [a, b]|判断 isinstance(a, b) True|
+|8|anis: [a, b]|判断 isinstance(a, b) False|
+|9|ln: [a]|判断 a is None,否则fail|
+|10|lnn: [a]|判断 a is not none|
+|11|bt: [a]|判断 a 为True|
+|12|bf: [a]|判断 a 为False|
 
 
 #### 内置函数及扩展
@@ -242,11 +240,13 @@ Assert字段默认为[].
 - 其它后续添加
 
 
-## 常用四种对象(通常做参数变量时使用)
+## 常用对象(通常做参数变量时使用)
 - res: 请求Response对象
 - result: res.json 或 res.text
 - cookie: res.cookie 响应cookie字典对象;  当做为参数时如果cookie.SESSION这样的写法代表取cookie中的SESSION对象. 如果只写cookie,会解析成"SESSION=xxxxxxx; NAME=xxxxxx"
 - headers: res.headers 响应头字典对象
+- header: header.content-type 请求头对象
+
 
 ## 用例执行
 - 1、生成脚手架

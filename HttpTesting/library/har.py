@@ -161,6 +161,7 @@ class ConvertHarToYAML:
                 url = val['url'].split('?')[0]
 
             temp_dict['TEST_CASE'][case].append(collections.OrderedDict({
+                'Desc': '接口描述',
                 'Url': url,
                 'Method': val['method'],
                 'Headers': cls.parse_headers_dict(val['headers']),

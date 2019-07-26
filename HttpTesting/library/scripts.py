@@ -423,26 +423,36 @@ def generate_case_tmpl(fileyaml):
         There is no.
     """
     data = ordered_yaml_load(fileyaml)
+    try:
+        data['TEST_CASE']
 
-    d = collections.OrderedDict()
-    d['Url'] = "https:/xxxxxx.xxxx/xxxx/xx"
-    d['Method'] = "POST"
-    d['Headers'] = {"content-type": "application/json;charset=UTF-8"}
-    d['Data'] = data
-    d['InPara'] = ""
-    d['OutPara'] = ""
-    d['Assert'] = []
-    # case template.
-    tmpl = {
-        "TEST_CASE":{
-            "Case1": [
-                {'Desc': '接口描述'},
-                d
-            ]
+        key = False
+    except KeyError:
+        key = True
+
+    if key:
+
+        d = collections.OrderedDict()
+        d['Desc'] = '接口描述'
+        d['Url'] = "https:/xxxxxx.xxxx/xxxx/xx"
+        d['Method'] = "POST"
+        d['Headers'] = {"content-type": "application/json;charset=UTF-8"}
+        d['Data'] = data
+        d['OutPara'] = ""
+        d['Assert'] = []
+        # case template.
+        tmpl = {
+            "TEST_CASE":{
+                "Case1": [
+                    {'Desc': '接口场景描述,报告描述'},
+                    d
+                ]
+            }
         }
-    }
+    else:
+        tmpl = data
+    # Write case to YAML file.
     write_case_to_yaml(fileyaml, tmpl)
-    #
     print("Conversion to complete.")
 
 if __name__=="__main__":
