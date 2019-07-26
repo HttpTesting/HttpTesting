@@ -30,7 +30,7 @@ class HttpWebRequest(object):
     def __init__(self):
         self.config  = get_yaml_field(gl.configFile)
         self.baseUrl  = BaseConfig.base_url()
-        self.OUT_TMPL = """用例描述: {0}\n{1} {2}请求:{3}\n请求:\n{4}\n响应:"""
+        self.OUT_TMPL = """{0}:\n{1} {2}请求:{3}\n请求:\n{4}\n响应:"""
 
     def header_lower(self, hdict):
         """

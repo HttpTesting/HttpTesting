@@ -19,12 +19,12 @@ class Ac:
         ins: Assert isinstance(a, b).
         nins: Assert not isinstances(a, b).
     """
-    eq = "self.assertEquals(str({}),'{}')"   
+    eq = "self.assertEquals('{}','{}')"   
     nq = "self.assertNotEqual(str({}),'{}')"
     al = "self.assertIs({}, {})"
     at = "self.assertIsNot({},{})"
-    ai = "self.assertIn({},{})"
-    ani = "self.assertNotIn({},{})"
+    ai = "self.assertIn('{}','{}')"
+    ani = "self.assertNotIn('{}','{}')"
     ais = "self.assertlsInstance({},{})"
     anis = "self.assertNotIsInstance({},{})"
     

@@ -27,7 +27,7 @@ def out_param_parse(oname, param):
     mJion = ''
     
     #Filter parameters.
-    if paramList[0] in ('result', 'res', 'cookie', 'headers'):
+    if paramList[0] in ('result', 'res', 'cookie', 'headers', 'header'):
         paramList.pop(0)
 
     ds = paramList[0]
@@ -66,7 +66,7 @@ def assert_func(self, res, headers, cookie, result, assertlist):
         There is no.
     """
     for ass_dit in assertlist:
-
+    
         for key, value in ass_dit.items():
 
             ac = getattr(Ac, key)
@@ -77,9 +77,9 @@ def assert_func(self, res, headers, cookie, result, assertlist):
                     value[ite]= eval(out_param_parse(val.split(".")[0], val))
             #Distinguish between two parameters and one parameter by key.
             if value.__len__() == 1:
-                assert ac.format(value[0])
+                eval(ac.format(value[0]))
             if value.__len__() == 2:
-                assert ac.format(value[0], value[1])    
+                eval(ac.format(value[0], value[1]))
 
 
 def exec_test_case(self, data):
@@ -108,7 +108,7 @@ def exec_test_case(self, data):
         #Pass parameters with DATA information.
         for ki, value in enumerate(outParaQueue):
             for key, val in value.items():
-                filed_list= ['Headers', 'Data']
+                filed_list= ['Headers', 'Data', 'Url', 'Assert']
                 for filed in filed_list:
                     #data参数 正则匹配
                     m = str(data[i][filed])
@@ -118,9 +118,14 @@ def exec_test_case(self, data):
                         #替换数到data中
                         for k in content:
                             if key in content:
-                                m = eval(m.replace(k, val))
+                                try:
+                                    m = eval(m.replace(k, val))
+                                except Exception:
+                                    m = m.replace(k, val) 
                             data[i][filed] = m
                             break #break
+
+        desc = data[i]['Desc']
         #处理请求
         method = data[i]['Method']
         if ('GET' in method) or (r'DELETE' in method):
@@ -147,6 +152,7 @@ def exec_test_case(self, data):
 
         #出参写入队列
         if data[i]['OutPara']:
+            header = data[i]['Headers']
             #组参数
             for key, value in data[i]['OutPara'].items():
                 #解释用例中的出参

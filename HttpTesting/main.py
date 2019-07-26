@@ -21,7 +21,7 @@ def run_min():
 
     #Takes the current path of the command line
     cur_dir = os.getcwd()
-    os.chdir(cur_dir)
+    os.chdir(cur_dir) 
     cmd_path = cur_dir
 
     parse = argparse.ArgumentParser(description='HttpTesting parameters')
@@ -33,7 +33,7 @@ def run_min():
         )
     parse.add_argument(
         "-dir", 
-        default=gl.testCasePath,
+        default='',
         help='The folder path; folder absolute or relative path.'
         )
     parse.add_argument(
@@ -277,5 +277,5 @@ class Run_Test_Case(object):
             email.send(filePath)
 
 
-if __name__=="__main__":
-    run_min()
+# if __name__=="__main__":
+#     run_min()
