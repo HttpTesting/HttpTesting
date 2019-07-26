@@ -66,15 +66,20 @@ def assert_func(self, res, headers, cookie, result, assertlist):
         There is no.
     """
     for ass_dit in assertlist:
+
         for key, value in ass_dit.items():
-            oname = value[0].split(".")[0]
+
             ac = getattr(Ac, key)
 
+            for ite, val in enumerate(value):
+
+                if '.' in str(val):
+                    value[ite]= eval(out_param_parse(val.split(".")[0], val))
             #Distinguish between two parameters and one parameter by key.
-            if key == 'ln' or key == 'lnn' or key == 'bt' or key == 'bf':
-                eval(ac.format(out_param_parse(oname, value[0])))
-            else:
-                eval(ac.format(out_param_parse(oname, value[0]), value[1])) 
+            if value.__len__() == 1:
+                assert ac.format(value[0])
+            if value.__len__() == 2:
+                assert ac.format(value[0], value[1])    
 
 
 def exec_test_case(self, data):

@@ -33,7 +33,7 @@ def run_min():
         )
     parse.add_argument(
         "-dir", 
-        default='',
+        default=gl.testCasePath,
         help='The folder path; folder absolute or relative path.'
         )
     parse.add_argument(
@@ -277,5 +277,5 @@ class Run_Test_Case(object):
             email.send(filePath)
 
 
-# if __name__=="__main__":
-#     run_min()
+if __name__=="__main__":
+    run_min()

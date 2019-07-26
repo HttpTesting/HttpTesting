@@ -35,7 +35,7 @@ TEST_CASE:
             OutPara: 
                 ${H_token}$: result.data
             Assert:
-                - eq: [result.status, 'success']
+                - ai: ['success', result.status]
         -
             #POS门店信息
             Url: /cloudfi/api/store/batchhandle/store

@@ -2,6 +2,7 @@ import hashlib
 import re
 import time
 import uuid
+import datetime
 from HttpTesting.library.scripts import parse_args_func
 
 class FUNC:
@@ -70,7 +71,13 @@ class FUNC:
         return str(uuid.uuid1()).replace('-','')
 
 
-
+    @staticmethod
+    def mstimestamp():
+        """
+        Millisecond time stamp.  20 bit
+        """
+        ret = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
+        return ret
 
 
 

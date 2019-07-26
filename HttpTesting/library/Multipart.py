@@ -33,4 +33,6 @@ class MultipartFormData(object):
         
         args_str = args_str + end_str.format(boundary)
         args_str = args_str.replace("\'", "\"")
+        args_str = args_str.replace('True', 'true').replace('False', 'false')
+        
         return args_str
