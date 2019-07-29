@@ -132,11 +132,11 @@ class Run_Test_Case(object):
     @classmethod
     def create_report_file(cls):
         #测试报告文件名
-        time_str = time.strftime('%Y%m%d_%H%M%S', time.localtime())
-        report_dir = time_str.split('_')[0]
+        report_dir = time.strftime('%Y%m%d_%H%M%S', time.localtime())
+
         rdir = os.path.join(os.getcwd() ,'report')
 
-        cls.file_name = 'Report_{}.html'.format(time_str)
+        cls.file_name = 'report.html'
         portdir = os.path.join(rdir, report_dir)
 
         #按日期创建测试报告文件夹
@@ -182,7 +182,7 @@ class Run_Test_Case(object):
         report_url = get_yaml_field(gl.configFile)['REPORT_URL']
 
         # 发送钉钉消息
-        msg = """接口自动化测试已完成:{},{}\n测试报告地址:{}/report/{}/{}"""
+        msg = """接口自动化测试已完成:{},{}\n测试报告地址:{}/{}/{}"""
         msg = msg.format(result_str, msg_1, report_url, low_path, file_name)
 
         return msg
@@ -227,23 +227,8 @@ class Run_Test_Case(object):
         dd_enable = config['ENABLE_DDING']
         dd_token = config['DD_TOKEN']
         dd_url = config['DING_URL']
-        report_service = config['REPORT_SERVICE_ENABLE']
         email_enable = config['EMAIL_ENABLE']
         ########################################################################
-        #Enable a test reporting web service.
-        _HOST = config['REPORT_HOST']
-        _PORT = config['REPORT_PORT']
-
-        #Whether to enable web services.
-        if report_service:
-            boolRet = scripts.check_http_status(_HOST, _PORT)
-            if not boolRet:
-                os.system('python {} --host {} --port {}'.format(
-                        os.path.join(gl.webPath, 'service.py'),
-                        _HOST,
-                        _PORT
-                    )
-                )
 
         # Test report file name.
         time_str = time.strftime('%Y%m%d_%H%M%S', time.localtime())
@@ -253,9 +238,10 @@ class Run_Test_Case(object):
         # Start test the send pin message.
         if dd_enable:
             scripts.send_msg_dding(
-                '{}:★开始API接口自动化测试★'.format(time_str),  
-                dd_url, 
-                dd_token
+                '{}:★开始API接口自动化测试★'.format(time_str),
+                dd_token,  
+                dd_url 
+                
             )
 
         # Execute the test and send the test report.
@@ -263,13 +249,15 @@ class Run_Test_Case(object):
         
         print(filePath)
         # Copy the folder under the report directory under  /templates/report/
-        low_path = Run_Test_Case.copy_report(filePath, Run_Test_Case.file_name)
+        # low_path = Run_Test_Case.copy_report(filePath, Run_Test_Case.file_name)
 
         if dd_enable:
             # Template message.
+            dir_list = filePath.split('\\')
+            low_path = dir_list[len(dir_list) - 2]
             msg = Run_Test_Case.tmpl_msg(low_path, Run_Test_Case.file_name)
             print(msg)
-            scripts.send_msg_dding(msg, dd_url, dd_token)
+            scripts.send_msg_dding(msg, dd_token, dd_url)
 
         if email_enable:
             # Send test report to EMAIL.

@@ -5,7 +5,7 @@
 #ENABLE_BASE_URL为True时，启用基础URL；为Fasle不启用使用case中url
 ENABLE_BASE_URL: True
 ####接口基本url地址####
-BASE_URL: http://10.152.64.9:2222
+BASE_URL: http://111.203.187.99:2222
 
 ##########################CASE配置#########################################
 RETRY: #请求失败重试设置
@@ -27,7 +27,7 @@ DD_TOKEN: 3ba50c804de8e286a95948fdbeb3e8b8177f4e32099643c98388c53adc36e3ed
 REPORT_SERVICE_ENABLE: False
 REPORT_HOST: 127.0.0.1
 REPORT_PORT: 5001
-REPORT_URL: http://60.205.217.8:5002
+REPORT_URL: http://60.205.217.8:5004
 #############################################################################
 
 

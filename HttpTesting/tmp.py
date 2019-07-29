@@ -198,50 +198,14 @@
 
 # if __name__ == "__main__":
 #     start_web_service()
-#     # temp_dict = ConvertHarToYAML.convert_har_to_ht(r'D:\httphar.har')
+#     # temp_dict = ConvertHarToYAML.convert_har_to_ht(r'D:httphar.har')
 #     # ConvertHarToYAML.write_case_to_yaml('', temp_dict)
 #     # start_web_service()
 #     service = os.path.join(gl.webPath, 'service.py')
 #     os.system(r'python {}'.format(service))
 
-import re
 
-def parse_args_func(func_class, data):
-    """
-    Parse the function variables in the data.
+aa = r"d:\test\ca\report.html"
 
-    Args:
-        func_class: FUNC  function object.
-        data: Request data.
-
-    Return:
-        Replacement data.
-    """
-    data_bool = False
-    if not isinstance(data, str):
-        data_bool = True
-        data = str(data)
-
-    take = re.findall('\%\{.*?}\%', data)
-    
-    for val in take:
-        fStr = val.split("%{")[1][:-2]
-        func = fStr.split('(')
-
-        fName = func[0]
-        fPara = func[1][:-1]
-
-        if fPara == '':
-            ret = getattr(func_class, fName)()
-        else:
-            ret = getattr(func_class, fName)(fPara)
-
-        data = data.replace(val, str(ret))
-
-    if data_bool:
-        data = eval(data)
-    return data
-
-
-tmp = parse_args_func('FUN', 'http://aaaa.com')
-
+mm = aa.split('\\')
+print(mm[len(mm)-2])
