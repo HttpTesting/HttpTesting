@@ -204,8 +204,44 @@
 #     service = os.path.join(gl.webPath, 'service.py')
 #     os.system(r'python {}'.format(service))
 
+import re
+
+def parse_args_func(func_class, data):
+    """
+    Parse the function variables in the data.
+
+    Args:
+        func_class: FUNC  function object.
+        data: Request data.
+
+    Return:
+        Replacement data.
+    """
+    data_bool = False
+    if not isinstance(data, str):
+        data_bool = True
+        data = str(data)
+
+    take = re.findall('\%\{.*?}\%', data)
+    
+    for val in take:
+        fStr = val.split("%{")[1][:-2]
+        func = fStr.split('(')
+
+        fName = func[0]
+        fPara = func[1][:-1]
+
+        if fPara == '':
+            ret = getattr(func_class, fName)()
+        else:
+            ret = getattr(func_class, fName)(fPara)
+
+        data = data.replace(val, str(ret))
+
+    if data_bool:
+        data = eval(data)
+    return data
 
 
-m = {"name": 1, "vlaue": 2}
+tmp = parse_args_func('FUN', 'http://aaaa.com')
 
-print(m.__len__())

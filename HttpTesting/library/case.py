@@ -63,7 +63,7 @@ def assert_func(self, res, headers, cookie, result, assertlist):
     Usage:
         assert_func(self, res, headers, cookie, result, data[i]['Assert'])
     Return:
-        There is no.
+        There is no return.
     """
     for ass_dit in assertlist:
     
@@ -80,6 +80,39 @@ def assert_func(self, res, headers, cookie, result, assertlist):
                 eval(ac.format(value[0]))
             if value.__len__() == 2:
                 eval(ac.format(value[0], value[1]))
+
+
+def param_content_parse(queue, data):
+    """
+    Pass parameters with DATA information.
+
+    args:
+        queue: List the queue.
+        data: The DATA content.
+    
+    return:
+        There is no return.
+    """
+
+    for ki, value in enumerate(queue):
+        for key, val in value.items():
+            filed_list= ['Headers', 'Data', 'Url', 'Assert']
+            for filed in filed_list:
+                #data参数 正则匹配
+                m = str(data[filed])
+                content = re.findall('\$\{.*?}\$', m)
+                if content:
+                    k = ""
+                    #替换数到data中
+                    for k in content:
+                        if key in content:
+                            try:
+                                m = eval(m.replace(k, val))
+                            except Exception:
+                                m = m.replace(k, val)                                  
+                        data[filed] = m
+                        break #break
+
 
 
 def exec_test_case(self, data):
@@ -106,24 +139,7 @@ def exec_test_case(self, data):
         res = None
             
         #Pass parameters with DATA information.
-        for ki, value in enumerate(outParaQueue):
-            for key, val in value.items():
-                filed_list= ['Headers', 'Data', 'Url', 'Assert']
-                for filed in filed_list:
-                    #data参数 正则匹配
-                    m = str(data[i][filed])
-                    content = re.findall('\$\{.*?}\$', m)
-                    if content:
-                        k = ""
-                        #替换数到data中
-                        for k in content:
-                            if key in content:
-                                try:
-                                    m = eval(m.replace(k, val))
-                                except Exception:
-                                    m = m.replace(k, val) 
-                            data[i][filed] = m
-                            break #break
+        param_content_parse(outParaQueue, data[i])
 
         desc = data[i]['Desc']
         #处理请求
@@ -145,61 +161,70 @@ def exec_test_case(self, data):
                 method= method
                 )
         else:
-            raise "Error:请求Mehod:{}错误.".format(data[i]['Method'])
+            raise ("Error:请求Mehod:{}错误.".format(data[i]['Method']))
             
         #断言解析
         assert_func(self, res, headers, cookie, result, data[i]['Assert'])
 
-        #出参写入队列
-        if data[i]['OutPara']:
-            header = data[i]['Headers']
-            #组参数
-            for key, value in data[i]['OutPara'].items():
-                #解释用例中的出参
-                out_data = data[i]
-                #
-                if '.' in value:
-                    strsplit = str(value).split(".")
-                    stra = strsplit[0]
-                    if '[' in stra:
-                        stra = stra.split("[")[0]
-
-                    if stra.lower() != "data": 
-                        head = stra
-                    else:
-                        head = "out_data"
-                    #处理cookie 
-                    if strsplit[0].lower() == 'cookie':
-                        queue_val = '{}={}'.format(
-                            strsplit[1], 
-                            eval(out_param_parse(head, value))
-                            )
-                    else:
-                        queue_val = eval(out_param_parse(head, value))
-                else: #Parameter cookie  result 
-                    if 'cookie' in str(value).lower():
-                        temp_list = []
-                        for ky, vak in cookie.items():
-                            temp_list.append('{}={}'.format(ky, vak))
-                        queue_val = '; '.join(temp_list)
-                    else:
-                        queue_val = eval(value)
-
-                oPara[key] = queue_val
-            outParaQueue.append(oPara)
+        #Output parameters are written to the queue
+        param_to_queue(self, outParaQueue, data[i], oPara, res, headers, cookie, result)
 
 
 
+def param_to_queue(self, queue, data, param_dict, res, headers, cookie, result):
+    """
+    Output parameters are written to the queue.
 
+    args:
+        queue: List the queue.
+        data: The DATA content 
+        param_dict: Temporary storage queue parameters.
+        res: Request object.
+        headers: Repsonse headers.
+        cookie: Repsonse cookies.
+        result: Repsonse content JSON or text.
+    
+    usage:
+        param_to_queue(outParaQueue, data[i], oPara, res, headers, cookie, result)
 
-if __name__ == "__main__":
-    param = "result.res[0].cno"
-    pm = param.split(".")[0]
-    if '[' in pm:
-        pm = pm.split("[")[0]
-    if pm.lower() == "result": 
-        head = "result"
-    else:
-        head = "out_data"
-    ot = out_param_parse(head, param)
-    print(ot)
+    return:
+        There is no return.
+    """
+    #出参写入队列
+    if data['OutPara']:
+        header = data['Headers']
+        #组参数
+        for key, value in data['OutPara'].items():
+            #解释用例中的出参
+            out_data = data
+            #
+            if '.' in value:
+                strsplit = str(value).split(".")
+                stra = strsplit[0]
+                if '[' in stra:
+                    stra = stra.split("[")[0]
+
+                if stra.lower() != "data": 
+                    head = stra
+                else:
+                    head = "out_data"
+                #处理cookie 
+                if strsplit[0].lower() == 'cookie':
+                    queue_val = '{}={}'.format(
+                        strsplit[1], 
+                        eval(out_param_parse(head, value))
+                        )
+                else:
+                    queue_val = eval(out_param_parse(head, value))
+            else: #Parameter cookie  result 
+                if 'cookie' in str(value).lower():
+                    temp_list = []
+                    for ky, vak in cookie.items():
+                        temp_list.append('{}={}'.format(ky, vak))
+                    queue_val = '; '.join(temp_list)
+                else:
+                    queue_val = eval(value)
+
+            param_dict[key] = queue_val
+        queue.append(param_dict)
+

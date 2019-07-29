@@ -5,6 +5,7 @@ from HttpTesting.library.scripts import (
     get_yaml_field,
     parse_args_func
     )
+from HttpTesting.library.log import LOG
 from requests.exceptions import (HTTPError, ConnectionError, ConnectTimeout)
 from HttpTesting.globalVar import gl
 from HttpTesting.library.Multipart import MultipartFormData
@@ -64,7 +65,8 @@ class HttpWebRequest(object):
             result: Request results result.json() or result.text
         """
 
-        data = parse_args_func(FUNC ,kwargs['params'])
+
+
 
         #Whether to adopt , url = base_url + url
         if self.config['ENABLE_BASE_URL']:
@@ -72,6 +74,10 @@ class HttpWebRequest(object):
         else:
             url = str(kwargs['gurl']).strip()
 
+        #####################Function############################
+        data = parse_args_func(FUNC ,kwargs['params'])
+        url = parse_args_func(FUNC ,url)
+        header = parse_args_func(FUNC, kwargs['headers'])
 
         #Report output template.   
         tmpl = self.OUT_TMPL.format(
@@ -84,7 +90,7 @@ class HttpWebRequest(object):
         print(tmpl)    
 
         try:
-            res =requests.request(kwargs['method'], url, params=kwargs['params'], headers=kwargs['headers'], verify=False)
+            res =requests.request(kwargs['method'], url, params=data, headers=header, verify=False)
             headers = res.headers
             cookie = res.cookies.get_dict()
             if res.status_code ==200:
@@ -115,11 +121,15 @@ class HttpWebRequest(object):
         else:
             url = str(kwargs['gurl']).strip()
 
+        #####################Function############################       
         data = parse_args_func(FUNC, kwargs['data'])
+        url = parse_args_func(FUNC ,url)
+        header = parse_args_func(FUNC, kwargs['headers'])
+        desc = parse_args_func(FUNC, kwargs['desc'])
 
         #Report output template. 
         tmpl = self.OUT_TMPL.format(
-            kwargs['desc'],
+            desc,
             get_datetime_str(),
             kwargs['method'],
             url,
@@ -131,12 +141,12 @@ class HttpWebRequest(object):
         try:
             #Convert the data to form-data.
             if 'form-data' in header_dict['content-type']:
-                data = MultipartFormData.to_form_data(data, headers=kwargs['headers'])
+                data = MultipartFormData.to_form_data(data, headers=header)
                 res = requests.request(
                     kwargs['method'], 
                     url, 
                     data=data.encode(), 
-                    headers=kwargs['headers'],
+                    headers=header,
                     verify= False
                     )
             elif 'application/json' in header_dict['content-type']:
@@ -144,7 +154,7 @@ class HttpWebRequest(object):
                     kwargs['method'], 
                     url, 
                     json=data, 
-                    headers=kwargs['headers'],
+                    headers=header,
                     verify= False
                     )
             elif 'application/x-www-form-urlencoded' in header_dict['content-type']:
@@ -152,7 +162,7 @@ class HttpWebRequest(object):
                     kwargs['method'], 
                     url, 
                     data=data, 
-                    headers=kwargs['headers'],
+                    headers=header,
                     verify= False
                     )                
             else:
@@ -160,7 +170,7 @@ class HttpWebRequest(object):
                     kwargs['method'], 
                     url, 
                     params=data, 
-                    headers=kwargs['headers'],
+                    headers=header,
                     verify= False
                     )
 
