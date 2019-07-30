@@ -1,0 +1,50 @@
+﻿#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>用例1>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#字段功能说明:
+# - 
+#     Desc: 用例描述
+# -
+#     Desc: 获取token
+#     Url: Url相对路径
+#     Method: 请求方法GET或POST  
+#     Data: 请求要传入的参数dict或json类型
+#         id: "b9b0e8e985a911e894a01c3947952e7e"
+#         secret: "71ee217e2f1bdfcc"
+#     InPara: "" 接口入参，没有入参填空
+#     OutPara: 接口出参字段
+#         ${H_token}$: res['data']
+#     Assert: 断言 
+#             "self.assertEquals(res['status'], 'success', res['status'])" 
+#     ${H_token}$：头数据； ${D_token}$：参数数据
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+TEST_CASE:
+
+    Case1: #用例1
+        -
+            Desc: 获取薪资字段(获取token->获取薪资字段)
+        -
+            Desc: 获取token
+            Url: /cloudfi/token/generatetoke
+            Method: GET
+            Headers:
+                content-type: "application/json"
+                cache-control: "no-cache"
+            Data: 
+                id: "b9b0e8e985a911e894a01c3947952e7e"
+                secret: "71ee217e2f1bdfcc"
+            InPara: ""
+            OutPara: 
+                ${token}$: result.data
+            Assert:
+                - eq: [result.status, 'success']
+        -
+            Desc: 获取薪资字段
+            Url: /cloudfi/api/humansalaryaccount/getlistfield
+            Method: GET
+            Headers:
+                content-type: "application/json"
+                cache-control: "no-cache"
+                token: ${token}$
+            Data: 
+            OutPara: 
+            Assert:
+                - eq: [result.status, 'success']
