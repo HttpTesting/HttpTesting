@@ -57,8 +57,7 @@ HttpTesting 是HTTP(S) 协议测试框架，通过YAML来编写测试用例；�
 |3|amt -dir testcase|批量执行testcase目录下的YAML用例，支持绝对路径或相对路径|
 |4|amt -startproject demo|生成脚手架demo目录,以及用例模版|
 |5|amt -har httphar.har|根据抓包工具导出的http har文件，生成测试用例YAML|
-|6|amt -service start|启动Report Web服务|
-|7|amt -convert demo.yaml|转换数据为HttpTesting测试用例|
+|6|amt -convert demo.yaml|转换数据为HttpTesting测试用例|
 
 
 #### 基本配置

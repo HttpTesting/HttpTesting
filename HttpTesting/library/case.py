@@ -2,6 +2,8 @@ import queue
 import re
 from HttpTesting.library.http import HttpWebRequest
 from HttpTesting.library.assert_case import Ac
+from HttpTesting.library.func import FUNC
+from HttpTesting.library.scripts import parse_args_func
 
 def out_param_parse(oname, param):
     """
@@ -141,13 +143,18 @@ def exec_test_case(self, data):
         #Pass parameters with DATA information.
         param_content_parse(outParaQueue, data[i])
 
-        desc = data[i]['Desc']
+        data[i]['Desc'] = parse_args_func(FUNC, data[i]['Desc'])
+        data[i]['Data'] = parse_args_func(FUNC, data[i]['Data'])
+        data[i]['Url'] = parse_args_func(FUNC, data[i]['Url'])
+        data[i]['Headers'] = parse_args_func(FUNC, data[i]['Headers'])
+        data[i]['OutPara'] = parse_args_func(FUNC, data[i]['OutPara'])
+
         #处理请求
         method = data[i]['Method']
         if ('GET' in method) or (r'DELETE' in method):
             res, headers, cookie, result = req.get(
                 params=data[i]['Data'], 
-                desc=desc, 
+                desc=data[i]['Desc'], 
                 gurl=data[i]['Url'],
                 headers=data[i]['Headers'],
                 method= method
@@ -155,7 +162,7 @@ def exec_test_case(self, data):
         elif ('POST' in method) or ('PUT' in method):
             res, headers, cookie, result = req.post(
                 data=data[i]['Data'], 
-                desc=desc, 
+                desc=data[i]['Desc'], 
                 gurl=data[i]['Url'],
                 headers=data[i]['Headers'],
                 method= method

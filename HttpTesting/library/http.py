@@ -74,9 +74,6 @@ class HttpWebRequest(object):
             url = str(kwargs['gurl']).strip()
 
         #####################Function############################
-        data = parse_args_func(FUNC ,kwargs['params'])
-        url = parse_args_func(FUNC ,url)
-        header = parse_args_func(FUNC, kwargs['headers'])
 
         #Report output template.   
         tmpl = self.OUT_TMPL.format(
@@ -84,12 +81,12 @@ class HttpWebRequest(object):
             get_datetime_str(),
             kwargs['method'],
             url,
-            data
+            kwargs['params']
         )
         print(tmpl)    
 
         try:
-            res =requests.request(kwargs['method'], url, params=data, headers=header, verify=False)
+            res =requests.request(kwargs['method'], url, params=kwargs['params'], headers=kwargs['headers'], verify=False)
             headers = res.headers
             cookie = res.cookies.get_dict()
             if res.status_code ==200:
@@ -121,10 +118,9 @@ class HttpWebRequest(object):
             url = str(kwargs['gurl']).strip()
 
         #####################Function############################       
-        data = parse_args_func(FUNC, kwargs['data'])
-        url = parse_args_func(FUNC ,url)
-        header = parse_args_func(FUNC, kwargs['headers'])
-        desc = parse_args_func(FUNC, kwargs['desc'])
+        data = kwargs['data']
+        header = kwargs['headers']
+        desc = kwargs['desc']
 
         #Report output template. 
         tmpl = self.OUT_TMPL.format(
