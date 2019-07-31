@@ -1,5 +1,9 @@
 ﻿# HttpTesting
 
+[![Build status](https://travis-ci.org/atotto/travisci-golang-example.png)](https://travis-ci.org/atotto/travisci-golang-example)
+
+
+
 HttpTesting 是HTTP(S) 协议测试框架，通过YAML来编写测试用例；支持通过pip直接从PyPi安装，支持命令行运行代码，不固定结构，通过命令生成脚手架。
 
 ## 版本信息
@@ -189,14 +193,39 @@ har命令来解析, Charles抓包工具导出的http .har请求文件, 自动生
 
 ### 参数说明
 
-- "$H_token $": 为参数变量,可以头信息里与Data数据里进行使用
+- "${H_token}$": 为参数变量,可以头信息里与Data数据里进行使用
 - "%{md5('aaaa')}%": 为函数原型,具体支持函数下方表格可见.
+
+#### 自定义变量
+
+变量作用域为当前CASE.
+
+- 示例(部分代码片断):
+
+TESTCASE:
+    Case1:
+	    -
+		    Desc: 接口详细描述
+			USER_VAR: 
+			    token: 'xxxxxxx'
+        -
+		    Desc: 接口名称
+			Url: /xxxx/xxxx
+			Method: POST
+			Headers: {}
+			Data:
+			OutPara:
+			Assert: []
+			
+- 以上通过USER_VAR字典对象来定义变量, key为变量名, value为变量值; 使用方法: ${token}$
+
+- 无需定义变量, USER_VAR字段在用例中,可以省略.
 
 #### OutPara字段变量使用
 
 OutPara字段用来做公共变量,供其它接口使用,默认为""; 
 
--  示例: "$H_token $": result.data 是请求结果，返回的嵌套级别
+-  示例: "${H_token}$": result.data 是请求结果，返回的嵌套级别
 -  OutPara为dict类型,可以做多个公共变量.
 
 
