@@ -200,7 +200,8 @@ har命令来解析, Charles抓包工具导出的http .har请求文件, 自动生
 
 变量作用域为当前CASE.
 
-- 示例(部分代码片断):
+
+##### 示例(部分代码片断)
 
 TESTCASE:
     Case1:
@@ -216,7 +217,8 @@ TESTCASE:
 			Data:
 			OutPara:
 			Assert: []
-			
+
+	
 - 以上通过USER_VAR字典对象来定义变量, key为变量名, value为变量值; 使用方法: ${token}$
 
 - 无需定义变量, USER_VAR字段在用例中,可以省略.
