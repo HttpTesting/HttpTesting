@@ -196,27 +196,27 @@ har命令来解析, Charles抓包工具导出的http .har请求文件, 自动生
 - "${H_token}$": 为参数变量,可以头信息里与Data数据里进行使用
 - "%{md5('aaaa')}%": 为函数原型,具体支持函数下方表格可见.
 
-#### 自定义变量
+### 自定义变量
 
 变量作用域为当前CASE.
 
 
-##### 示例(部分代码片断)
+### 示例(部分代码片断)
 
-TESTCASE:
-    Case1:
-	    -
-		    Desc: 接口详细描述
-			USER_VAR: 
-			    token: 'xxxxxxx'
-        -
-		    Desc: 接口名称
-			Url: /xxxx/xxxx
-			Method: POST
-			Headers: {}
-			Data:
-			OutPara:
-			Assert: []
+    TESTCASE: 
+        Case1:
+            - 
+                Desc: 接口详细描述
+                USER_VAR:
+                    token:  xxxxxxxx
+            -
+                Url: /xxxx/xxxx
+                Method: POST
+                Headers: {}
+                Data:
+                OutPara:
+                Assert: []
+
 
 	
 - 以上通过USER_VAR字典对象来定义变量, key为变量名, value为变量值; 使用方法: ${token}$
