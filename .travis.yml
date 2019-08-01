@@ -5,5 +5,5 @@ python:
 install:
 - pip install -r requirements.txt
 
-# script:
-#   - pytest
+script:
+  - python -m HttpTesting.main:run_min -h
