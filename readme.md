@@ -1,7 +1,6 @@
 ﻿# HttpTesting
 
-[![Build status](https://travis-ci.org/atotto/travisci-golang-example.png)](https://travis-ci.org/atotto/travisci-golang-example)
-
+![PyPI](https://img.shields.io/pypi/v/HttpTesting?style=plastic)
 
 
 HttpTesting 是HTTP(S) 协议测试框架，通过YAML来编写测试用例；支持通过pip直接从PyPi安装，支持命令行运行代码，不固定结构，通过命令生成脚手架。
@@ -299,61 +298,8 @@ Assert字段默认为[].
   
 
 ### 通过setuptools工具进行框架打包,需要编写setup.py
-	from setuptools import setup, find_packages, command
-	setup(
-		name='HttpTesting',#应用名称
-		version='1.0.16',#版本号
-		description='HttpTesting',#描述
-		long_description="长描述", #此描述显示到PyPi页
-		long_description_content_type='text/markdown',
-		author='天枢',#作者
-		author_email='lengyaohui@163.com',
-		url='https://gitlab.acewill.cn/lengyaohui/amtesting.git',
-		license='Apache 2.0',
-		python_requires='!=3.0.,!=3.1.,!=3.2.,!=3.3.,<4.0.',
-		packages=find_packages(),#查找包方法
-		package_data={
-			'HttpTesting':[
-				'config/*.yaml',
-				'testcase/*.yaml',
-				'report/*.html',
-				'report/*.xlsx',
-			],
-			'':['*.py'],
-		},	
-		#依赖包
-		install_requires=[
-			'ddt==1.1.3',
-			'Flask==1.0.2',
-			'PyYAML==3.12',
-			'requests==2.18.4',
-			'requests-toolbelt==0.8.0',
-		],
-		#排出打包文件
-		exclude_package_data={
-			'':['README.txt'],
-		},
-		#PyPi页面左侧显示
-		classifiers=[
-			'Development Status::Beta',
-			'Programming Language::Python::3.4',
-			'Programming Language::Python::3.5',
-			'Programming Language::Python::3.6',
-			'Programming Language::Python::3.7',
-		],
-		#命令行使用命令
-		entry_points={
-			'console_scripts':[
-				'amt=HttpTesting.main:run_min',
-				'AMT=HttpTesting.main.run_min',
-			],
-		},
-		#发布时执行的cmd命令
-		cmdclass={
-			'upload':从Command继承的类，
-		},
-	)
-  
+
+
 
 - 打包：python3 setup.py bdist_wheel
 
