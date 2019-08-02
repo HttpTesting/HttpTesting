@@ -13,7 +13,6 @@ RETRY: #请求失败重试设置
 ###########################################################################
 
 
-
 ##########################钉钉设置###########################################
 ENABLE_DDING: False
 DING_URL: https://oapi.dingtalk.com/robot/send?access_token=
@@ -38,9 +37,6 @@ REPORT_URL: http://60.205.217.8:5004
 
 #EMAIL_ENABLE: ###False不启用邮箱，True启用邮邮箱
 EMAIL_ENABLE: False
-
-#EMAIL_ENVIRON: ##True启用，系统环境变量配置密码，False为config.yaml配置
-EMAIL_ENVIRON: True
 
 #邮箱配置信息
 EMAIL:

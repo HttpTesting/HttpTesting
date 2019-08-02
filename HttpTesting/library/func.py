@@ -79,7 +79,23 @@ class FUNC:
         ret = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
         return ret
 
+    @staticmethod
+    def sleep_time(ses):
+        """
+        Main thread sleep time.
 
+        Args:
+            ses: seconds; Support decimals such as 0.5 or 0.8.
+            1, 1 seconds, 0.5, 500 milliseconds.
+        
+        Usage:
+            import time
+            sleep_time(0.5) #500 milliseconds.
+
+        Returns:
+            There is no return.
+        """
+        time.sleep(ses)
 
 if __name__ == "__main__":
     a = FUNC.uuid1()
