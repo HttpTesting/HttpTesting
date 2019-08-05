@@ -1,6 +1,10 @@
 ﻿# HttpTesting
 
-![PyPI](https://img.shields.io/pypi/v/HttpTesting?style=plastic)
+![PyPI](https://img.shields.io/pypi/v/Httptesting)
+![PyPI - License](https://img.shields.io/pypi/l/HttpTesting)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/HttpTesting)
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/HttpTesting)
+![PyPI - Status](https://img.shields.io/pypi/status/HttpTesting)
 
 
 HttpTesting 是HTTP(S) 协议测试框架，通过YAML来编写测试用例；支持通过pip直接从PyPi安装，支持命令行运行代码，不固定结构，通过命令生成脚手架。
@@ -265,8 +269,7 @@ Assert字段默认为[].
 |uuid1|-|生成唯一id,uuid1示例:ebcd6df8a77611e99bb588b111064583|
 |datetimestr|-|生成日期时间串,示例:2019-07-16 10:50:16|
 |mstimestamp|-|毫秒级时间戳,20位|
-|sleep_time|-|线程睡眠秒级,小数0.5为500毫秒，1为1秒|
-
+|sleep_time|-|线程睡眠,0.5为500毫秒，1为1秒|
 - 其它后续添加
 
 
@@ -292,6 +295,15 @@ Assert字段默认为[].
 - 3、修改基本配置，并保存
 
 
+### 配置功能对比
+|序号|功能|V1.0|V1.1|配置参数|
+|--|--|--|--|--|
+|1|并发执行|-|√|ENABLE_EXECUTION:False EXECUTION_NUM: 4|
+|2|失败重新执行|√|√|ENABLE_RERUN: False  RERUN_NUM:  2|
+|3|重复执行|-|√|ENABLE_REPEAT: False REPEAT_NUM: 2
+|4|钉钉消息|√|√|ENABLE_DDING:  False |
+|5|发送报告邮件|√|√|EMAIL_ENABLE: False|
+|6|控制台输出|-|√|ENABLE_EXEC_MODE: False|
 
 
 ## 代码打包与上传PyPi
