@@ -115,6 +115,34 @@ def param_content_parse(queue, data):
                         data[filed] = m
                         break #break
 
+def user_custom_variables(queue, args, data):
+    """
+    Handles custom variables in USER_VAR
+
+    args:
+        queue: variables queue
+        args: User variables
+        data: user variables value
+    
+    return:
+        There is no return.
+    """
+    #User-defined variables.
+    if 'USER_VAR' in data.keys():
+        for key, value in data['USER_VAR'].items():
+            args['${%s}$' % key] = parse_args_func(FUNC, value)
+
+        queue.append(args)
+
+        var_dict = queue[0]
+
+        #Handles custom variables in USER_VAR
+        for key, val in var_dict.items():
+            content = re.findall('\$\{.*?}\$', str(val))
+            if content:
+                for klist in content:
+                    var_dict[key] = eval(str(val).replace(str(klist), str(var_dict[klist])))
+
 
 
 def exec_test_case(self, data):
@@ -138,15 +166,12 @@ def exec_test_case(self, data):
         if i == 0:
             continue
         res = None
-            
+
+        #Handles custom variables in USER_VAR
+        user_custom_variables(queue_list, args_dict, data[0]) 
+
         #Pass parameters with DATA information.
         param_content_parse(queue_list, data[i])
-
-        #User-defined variables.
-        if 'USER_VAR' in data[0].keys():
-            for key, value in data[0]['USER_VAR'].items():
-                args_dict['${%s}$' % key] = parse_args_func(FUNC, value)
-            queue_list.append(args_dict)   
 
         #Execute the custom function.
         data[i]['Desc'] = parse_args_func(FUNC, data[i]['Desc'])
