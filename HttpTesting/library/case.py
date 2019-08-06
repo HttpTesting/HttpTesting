@@ -263,6 +263,9 @@ def param_to_queue(self, queue, data, param_dict, res, headers, cookie, result):
                 else:
                     queue_val = eval(value)
 
+            #custom var.
+            if not "${" in key:
+                key = "${%s}$" % key
             param_dict[key] = queue_val
         queue.append(param_dict)
 

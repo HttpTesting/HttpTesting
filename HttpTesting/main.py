@@ -143,6 +143,16 @@ class Run_Test_Case(object):
 
 
     @staticmethod
+    def copy_custom_function():
+        #自定义函数功能
+        func = os.path.join(os.getcwd(), 'extfunc.py')
+        target = os.path.join(gl.loadcasePath, 'extfunc.py')
+
+        if os.path.exists(func):
+            shutil.copy(func, target)   
+
+
+    @staticmethod
     def copy_report(filePath, file_name):
         #复制report下子文件夹到 templates/report/下
         split_path = os.path.dirname(filePath).split("\\")
@@ -187,7 +197,9 @@ class Run_Test_Case(object):
         :param filePath: Report file absolute path.
         :return: There is no.
         """
-        
+        #custom function
+        Run_Test_Case.copy_custom_function()
+                
         #Load the unittest framework, which must be written here or DDT will be loaded first.
         from HttpTesting.case import load_case
 
