@@ -181,12 +181,13 @@ class Run_Test_Case(object):
         else:
             msg_1 = '本次测试★不通过★'
 
+        config = get_yaml_field(gl.configFile)
         #report外网发布地址ip+port
-        report_url = get_yaml_field(gl.configFile)['REPORT_URL']
-
+        report_url = config['REPORT_URL']
+        content = config['DING_TITLE']
         # 发送钉钉消息
-        msg = """接口自动化测试已完成:{},{}\n测试报告地址:{}/{}/{}"""
-        msg = msg.format(result_str, msg_1, report_url, low_path, file_name)
+        msg = """{}已完成:{},{}\n测试报告地址:{}/{}/{}"""
+        msg = msg.format(content, result_str, msg_1, report_url, low_path, file_name)
 
         return msg
 
