@@ -16,6 +16,7 @@ global templatesPath #web模版路径
 global templatesReportPath #模版测试报告发布路径
 global exeConfigFile #exeConfig.yaml配置
 global testCasePath #测试用例文件夹  
+global loadcasePath
 #######################################################################
 
 ################################跨模块调用传参##########################
@@ -56,6 +57,7 @@ templatesReportPath = os.path.join(templatesPath, 'report')
 reportFile = os.path.join(reportPath, "Report.html")
 exeConfigFile = os.path.join(configPath, "exeConfig.yaml")
 testCasePath = os.path.join(PATH(os.path.dirname(globalPath)), 'template')
+loadcasePath = os.path.join(os.path.dirname(globalPath),'case')
 ##########################################################################
 
 if __name__=="__main__":
@@ -71,3 +73,4 @@ if __name__=="__main__":
     print(reportFile)
     print(exeConfigFile)
     print(testCasePath)
+    print(loadcasePath)
