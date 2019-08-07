@@ -278,21 +278,22 @@ def parse_args_func(func_class, data):
         data_bool = True
         data = str(data)
 
-    take = re.findall('\%\{.*?}\%', data)
-    
-    for val in take:
-        fStr = val.split("%{")[1][:-2]
-        func = fStr.split('(')
+    if '%{' in str(data):
+        take = re.findall('\%\{.*?}\%', data)
+        
+        for val in take:
+            fStr = val.split("%{")[1][:-2]
+            func = fStr.split('(')
 
-        fName = func[0]
-        fPara = func[1][:-1]
+            fName = func[0]
+            fPara = func[1][:-1]
 
-        if fPara == '':
-            ret = getattr(func_class, fName)()
-        else:
-            ret = getattr(func_class, fName)(fPara)
+            if fPara == '':
+                ret = getattr(func_class, fName)()
+            else:
+                ret = getattr(func_class, fName)(fPara)
 
-        data = data.replace(val, str(ret))
+            data = data.replace(val, str(ret))
 
     if data_bool:
         data = eval(data)

@@ -109,7 +109,8 @@ def param_content_parse(queue, data):
                     for k in content:
                         if key in content:
                             try:
-                                m = eval(m.replace(str(k), str(val)))
+                                m = m.replace(str(k), str(val))
+                                m = eval(m)
                             except Exception:
                                 m = m.replace(str(k), str(val))                                  
                         data[filed] = m
@@ -130,8 +131,11 @@ def user_custom_variables(queue, args, data):
     #User-defined variables.
     if 'USER_VAR' in data.keys():
         for key, value in data['USER_VAR'].items():
-            args['${%s}$' % key] = parse_args_func(FUNC, value)
-
+            if '%{' in str(value):
+                temp = parse_args_func(FUNC, value)
+            else:
+                temp = value
+            args['${%s}$' % key] =  temp
         queue.append(args)
 
         var_dict = queue[0]

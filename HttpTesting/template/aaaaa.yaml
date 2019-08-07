@@ -1,0 +1,89 @@
+﻿#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>模板说明>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#字段功能说明:
+# - 
+#     Desc: 用例描述
+# -
+#     Desc: 获取token
+#     Url: Url相对路径
+#     Method: 请求方法GET或POST  
+#     Headers:
+#         content-type: "application/json"
+#         cache-control: "no-cache"
+#     Data: 请求要传入的参数dict或json类型
+#         id: "b9b0e8e985a911e894a01c3947952e7e"
+#         secret: "71ee217e2f1bdfcc"
+#     OutPara: 接口出参字段
+#         ${H_token}$: res['data']
+#     Assert: 断言 
+#             "self.assertEquals(res['status'], 'success', res['status'])" 
+#     ${H_token}$：头数据； ${D_token}$：参数数据
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+TEST_CASE:
+    Case1: #用例1
+        -
+            Desc: 查询用户参与的集赞活动
+            USER_VAR:
+                sig: [1,2,3,4,5]
+        -
+            Desc: 查询用户参与的集赞活动
+            Url: /activity/getuserthumbuplog
+            Method: POST
+            Headers:
+                content-type: "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
+                cache-control: "no-cache"
+            Data: 
+                req: 
+                    cno: 1282511093739164
+                    activity_id: 3033953
+                appid: "dp3lF7bop2e5PTFXwLHTszgv"
+                sig: '%{rnd_list("${sig}$")}%'
+                v: 2.0
+                ts: 123
+            OutPara: 
+            Assert:
+                - eq: [result.errcode, 0]
+                - bt: [result.res]
+    # Case2: #用例1
+    #     -
+    #         Desc: 获取活动列表
+    #     -
+    #         Desc: 获取活动列表
+    #         Url: /activity/list
+    #         Method: POST
+    #         Headers:
+    #             content-type: "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
+    #             cache-control: "no-cache"
+    #         Data: 
+    #             req: 
+    #                 cno: 1265799
+    #                 shop_id: 1106421534
+    #             appid: "dp1svA1gkNt8cQMkoIv7HmD1"
+    #             sig: 1111
+    #             v: 2.0
+    #             ts: 123
+    #         OutPara: 
+    #         Assert:
+    #             - eq: [result.errcode, 0]
+    #             - bt: [result.res]
+
+    # Case3: #用例1
+    #     -
+    #         Desc: 获取异业营销活动列表
+    #     -
+    #         Desc: 获取异业营销活动列表
+    #         Url: /activity/otherlist
+    #         Method: POST
+    #         Headers:
+    #             content-type: "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
+    #             cache-control: "no-cache"
+    #         Data: 
+    #             req: 
+    #                 page: 1
+    #             appid: "dp10As24x4DJoMtqbcywEDVo"
+    #             sig: 1111
+    #             v: 2.0
+    #             ts: 123
+    #         OutPara: 
+    #         Assert:
+    #             - eq: [result.errcode, 0]
+    #             - bt: [result.res]

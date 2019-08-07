@@ -300,6 +300,8 @@ Assert字段默认为[].
 |datetimestr|-|生成日期时间串,示例:2019-07-16 10:50:16|
 |mstimestamp|-|毫秒级时间戳,20位|
 |sleep_time|-|线程睡眠,0.5为500毫秒，1为1秒|
+|rnd_list|[]|随机从列表中选择值|
+
 - 其它后续添加
 
 ### 自定义函数扩展功能说明
@@ -355,6 +357,7 @@ Assert字段默认为[].
 |4|钉钉消息|√|√|ENABLE_DDING:  False |
 |5|发送报告邮件|√|√|EMAIL_ENABLE: False|
 |6|控制台输出|-|√|ENABLE_EXEC_MODE: False|
+|7|自定义函数扩展|√|√|用例执行root目录增加extfunc.py|
 
 
 ## 代码打包与上传PyPi
