@@ -27,22 +27,26 @@ def run_min():
     parse = argparse.ArgumentParser(description='HttpTesting parameters')
 
     parse.add_argument(
-        "-file", 
+        "-f",
+        "--file", 
         default='', 
         help='The file path; File absolute or relative path.'
         )
     parse.add_argument(
-        "-dir", 
+        "-d",
+        "--dir", 
         default='',
         help='The folder path; folder absolute or relative path.'
         )
     parse.add_argument(
-        "-startproject", 
+        "-sp",
+        "--startproject", 
         default='',
         help='Generate test case templates.'
         )
     parse.add_argument(
-        "-config", 
+        "-conf",
+        "--config", 
         default='',
         help='Basic setting of framework.'
         )
@@ -52,7 +56,8 @@ def run_min():
         help='Convert the har files to YAML. har file is *.har'
         )
     parse.add_argument(
-        "-convert", 
+        "-c",
+        "--convert", 
         default='',
         help='Convert the har files to YAML. YAML file is *.yaml'
         )
@@ -66,14 +71,14 @@ def run_min():
     vert = args.convert
 
     # Conver YAML.
-    if vert != '':
+    if vert:
         yamlfile = os.path.join(cur_dir, str(vert).strip())
         scripts.generate_case_tmpl(yamlfile)
 
 
     #Convert har files to YAML.
     #r'D:\httphar.har'
-    if har != '':
+    if har:
         temp_dict = ConvertHarToYAML.convert_har_to_ht(har)
         ConvertHarToYAML.write_case_to_yaml('', temp_dict)
 
@@ -84,16 +89,16 @@ def run_min():
         except (KeyboardInterrupt, SystemExit):
             print("已终止执行.")
 
-    if start_project !='':
+    if start_project:
         create_falsework(os.path.join(os.getcwd(), start_project))
 
     #Get the yaml file name and write to the queue.
-    if case_file != '':
+    if case_file:
         case_exec_queue.put(case_file)
         #Began to call.
         Run_Test_Case.invoke()
 
-    if case_dir != '':
+    if case_dir:
         for root, dirs, files in os.walk(case_dir):
             for f in files:
                 if 'yaml' in f:
