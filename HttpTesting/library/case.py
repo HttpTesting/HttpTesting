@@ -223,7 +223,7 @@ def user_params_variables(data):
                         params_len = len(params_dict[str(key)])
                         for _iter , val in enumerate(params_dict[str(key)]):
                             #更改Desc描述，给加个序号
-                            content['Desc'] = '{}_{}'.format(content['Desc'], _iter)
+                            content['Desc'] = '{}_{}'.format(content['Desc'], _iter + 1)
                             #最后一个参数化后，将原来${sig}$替换掉
                             if val != params_len:
                                 new_content = eval(str(content).replace(str(var_name), str(val)))
@@ -266,6 +266,33 @@ def user_custom_variables(queue, args, data):
                     var_dict[key] = eval(str(val).replace(str(klist), str(var_dict[klist])))
 
 
+def req_headers_default(data, index):
+    """
+    Specify the default request header.
+    Args:
+        data: [
+            {"Desc": 'xxxx', "REQ_HEADER": {"content-type": 'application/json'}},
+            {"Desc": 'xxxx', 'Url': 'ccc', "Assert":[], "Method": "POST", "Data": 'xxx', "OutPara": "xxxx"}
+            {"Desc": 'xxxx', 'Url': 'ccc', "Assert":[], "Method": "POST", "Data": 'xxx', "OutPara": "xxxx"}
+        ]
+        index:
+            data[index]
+    Usage:
+        req_headers_default(data)
+    Return:
+        There is no return.
+    """
+    if 'REQ_HEADER' in data[0].keys():
+        headers_default = data[0]['REQ_HEADER']
+        if 'Headers' in data[index].keys():
+            if not data[index]['Headers']:
+                data[index]['Headers'] = headers_default
+        else:
+            data[index]['Headers'] = headers_default
+    else:
+        # No request header is specified.
+        pass
+
 
 def exec_test_case(self, data):
     """
@@ -293,6 +320,9 @@ def exec_test_case(self, data):
             continue
 
         res = None
+        
+        # Request header default value.
+        req_headers_default(data, i)
 
         #Pass parameters with DATA information.
         param_content_parse(queue_list, data[i])
