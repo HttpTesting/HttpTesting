@@ -232,36 +232,6 @@ def check_http_status(host, port, **kwargs):
     except:
         return False
 
-
-def start_web_service():
-    """
-    Start a web service.
-
-    Args: 
-
-    Uasge:
-        start_web_service()
-
-    Return:
-        There is no.
-    """
-    #Get configuration information.
-    ret = get_yaml_field(gl.configFile)
-
-    # Host and port Numbers.
-    _HOST = ret['REPORT_HOST']
-    _PORT = ret['REPORT_PORT']
-
-    # Web startup file.
-    service =  'service.py'
-
-    #Set the web directory to the current command line directory.
-    cmd = 'cd {} && python {} --host {} --port {}'.format(gl.webPath, service, _HOST, _PORT)
-
-    #Command to start service.
-    os.system(cmd)
-
-
 def parse_args_func(func_class, data):
     """
     Parse the function variables in the data.
@@ -282,18 +252,22 @@ def parse_args_func(func_class, data):
         take = re.findall('\%\{.*?}\%', data)
         
         for val in take:
-            fStr = val.split("%{")[1][:-2]
-            func = fStr.split('(')
+            f_str = val.split("%{")[1][:-2]
+            func = f_str.split('(')
 
-            fName = func[0]
-            fPara = func[1][:-1]
+            f_name = func[0]
+            f_para = func[1][:-1]
 
-            if fPara == '':
-                ret = getattr(func_class, fName)()
+            if f_para == '':
+                ret = getattr(func_class, f_name)()
             else:
-                ret = getattr(func_class, fName)(fPara)
-
-            data = data.replace(val, str(ret))
+                #括号后参数个数，有待优化
+                ret = getattr(func_class, f_name)(f_para)
+            
+            if isinstance(ret, str):
+                data = data.replace(val, str(ret))
+            else:
+                data = data.replace("'{}'".format(val), str(ret))
 
     if data_bool:
         data = eval(data)
@@ -379,15 +353,15 @@ def ordered_yaml_load(yaml_path, Loader=yaml.Loader, object_pairs_hook=collectio
 
 
 
-def write_case_to_yaml(yamFile, data):
+def write_case_to_yaml(yam_file, data):
     """
     Write the test case to yaml.
     param:
-        yamFile: Yaml file path.
+    yam_file: Yaml file path.
     return:
         There is no.
     """
-    with io.open(yamFile, 'w', encoding='utf-8') as fp:
+    with io.open(yam_file, 'w', encoding='utf-8') as fp:
         ordered_dump(
             data, 
             fp, 

@@ -108,11 +108,14 @@ def param_content_parse(queue, data):
                     #替换数到data中
                     for k in content:
                         if key in content:
-                            try:
+                            if isinstance(val, str):
                                 m = m.replace(str(k), str(val))
+                            else:
+                                m = m.replace("'{}'".format(k), str(val))   
+                            try:
                                 m = eval(m)
                             except Exception:
-                                m = m.replace(str(k), str(val))                                  
+                                pass                                  
                         data[filed] = m
                         break #break
 
@@ -249,10 +252,21 @@ def user_custom_variables(queue, args, data):
     #User-defined variables.
     if 'USER_VAR' in data.keys():
         for key, value in data['USER_VAR'].items():
+            if "${" in str(value):
+                content = re.findall('\$\{.*?}\$', str(value))
+                for ilist in content:
+                    if str(ilist) in args.keys():
+                        va = args[str(ilist)]
+                        if isinstance(value, str):
+                            value = str(value).replace(str(ilist), str(va))
+                        else:
+                            value = str(value).replace("'{}'".format(ilist), str(va))
+
             if '%{' in str(value):
                 temp = parse_args_func(FUNC, value)
             else:
                 temp = value
+
             args['${%s}$' % key] =  temp
         queue.append(args)
 

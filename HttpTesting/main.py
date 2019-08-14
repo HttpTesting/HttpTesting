@@ -1,11 +1,20 @@
+# ########################################################
+# 将根目录加入sys.path中,解决命令行找不到包的问题
+import sys
+import os
+curPath = os.path.abspath(os.path.dirname(__file__))
+rootPath = os.path.split(curPath)[0]
+sys.path.insert(0, rootPath)
+# ########################################################
+
 import unittest
 import shutil
-import os,time,json
+import time,json
 import logging
 from HttpTesting.globalVar import gl
 from HttpTesting.library import HTMLTESTRunnerCN
 from HttpTesting.library import scripts
-from HttpTesting.library.scripts import (get_yaml_field, start_web_service)
+from HttpTesting.library.scripts import (get_yaml_field)
 from HttpTesting.library.emailstmp import EmailClass
 from HttpTesting.library.case_queue import case_exec_queue
 from HttpTesting import case
@@ -16,13 +25,12 @@ import argparse
 
 ########################################################################
 cmd_path = ''
-#Command line mode.
+# Command line mode.
 def run_min():
 
-    #Takes the current path of the command line
+    # Takes the current path of the command line
     cur_dir = os.getcwd()
-    os.chdir(cur_dir) 
-    cmd_path = cur_dir
+    os.chdir(cur_dir)
 
     parse = argparse.ArgumentParser(description='HttpTesting parameters')
 
@@ -35,7 +43,7 @@ def run_min():
     parse.add_argument(
         "-d",
         "--dir", 
-        default='',
+        default="",
         help='The folder path; folder absolute or relative path.'
         )
     parse.add_argument(
@@ -76,13 +84,13 @@ def run_min():
         scripts.generate_case_tmpl(yamlfile)
 
 
-    #Convert har files to YAML.
-    #r'D:\httphar.har'
+    # Convert har files to YAML.
+    # r'D:\httphar.har'
     if har:
         temp_dict = ConvertHarToYAML.convert_har_to_ht(har)
         ConvertHarToYAML.write_case_to_yaml('', temp_dict)
 
-    #Setting global var.
+    # Setting global var.
     if config == 'set':
         try:
             os.system(gl.configFile)
@@ -92,10 +100,10 @@ def run_min():
     if start_project:
         create_falsework(os.path.join(os.getcwd(), start_project))
 
-    #Get the yaml file name and write to the queue.
+    # Get the yaml file name and write to the queue.
     if case_file:
         case_exec_queue.put(case_file)
-        #Began to call.
+        # Began to call.
         Run_Test_Case.invoke()
 
     if case_dir:
@@ -103,10 +111,8 @@ def run_min():
             for f in files:
                 if 'yaml' in f:
                     case_exec_queue.put(os.path.join(case_dir, f))
-        #Began to call.
+        # Began to call.
         Run_Test_Case.invoke()
-
-
 
 
 #########################################################################
@@ -129,7 +135,7 @@ class Run_Test_Case(object):
 
     @classmethod
     def create_report_file(cls):
-        #测试报告文件名
+        # 测试报告文件名
         report_dir = time.strftime('%Y%m%d_%H%M%S', time.localtime())
 
         rdir = os.path.join(os.getcwd() ,'report')
@@ -137,7 +143,7 @@ class Run_Test_Case(object):
         cls.file_name = 'report.html'
         portdir = os.path.join(rdir, report_dir)
 
-        #按日期创建测试报告文件夹
+        # 按日期创建测试报告文件夹
         if not os.path.exists(portdir):
             # os.mkdir(portdir)
             os.makedirs(portdir)
@@ -149,7 +155,7 @@ class Run_Test_Case(object):
 
     @staticmethod
     def copy_custom_function():
-        #自定义函数功能
+        # 自定义函数功能
         func = os.path.join(os.getcwd(), 'extfunc.py')
         target = os.path.join(gl.loadcasePath, 'extfunc.py')
 
@@ -159,7 +165,7 @@ class Run_Test_Case(object):
 
     @staticmethod
     def copy_report(filePath, file_name):
-        #复制report下子文件夹到 templates/report/下
+        # 复制report下子文件夹到 templates/report/下
         split_path = os.path.dirname(filePath).split("\\")
         low_path = split_path[split_path.__len__() - 1]
         web_path = os.path.join(gl.templatesReportPath, low_path)
@@ -187,7 +193,7 @@ class Run_Test_Case(object):
             msg_1 = '本次测试★不通过★'
 
         config = get_yaml_field(gl.configFile)
-        #report外网发布地址ip+port
+        # report外网发布地址ip+port
         report_url = config['REPORT_URL']
         content = config['DING_TITLE']
         # 发送钉钉消息
@@ -203,10 +209,10 @@ class Run_Test_Case(object):
         :param filePath: Report file absolute path.
         :return: There is no.
         """
-        #custom function
+        # custom function
         Run_Test_Case.copy_custom_function()
-                
-        #Load the unittest framework, which must be written here or DDT will be loaded first.
+
+        # Load the unittest framework, which must be written here or DDT will be loaded first.
         from HttpTesting.case import load_case
 
         # Unittest test suite.
@@ -225,16 +231,14 @@ class Run_Test_Case(object):
             # Run the test case.
             runner.run(suite)
 
-
-
     @staticmethod
     def invoke():
         """
         Start executing tests generate test reports.
         :return: There is no.
         """
-        ##########################Read configuration information###############
-        config  = get_yaml_field(gl.configFile)
+        # #########################Read configuration information###############
+        config = get_yaml_field(gl.configFile)
         dd_enable = config['ENABLE_DDING']
         dd_token = config['DD_TOKEN']
         dd_url = config['DING_URL']
@@ -245,19 +249,17 @@ class Run_Test_Case(object):
         time_str = time.strftime('%Y%m%d_%H%M%S', time.localtime())
         filePath = Run_Test_Case.create_report_file()
 
-
         # Start test the send pin message.
         if dd_enable:
             scripts.send_msg_dding(
                 '{}:★开始API接口自动化测试★'.format(time_str),
-                dd_token,  
-                dd_url 
-                
+                dd_token,
+                dd_url
             )
 
         # Execute the test and send the test report.
         Run_Test_Case.run(filePath)
-        
+
         print(filePath)
         # Copy the folder under the report directory under  /templates/report/
         # low_path = Run_Test_Case.copy_report(filePath, Run_Test_Case.file_name)
@@ -276,5 +278,5 @@ class Run_Test_Case(object):
             email.send(filePath)
 
 
-# if __name__=="__main__":
-#     run_min()
+if __name__ == "__main__":
+    run_min()
