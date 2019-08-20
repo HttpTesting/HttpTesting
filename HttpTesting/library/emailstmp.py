@@ -5,8 +5,8 @@ from email.mime.base import MIMEBase
 from email.header import Header
 from email import encoders
 import time
-from HttpTesting.library import scripts
-from HttpTesting.globalVar import gl
+from httptesting.library import scripts
+from httptesting.globalVar import gl
 
 import yaml,os,base64
 

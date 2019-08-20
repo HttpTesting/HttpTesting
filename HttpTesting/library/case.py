@@ -1,9 +1,9 @@
 import queue
 import re
-from HttpTesting.library.http import HttpWebRequest
-from HttpTesting.library.assert_case import Ac
-from HttpTesting.library.func import FUNC
-from HttpTesting.library.scripts import parse_args_func
+from httptesting.library.http import HttpWebRequest
+from httptesting.library.assert_case import Ac
+from httptesting.library.func import FUNC
+from httptesting.library.scripts import parse_args_func
 
 def out_param_parse(oname, param):
     """
@@ -111,7 +111,7 @@ def param_content_parse(queue, data):
                             if isinstance(val, str):
                                 m = m.replace(str(k), str(val))
                             else:
-                                m = m.replace("'{}'".format(k), str(val))   
+                                m = m.replace("'{}'".format(k), str(val)).replace('"{}"'.format(k), str(val))   
                             try:
                                 m = eval(m)
                             except Exception:

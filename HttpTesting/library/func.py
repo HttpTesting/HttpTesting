@@ -4,13 +4,13 @@ import time
 import uuid
 import datetime
 from random import randint
-from HttpTesting.library.scripts import parse_args_func
+from httptesting.library.scripts import parse_args_func
 
 """
 User-defined extension function import
 """
 try:
-    from HttpTesting.case.extfunc import Extend
+    from httptesting.case.extfunc import Extend
 except ImportError:
     Extend = object
 
@@ -20,7 +20,7 @@ class FUNC(Extend):
     Framework function library.
 
     Usage:
-        from HttpTesting.library.func import FUNC
+        from httptesting.library.func import FUNC
 
         %{FUNC.md5(txt)}%
         %{FUNC.timestamp()}%
@@ -127,6 +127,7 @@ class FUNC(Extend):
         Return:
             [] Returns a list of values.
         """
+        print(lt)
         lt = lt[1:][:-1]
         lt = eval(lt)
         

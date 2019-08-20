@@ -11,15 +11,16 @@ import unittest
 import shutil
 import time,json
 import logging
-from HttpTesting.globalVar import gl
-from HttpTesting.library import HTMLTESTRunnerCN
-from HttpTesting.library import scripts
-from HttpTesting.library.scripts import (get_yaml_field)
-from HttpTesting.library.emailstmp import EmailClass
-from HttpTesting.library.case_queue import case_exec_queue
-from HttpTesting import case
-from HttpTesting.library.falsework import create_falsework
-from HttpTesting.library.har import ConvertHarToYAML
+from httptesting.globalVar import gl
+from httptesting.library import HTMLTESTRunnerCN
+from httptesting.library import scripts
+from httptesting.library.scripts import (get_yaml_field)
+from httptesting.library.emailstmp import EmailClass
+from httptesting.library.case_queue import case_exec_queue
+from httptesting import case
+from httptesting.library.falsework import create_falsework
+from httptesting.library.har import ConvertHarToYAML
+from httptesting import __version__
 import argparse
 
 
@@ -32,8 +33,17 @@ def run_min():
     cur_dir = os.getcwd()
     os.chdir(cur_dir)
 
-    parse = argparse.ArgumentParser(description='HttpTesting parameters')
-
+    parse = argparse.ArgumentParser(
+        description='httptesting parameters', 
+        prog='httptesting'
+        )
+    parse.add_argument(
+        "-v",
+        "--version",
+        action='version',
+        version="%(prog)s {}".format(__version__),
+        help='Framework version.'
+        )
     parse.add_argument(
         "-f",
         "--file", 
@@ -43,7 +53,7 @@ def run_min():
     parse.add_argument(
         "-d",
         "--dir", 
-        default="",
+        default='',
         help='The folder path; folder absolute or relative path.'
         )
     parse.add_argument(
@@ -213,7 +223,7 @@ class Run_Test_Case(object):
         Run_Test_Case.copy_custom_function()
 
         # Load the unittest framework, which must be written here or DDT will be loaded first.
-        from HttpTesting.case import load_case
+        from httptesting.case import load_case
 
         # Unittest test suite.
         suite = unittest.TestSuite()

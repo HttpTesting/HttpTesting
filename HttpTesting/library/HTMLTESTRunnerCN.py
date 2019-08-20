@@ -10,7 +10,7 @@ import datetime
 import sys
 import io
 import time
-from HttpTesting.globalVar import gl
+from httptesting.globalVar import gl
 import unittest
 from xml.sax import saxutils
 import sys

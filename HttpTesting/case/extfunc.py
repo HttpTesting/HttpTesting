@@ -1,7 +1,7 @@
 import hashlib
 from collections import OrderedDict
 from urllib.parse import urlencode, quote
-
+from httptesting.library.scripts import print_backgroup_color
 
 class Extend:
 
@@ -27,7 +27,7 @@ class Extend:
                 if not v or (v is None) or v == "":
                     p.pop(k)
                 else:
-                    p[k]=list(Extend._sort_dict(sorted(v)))
+                    p[k] = list(Extend._sort_dict(sorted(v)))
             elif type(v).__name__ == 'dict':
                 if not v or (v is None):
                     p.pop(k)
@@ -88,20 +88,20 @@ class Extend:
         :param kwargs: 参与签名的参数
         :return: sig签名md5字符串
         """
+        # print_backgroup_color(data_dict, color='green')
 
-        kwargs = eval(data_dict)
         # 处理发送数据为空{}
-        if kwargs['data']:
+        if data_dict['data']:
             URL_TMP = '{}&appid={}&appkey={}&v={}&ts={}'
         else:
             URL_TMP = '{}appid={}&appkey={}&v={}&ts={}'
 
         urlcode = URL_TMP.format(
-            Extend._url_encode_func(kwargs['data']),
-            kwargs['appid'],
-            kwargs['appkey'],
-            kwargs['v'],
-            kwargs['ts']
+            Extend._url_encode_func(data_dict['data']),
+            data_dict['appid'],
+            data_dict['appkey'],
+            data_dict['v'],
+            data_dict['ts']
         ).replace('False', '0').replace('True', '1')
 
         sig = str(Extend._md5(urlcode)).lower()

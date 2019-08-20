@@ -1,13 +1,13 @@
 import os
 import unittest
 import ddt
-from HttpTesting.library.scripts import (load_case_data, get_run_flag)
-from HttpTesting.library import HTMLTESTRunnerCN
-from HttpTesting.library.http import HttpWebRequest
-from HttpTesting.library.case import exec_test_case
-from HttpTesting.globalVar import gl
-from HttpTesting.library.emailstmp import EmailClass
-from HttpTesting.library.case_queue import case_exec_queue
+from httptesting.library.scripts import (load_case_data, get_run_flag)
+from httptesting.library import HTMLTESTRunnerCN
+from httptesting.library.http import HttpWebRequest
+from httptesting.library.case import exec_test_case
+from httptesting.globalVar import gl
+from httptesting.library.emailstmp import EmailClass
+from httptesting.library.case_queue import case_exec_queue
 
 #########################################
 #单个文件Debug时启用

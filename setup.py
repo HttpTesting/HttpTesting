@@ -6,19 +6,19 @@ with io.open('README.md', encoding='utf-8') as fp:
 
 
 setup(
-    name='HttpTesting',  # 应用名
-    version='1.0.87',  # 版本号
-    description="HttpTesting",
+    name='httptesting',  # 应用名
+    version='1.0.89',  # 版本号
+    description="httptesting",
     long_description=long_description,
     long_description_content_type='text/markdown',
     author="天枢",
     author_email="lengyaohui@163.com",
-    url='https://github.com/HttpTesting/HttpTesting',
+    url='https://github.com/httptesting/httptesting',
     license="Apache 2.0",
     python_requires=">=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4",
     packages=find_packages(),  # 包括在安装包内的 Python 包
     package_data = {
-        'HttpTesting': [
+        'httptesting': [
             'config/*.yaml',
             'template/*.yaml',
             ],
@@ -45,8 +45,8 @@ setup(
     # 命令行时使用命令
     entry_points={
         'console_scripts': [
-            'amt=HttpTesting.main:run_min',
-            'AMT=HttpTesting.main:run_min',      
+            'am=httptesting.main:run_min',
+            'amt=httptesting.main:run_min',
             ]
     },
     # 发布到pypi

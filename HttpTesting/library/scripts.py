@@ -7,14 +7,14 @@ import socket
 import collections
 from functools import wraps
 import yaml,requests
-from HttpTesting.globalVar import gl
+from httptesting.globalVar import gl
 from requests.exceptions import (
     ConnectTimeout,
     ConnectionError,
     Timeout,
     HTTPError
     )
-from HttpTesting.library.case_queue import case_exec_queue
+from httptesting.library.case_queue import case_exec_queue
 
 
 '''
@@ -105,9 +105,9 @@ def load_case_data(flag='TEST_CASE'):
         default:
             TEST_CASE
     :import
-        from HttpTesting.library.scripts import load_case_data
+        from httptesting.library.scripts import load_case_data
         or
-        form HttpTesting.library import scripts
+        form httptesting.library import scripts
     :invoke
         load_case_data()
         or
@@ -292,7 +292,28 @@ def write_file(filepath, mode,txt):
     with open(filepath, mode, encoding='utf-8') as fp:
         fp.write(txt)
 
+def get_ip_addr():
+    """
+    Returns the actual ip of the local machine.
+    This code figures out what source address would be used if some traffic
+    were to be sent out to some well known address on the Internet. In this
+    case, a Google DNS server is used, but the specific address does not
+    matter much.  No traffic is actually sent.
 
+    Usage:
+        import socket
+        addr = get_ip_addr()
+    Return:
+        ip address.
+    """
+    try:
+        csock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        csock.connect(('8.8.8.8', 80))
+        (addr, port) = csock.getsockname()
+        csock.close()
+        return addr
+    except socket.error:
+        return "127.0.0.1"
 
 def get_ip_or_name():
     """
@@ -431,4 +452,4 @@ def generate_case_tmpl(fileyaml):
     print("Conversion to complete.")
 
 if __name__=="__main__":
-    env = get_sys_environ('HttpTesting_PWD')
+    env = get_sys_environ('httptesting_PWD')
