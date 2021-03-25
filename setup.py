@@ -28,7 +28,7 @@ setup(
     install_requires = [
         'ddt==1.1.3',
         'Flask',
-        'PyYAML==5.1.1',
+        'PyYAML==5.4',
         'requests',
         'requests-toolbelt',
     ],
